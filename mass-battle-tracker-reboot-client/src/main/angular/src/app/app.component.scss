@@ -1,0 +1,20 @@
+.input-container {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: row;
+    width: 60vw;
+}
+
+.my-label {
+    flex: 1;
+}
+
+.my-input {
+    flex: 3;
+}
+
+.my-textarea {
+    margin-top: 5vh;
+    width: 60vw;
+    min-height: 60vh;
+}

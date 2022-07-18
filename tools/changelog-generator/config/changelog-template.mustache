@@ -1,0 +1,26 @@
+{{#tags}}
+
+    {{#ifContainsType commits type='feat'}}
+        {{#commits}}
+            {{#ifCommitType . type='feat'}}
+ - {{#eachCommitScope .}} **{{.}}** {{/eachCommitScope}} {{{commitDescription .}}} ([{{hash}}](http://my.git.host/{{ownerName}}/{{repoName}}/commit/{{hash}}))
+            {{/ifCommitType}}
+        {{/commits}}
+    {{/ifContainsType}}
+
+    {{#ifContainsType commits type='refactor'}}
+        {{#commits}}
+            {{#ifCommitType . type='refactor'}}
+ - {{#eachCommitScope .}} **{{.}}** {{/eachCommitScope}} {{{commitDescription .}}} ([{{hash}}](http://my.git.host/{{ownerName}}/{{repoName}}/commit/{{hash}}))
+            {{/ifCommitType}}
+        {{/commits}}
+    {{/ifContainsType}}
+
+    {{#ifContainsType commits type='fix'}}
+        {{#commits}}
+            {{#ifCommitType . type='fix'}}
+ - {{#eachCommitScope .}} **{{.}}** {{/eachCommitScope}} {{{commitDescription .}}} ([{{hash}}](http://my.git.host/{{ownerName}}/{{repoName}}/commit/{{hash}}))
+            {{/ifCommitType}}
+        {{/commits}}
+    {{/ifContainsType}}
+{{/tags}}
