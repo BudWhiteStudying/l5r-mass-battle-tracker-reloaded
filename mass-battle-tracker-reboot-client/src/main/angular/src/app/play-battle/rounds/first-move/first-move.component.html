@@ -1,0 +1,13 @@
+<mat-card class="main-card">
+    <form (ngSubmit)="onSubmit()">
+        <mat-label class="block">Commander <b>{{(battleEntity | highestinitcommander).name}}</b>, having the highest initiative, decides which commander makes the first move</mat-label>
+        <mat-form-field>
+            <mat-select [(ngModel)]="roundState.actingCommander" name="acting-commander-select" required>
+            <mat-option *ngFor="let commander of (battleEntity | commanders)" [value]="commander">
+                {{commander.name}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="wide-button">Next</button>
+    </form>
+</mat-card>

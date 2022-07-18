@@ -1,0 +1,32 @@
+<mat-card class="main-card">
+    <form *ngIf="battleEntity" class="full-width">
+        <!-- VALUE SET IN THE PREVIOUS VIEW, DISABLED -->
+        <div class="loosely-spaced">
+            <b>Name of the battleEntity: </b> {{battleEntity.name}}
+        </div>
+        <!-- VALUE SET IN THE PREVIOUS VIEW, DISABLED -->
+        <div class="loosely-spaced">
+            <b>Description of the battleEntity: </b> {{battleEntity.description}}
+        </div>
+        <!-- INVOLVED ARMIES -->
+        <div class="loosely-spaced">
+            <b>Involved armies: </b>
+        </div>
+        <!-- LIST OF ARMIES -->
+        <mat-label class="block" *ngFor="let army of battleEntity.involvedArmies">
+            <mat-card class = "extra-loosely-spaced">
+                <div class="loosely-spaced">
+                    <b>{{army.name}}</b> ({{army.leaders.length}} leaders)
+                    <mat-list-item class="indented-block" *ngFor="let leader of army.leaders"><b>{{leader.name}}</b>, of the {{leader.clan}} clan</mat-list-item>
+                </div>
+                <div class="loosely-spaced">
+                    <b>Strength: </b> {{army.strength}}
+                </div>
+                <div class="loosely-spaced">
+                    <b>Discipline: </b> {{army.discipline}}
+                </div>
+            </mat-card>
+        </mat-label>
+      </form>
+    <button mat-raised-button color="primary" (click)="onFinalSubmit()" class="wide-button">Done</button>
+</mat-card>

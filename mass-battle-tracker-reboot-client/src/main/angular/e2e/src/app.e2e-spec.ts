@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('mass-battle-tracker-reboot app is running!');
+    expect(page.getTitleText()).toEqual('mass-battle-tracker-client app is running!');
   });
 
   afterEach(async () => {

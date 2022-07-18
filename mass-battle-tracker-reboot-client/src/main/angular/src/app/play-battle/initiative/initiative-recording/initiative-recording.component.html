@@ -1,0 +1,12 @@
+<mat-card class="main-card">
+    <form (ngSubmit)="onSubmit()">
+        <mat-card class="loosely-spaced" *ngFor="let army of battleEntity.involvedArmies">
+            <mat-label>Record initiative result (n° of successes) for commander {{army.commander.name}}</mat-label>
+            <br/>
+            <mat-form-field>
+                <input [(ngModel)]="army.commander.initiative" matInput type="number" name="{{army.commander.name}}" required>
+            </mat-form-field>
+        </mat-card>
+        <button mat-raised-button color="primary" class="wide-button">Next</button>
+    </form>
+</mat-card>

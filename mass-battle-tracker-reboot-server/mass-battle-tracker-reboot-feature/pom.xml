@@ -31,8 +31,16 @@
 
         <dependency>
             <groupId>com.budwhite.studying</groupId>
-            <artifactId>mass-battle-tracker-reboot-model</artifactId>
+            <artifactId>mass-battle-tracker-reboot-factory</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <!--
+            <exclusions>
+                <exclusion>
+                    <groupId>com.budwhite.studying</groupId>
+                    <artifactId>mass-battle-tracker-reboot-data</artifactId>
+                </exclusion>
+            </exclusions>
+            -->
         </dependency>
     </dependencies>
 </project>

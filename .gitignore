@@ -40,6 +40,7 @@ nb-configuration.xml
 
 # Project-specific
 mass-battle-tracker-reboot-server/**/resources/META-INF/resources
+*.db
 
 # Node/Angular
 node_modules

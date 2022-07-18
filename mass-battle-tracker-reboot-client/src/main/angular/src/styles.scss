@@ -1,1 +1,79 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$mass-battle-tracker-client-primary: mat-palette($mat-indigo);
+$mass-battle-tracker-client-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$mass-battle-tracker-client-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$mass-battle-tracker-client-theme: mat-light-theme($mass-battle-tracker-client-primary, $mass-battle-tracker-client-accent, $mass-battle-tracker-client-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($mass-battle-tracker-client-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; background-color: #f0f4f5;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.main-card {
+    margin:5vh 2vw 0vw 2vw;
+}
+.wide-button {
+    display: block !important;
+    margin-top: 2vw !important;
+    margin-bottom: 2vw !important;
+    width: 100%;
+}
+.small-button {
+    margin: 2vw 2vw 2vw 0vw !important;
+}
+.full-width {
+    width: 100%;
+}
+.loosely-spaced {
+    margin-top:1vw;
+}
+.extra-loosely-spaced {
+    margin-top:2vw;
+}
+.space-after {
+    margin-bottom: 2vw;
+}
+.space-left {
+    margin-left : 2vw;
+}
+.bold {
+    font-weight: bold;
+}
+.italic {
+    font-style: italic;
+}
+.block {
+    display: block;
+}
+.page-title {
+    font-size: 16px;
+}
+.indented-block {
+    display: block;
+    margin-left: 2vw;
+}
+.red {
+    color: red;
+}

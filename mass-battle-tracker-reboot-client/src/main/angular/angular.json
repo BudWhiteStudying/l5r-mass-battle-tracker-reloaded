@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mass-battle-tracker-reboot": {
+    "mass-battle-tracker-client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -12,17 +12,18 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mass-battle-tracker-reboot",
+            "outputPath": "dist/mass-battle-tracker-client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "allowedCommonJsDependencies": ["lodash"],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -73,22 +74,22 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mass-battle-tracker-reboot:build"
+            "browserTarget": "mass-battle-tracker-client:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mass-battle-tracker-reboot:build:production"
+              "browserTarget": "mass-battle-tracker-client:build:production"
             },
             "development": {
-              "browserTarget": "mass-battle-tracker-reboot:build:development",
-              "proxyConfig": "src/proxy.local.conf.js"
+              "browserTarget": "mass-battle-tracker-client:build:development",
+              "proxyConfig": "src/proxy.conf.dev.js"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mass-battle-tracker-reboot:build"
+            "browserTarget": "mass-battle-tracker-client:build"
           }
         },
         "test": {
@@ -103,8 +104,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/assets/scss/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets/scss"
+              ]
+            },
             "scripts": []
           }
         },
@@ -125,15 +131,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "mass-battle-tracker-reboot:serve"
+            "devServerTarget": "mass-battle-tracker-client:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "mass-battle-tracker-reboot:serve:production"
+              "devServerTarget": "mass-battle-tracker-client:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "mass-battle-tracker-reboot"
+  "defaultProject": "mass-battle-tracker-client",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,156 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-                  
-  
-  
-  
-  
-  
-  
   <parent>
-                                    
-    
-    
-    
-    
-    
-    
     <artifactId>mass-battle-tracker-reboot</artifactId>
-                                    
-    
-    
-    
-    
-    
-    
     <groupId>com.budwhite.studying</groupId>
-                                    
-    
-    
-    
-    
-    
-    
     <version>1.0-SNAPSHOT</version>
-                                
-  
-  
-  
-  
-  
-  
   </parent>
-                  
-  
-  
-  
-  
-  
-  
   <modelVersion>4.0.0</modelVersion>
-                  
-  
-  
-  
-  
-  
-  
   <artifactId>mass-battle-tracker-reboot-server</artifactId>
-                  
-  
-  
-  
-  
-  
-  
   <properties>
-                                    
-    
-    
-    
-    
-    
-    
     <maven.compiler.source>11</maven.compiler.source>
-                                    
-    
-    
-    
-    
-    
-    
     <maven.compiler.target>11</maven.compiler.target>
-                                
-  
-  
-  
-  
-  
-  
   </properties>
-                  
-  
-  
-  
-  
-  
-  
   <packaging>pom</packaging>
-              
-  
-  
-  
-  
-  
-  
   <modules>
-                              
-    
-    
-    
-    
-    
-    
     <module>mass-battle-tracker-reboot-core</module>
-                              
-    
-    
-    
-    
-    
-    
     <module>mass-battle-tracker-reboot-data</module>
-                          
-    
-    
-    
-    
-    
     <module>mass-battle-tracker-reboot-feature</module>
-                      
-    
-    
-    
-    
     <module>mass-battle-tracker-reboot-factory</module>
-                  
-    
-    
-    
     <module>mass-battle-tracker-reboot-model</module>
-              
-    
-    
     <module>mass-battle-tracker-reboot-integration</module>
-          
-    
     <module>mass-battle-tracker-reboot-framework</module>
-      
   </modules>
-            
 
-
-
-
-
+  <profiles>
+    <profile>
+      <id>e2e-build</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>cz.habarta.typescript-generator</groupId>
+            <artifactId>typescript-generator-maven-plugin</artifactId>
+            <version>2.30.840</version>
+            <executions>
+              <execution>
+                <id>generate</id>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+                <phase>process-classes</phase>
+              </execution>
+            </executions>
+            <configuration>
+              <jsonLibrary>jackson2</jsonLibrary>
+              <outputFile>../mass-battle-tracker-reboot-client/src/main/angular/src/app/shared/data-model/mass-battle-tracker-reboot-server.d.ts</outputFile>
+              <outputKind>module</outputKind>
+              <mapEnum>asEnum</mapEnum>
+              <classPatterns>
+                <pattern>mass.battleEntity.tracker.reboot.model.**</pattern>
+              </classPatterns>
+              <requiredAnnotations>javax.validation.constraints.NotNull</requiredAnnotations>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

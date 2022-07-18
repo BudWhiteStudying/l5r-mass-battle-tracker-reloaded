@@ -1,27 +1,7 @@
-<!DOCTYPE html>
-
-<div id='app-container'>
-  <!-- TODO: use an actual angular form -->
-  <form id="resource-invocation-form">
-    <div id="resource-path-input-container" class="input-container">
-      <label id="resource-path-input-label" class="my-label">Enter resource path</label>
-      <input type="text" name="resource-path-input" id="resource-path-input" class="my-input" [(ngModel)]="resourcePath"/>
-    </div>
-  
-    <div id="resource-path-input-container" class="input-container">
-      <label id="method-selector-label" class="my-label">Select an HTTP method</label>
-      <select name="method-selector" id="method-selector" class="my-input" [(ngModel)]="invocationMethod">
-        <option id="method-get" selected>GET</option>
-        <option id="method-post">POST</option>
-      </select>
-    </div>
-  
-    <div id="resource-path-input-container" class="input-container">
-      <button type="button" id="invocation-button" (click)="invokeResource()">Invoke!</button>
-    </div>
-  </form>
-  <textarea id="result-area" class="my-textarea" disabled [(ngModel)]="invocationResult"></textarea>
-</div>
-
-
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+    <span>L5R Mass Battle Tracker</span>
+</mat-toolbar>
+<mat-toolbar color="secondary" *ngIf="pageTitle">
+    <span class="page-title">{{pageTitle}}</span>
+</mat-toolbar>
+<router-outlet (activate)="componentAdded($event)"></router-outlet>

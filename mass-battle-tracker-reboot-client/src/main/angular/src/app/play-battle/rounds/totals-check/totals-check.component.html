@@ -1,0 +1,67 @@
+<mat-card class="main-card">
+    <form (ngSubmit)="onSubmit()">
+        <mat-card class="loosely-spaced">
+            <mat-label class="bold">Round sub-totals</mat-label>
+            <br/>
+            <mat-card class="loosely-spaced" *ngFor="let army of battleEntity.involvedArmies">
+                <mat-label class="bold">{{army.name}}</mat-label>
+                <br/>
+                <div class="indented-block">
+                    <mat-label class="italic">Attrition suffered: {{determineAttritionSuffered(army)}}</mat-label>
+                </div>
+                <div class="indented-block">
+                    <mat-label class="italic">Panic suffered: {{determinePanicSuffered(army)}}</mat-label>
+                </div>
+                <div class="indented-block">
+                    <mat-label class="italic">Discipline recovered: {{determinePanicRemoved(army)}}</mat-label>
+                </div>
+            </mat-card>
+        </mat-card>
+        <mat-card class="loosely-spaced">
+            <mat-label class="bold">Strategic objectives</mat-label>
+            <br/>
+            <mat-card class="loosely-spaced" *ngFor="let army of battleEntity.involvedArmies">
+                <mat-label class="bold">{{army.name}}</mat-label>
+                <br/>
+                <mat-label>Mark objectives that have been reached this round</mat-label>
+                <div class="indented-block loosely-spaced">
+                    <mat-checkbox [(ngModel)]="roundState.currentObjectivePerArmyName[army.name].reached" name="reach-check-{{roundState.currentObjectivePerArmyName[army.name].name}}" class="italic">{{roundState.currentObjectivePerArmyName[army.name].name}}</mat-checkbox>
+                </div>
+                <div class="indented-block" *ngIf="roundState.currentObjectivePerArmyName[army.name].reached">
+                    <mat-form-field class="block">
+                        <mat-label>Attrition caused</mat-label>
+                        <input matInput [(ngModel)]="roundState.currentObjectivePerArmyName[army.name].attritionCaused" type="number" name="attrition-caused-{{roundState.currentObjectivePerArmyName[army.name].name}}" required>
+                    </mat-form-field>
+                    <br/>
+                    <mat-form-field class="block">
+                        <mat-label>Panic caused</mat-label>
+                        <input matInput [(ngModel)]="roundState.currentObjectivePerArmyName[army.name].panicCaused" type="number" name="panic-caused-{{roundState.currentObjectivePerArmyName[army.name].name}}" required>
+                    </mat-form-field>
+                    <br/>
+                    <mat-form-field class="block">
+                        <mat-label>Discipline recovered</mat-label>
+                        <input matInput [(ngModel)]="roundState.currentObjectivePerArmyName[army.name].panicRemoved" type="number" name="panic-removed-{{roundState.currentObjectivePerArmyName[army.name].name}}" required>
+                    </mat-form-field>
+                </div>
+            </mat-card>
+        </mat-card>
+        <mat-card class="loosely-spaced">
+            <mat-label class="bold">Round totals</mat-label>
+            <br/>
+            <mat-card class="loosely-spaced" *ngFor="let army of battleEntity.involvedArmies">
+                <mat-label class="bold">{{army.name}}</mat-label>
+                <br/>
+                <div class="indented-block">
+                    <mat-label [(ngModel)]="roundState" ngDefaultControl name="total-attr-{{army.name}}">Total attrition suffered: {{determineTotalAttritionSuffered(army)}}</mat-label>
+                </div>
+                <div class="indented-block">
+                    <mat-label [(ngModel)]="roundState" ngDefaultControl name="total-panic-{{army.name}}" class="italic">Total panic suffered: {{determineTotalPanicSuffered(army)}}</mat-label>
+                </div>
+                <div class="indented-block">
+                    <mat-label [(ngModel)]="roundState" ngDefaultControl name="total-disc-rec-{{army.name}}" class="italic">Total discipline recovered: {{determineTotalPanicRemoved(army)}}</mat-label>
+                </div>
+            </mat-card>
+        </mat-card>
+        <button mat-raised-button color="primary" class="wide-button">Next</button>
+    </form>
+</mat-card>

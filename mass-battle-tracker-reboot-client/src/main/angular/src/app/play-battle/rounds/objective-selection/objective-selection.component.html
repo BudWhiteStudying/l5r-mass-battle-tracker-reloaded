@@ -1,0 +1,12 @@
+<mat-card class="main-card">
+    <form (ngSubmit)="onSubmit()">
+        <mat-card class="loosely-spaced" *ngFor="let army of battleEntity.involvedArmies">
+            <mat-label>Record strategic objective chosen by commander {{army.commander.name}} for this round</mat-label>
+            <br/>
+            <mat-form-field>
+                <input [(ngModel)]="roundState.currentObjectivePerArmyName[army.name].name" matInput name="obj-{{army.commander.name}}" required>
+              </mat-form-field>
+        </mat-card>
+        <button mat-raised-button color="primary" class="wide-button">Next</button>
+    </form>
+</mat-card>

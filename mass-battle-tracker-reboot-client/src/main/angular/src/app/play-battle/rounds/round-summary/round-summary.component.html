@@ -1,0 +1,52 @@
+<mat-card class="main-card">
+    <form (ngSubmit)="onSubmit()">
+        <mat-card class="loosely-spaced">
+            <mat-label class="bold">Round {{roundState.roundIndex}} summary:</mat-label>
+            <br/>
+            <mat-card class="loosely-spaced" *ngFor="let army of battleEntity.involvedArmies">
+                <mat-label class="bold space-after">{{army.name}}</mat-label>
+                <br/>
+                <mat-form-field class="loosely-spaced">
+                    <mat-label>Attrition suffered</mat-label>
+                    <input [(ngModel)]="roundState.scorePerArmyName[army.name].totalAttritionSuffered" matInput name="attr-{{army.name}}" disabled>
+                </mat-form-field>
+                <br/>
+                <mat-form-field class="loosely-spaced">
+                    <mat-label>Panic suffered</mat-label>
+                    <input [(ngModel)]="roundState.scorePerArmyName[army.name].totalPanicSuffered" matInput name="pan-{{army.name}}" disabled>
+                </mat-form-field>
+                <br/>
+                <mat-form-field class="loosely-spaced">
+                    <mat-label>Panic recovered</mat-label>
+                    <input [(ngModel)]="roundState.scorePerArmyName[army.name].totalPanicRemoved" matInput name="pan-rec-{{army.name}}" disabled>
+                </mat-form-field>
+                <br/>
+                <mat-form-field class="loosely-spaced">
+                    <mat-label>Casualties suffered</mat-label>
+                    <input [(ngModel)]="roundState.scorePerArmyName[army.name].totalCasualtiesSuffered" matInput name="cas-{{army.name}}" required>
+                </mat-form-field>
+            </mat-card>
+        </mat-card>
+        <mat-card class="loosely-spaced">
+            <mat-label class="bold">State of armies at the end of round {{roundState.roundIndex}}:</mat-label>
+            <br/>
+            <mat-card class="loosely-spaced" *ngFor="let army of battleEntity.involvedArmies">
+                <mat-label class="bold space-after">{{army.name}}</mat-label>
+                <br/>
+            <mat-form-field class="loosely-spaced">
+                <mat-label>Total casualties suffered</mat-label>
+                <input [(ngModel)]="1*army.currentCasualties+1*roundState.scorePerArmyName[army.name].totalCasualtiesSuffered" matInput name="tot-cas-{{army.name}}" required>
+            </mat-form-field>
+            <mat-label class="space-left loosely-spaced" [class.red]="army.currentCasualties+roundState.scorePerArmyName[army.name].totalCasualtiesSuffered>army.strength">against Strength <b>{{army.strength}}</b></mat-label>
+            <br/>
+            <mat-form-field class="loosely-spaced">
+                <mat-label>Total panic suffered</mat-label>
+                <input [(ngModel)]="1*army.currentPanic+roundState.scorePerArmyName[army.name].totalPanicSuffered-1*roundState.scorePerArmyName[army.name].totalPanicRemoved" matInput name="tot-pan-{{army.name}}" required>
+            </mat-form-field>
+            <mat-label class="space-left loosely-spaced" [class.red] = "army.currentPanic+roundState.scorePerArmyName[army.name].totalPanicSuffered-roundState.scorePerArmyName[army.name].totalPanicRemoved>army.discipline">against Discipline <b>{{army.discipline}}</b></mat-label>
+            </mat-card>
+        </mat-card>
+        <button mat-raised-button color="primary" class="small-button">Next</button>
+        <button type="button" mat-stroked-button color="primary" class="small-button" *ngFor="let army of battleEntity.involvedArmies">{{army.name}} won</button>
+    </form>
+</mat-card>

@@ -1,0 +1,45 @@
+<mat-card class="main-card">
+    <form (ngSubmit)="onSubmit()">
+        <mat-card class="loosely-spaced" *ngFor="let army of battleEntity.involvedArmies">
+            <mat-label>Cohorts of army "{{army.name}}"</mat-label>
+            <button type="button" (click)="onAddCohortClicked(army)" mat-icon-button color="primary" aria-label="Add Cohort" [disabled]="!(army.leaders | nonconscriptedleaders:army).length">
+                <mat-icon>add_circle</mat-icon>
+            </button>
+            <!-- LIST OF COHORTS -->
+            <mat-label class="block" *ngFor="let cohort of army.cohorts">
+                <mat-card class = "loosely-spaced">
+                    <div>
+                        <b>{{cohort.name}}</b>, led by {{cohort.leader.name}}
+                    </div>
+                </mat-card>
+            </mat-label>
+            <!-- "NO COHORTS" LABEL -->
+            <mat-label *ngIf="(!army.cohorts || !army.cohorts.length) && !addingNewCohort" class="block loosely-spaced">No cohorts</mat-label>
+            <mat-error *ngIf="notEnoughCohortsError && (!army.cohorts || !army.cohorts.length)">Provide at least one cohort for this army!</mat-error>
+            <!-- ADD NEW COHORT -->
+            <mat-card *ngIf="addingNewCohort && currentArmyName==army.name" class = "loosely-spaced">
+                <form (ngSubmit)="onNewCohortSubmit(army)">
+                    <mat-label class="bold">Form new cohort</mat-label>
+                    <br/>
+                    <mat-form-field class="loosely-spaced">
+                        <mat-label>Cohort leader</mat-label>
+                        <mat-select [(ngModel)]="cohortInProgress.leader" name="ld-name-{{army.name}}" required>
+                            <mat-option *ngFor="let leader of army.leaders | nonconscriptedleaders:army" [value]="leader">
+                                {{leader.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br/>
+                    <mat-form-field class="loosely-spaced">
+                        <mat-label>Cohort name</mat-label>
+                        <input [(ngModel)]="cohortInProgress.name" name="ch-name-{{army.name}}" matInput placeholder="e.g. Heavy Infantry" required>
+                    </mat-form-field>
+                    <br/>
+                    <button mat-raised-button color="primary" class="small-button">Form cohort</button>
+                    <button mat-stroked-button type="button" color="primary" class="small-button" (click)="onDiscardCohortClicked()">Discard</button>
+                </form>
+            </mat-card>
+        </mat-card>
+        <button mat-raised-button color="primary" class="wide-button">Next</button>
+    </form>
+</mat-card>

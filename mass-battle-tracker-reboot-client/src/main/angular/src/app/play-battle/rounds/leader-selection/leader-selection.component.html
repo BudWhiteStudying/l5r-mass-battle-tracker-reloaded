@@ -1,0 +1,13 @@
+<mat-card class="main-card">
+    <form (ngSubmit)="onSubmit()">
+        <mat-label class="block">Commander <b>{{roundState.actingCommander.name}}</b> decides which leader will now take his turn</mat-label>
+        <mat-form-field>
+            <mat-select [(ngModel)]="roundState.actingLeader" name="acting-leader-select" required>
+            <mat-option *ngFor="let leader of (battleEntity | standingleadersofcommander:roundState)" [value]="leader">
+                {{leader.name}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="wide-button">Next</button>
+    </form>
+</mat-card>
