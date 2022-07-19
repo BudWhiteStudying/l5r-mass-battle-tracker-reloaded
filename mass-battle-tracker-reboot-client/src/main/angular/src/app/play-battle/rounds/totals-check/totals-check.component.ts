@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Army, Battle, ExecutedAction, RoundState, StrategicObjective } from 'src/app/shared/data-model/mass-battle-tracker-server';
+import { Army, Battle, ExecutedAction, RoundState, StrategicObjective } from 'src/app/shared/data-model/mass-battle-tracker-reboot-server';
 
 @Component({
   selector: 'totals-check',

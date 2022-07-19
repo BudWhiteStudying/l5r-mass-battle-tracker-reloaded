@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Army, Battle, CharacterType, Cohort } from 'src/app/shared/data-model/mass-battle-tracker-server';
+import { Army, Battle, Cohort } from 'src/app/shared/data-model/mass-battle-tracker-reboot-server';
 
 @Component({
   selector: 'leaders-selection',
@@ -13,7 +13,7 @@ export class LeadersSelectionComponent implements OnInit {
   pageTitle = '"Initiative" phase: for each Army, form one or more Cohorts, and nominate the Leaders that will lead them'
 
   battle : Battle;
-  cohortInProgress : Cohort = {name : "", leader : {name : "", clan : "", characterType : CharacterType.LEADER}};
+  cohortInProgress : Cohort = {name : "", leader : {name : "", clan : "", commander : false}};
   addingNewCohort : Boolean;
   currentArmyName : String;
   notEnoughCohortsError : Boolean;
@@ -50,7 +50,7 @@ export class LeadersSelectionComponent implements OnInit {
     }
     this.battle.involvedArmies.find(army => army.name==containingArmy.name).cohorts.push(this.cohortInProgress);
     this.addingNewCohort = false;
-    this.cohortInProgress = {name : "", leader : {name : "", clan : "", characterType : CharacterType.LEADER}};
+    this.cohortInProgress = {name : "", leader : {name : "", clan : "", commander : false}};
   }
 
   private updateBattle(): Promise<Battle> {

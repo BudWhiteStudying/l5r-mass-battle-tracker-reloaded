@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Battle, Character, RoundState } from 'src/app/shared/data-model/mass-battle-tracker-server';
+import { Battle, Leader, RoundState } from 'src/app/shared/data-model/mass-battle-tracker-reboot-server';
 
 @Pipe({
     name: 'standingleadersofcommander',
     pure: false
 })
 export class StandingLeadersOfCommanderPipe implements PipeTransform {
-    transform(battle: Battle, roundState: RoundState): Character[] {
+    transform(battle: Battle, roundState: RoundState): Leader[] {
         if (!battle || !battle.involvedArmies) {
             throw {};
         }

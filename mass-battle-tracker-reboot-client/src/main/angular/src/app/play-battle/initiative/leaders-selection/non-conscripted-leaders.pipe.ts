@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Army, Character } from 'src/app/shared/data-model/mass-battle-tracker-server';
+import { Army, Leader } from 'src/app/shared/data-model/mass-battle-tracker-reboot-server';
 
 @Pipe({
     name: 'nonconscriptedleaders',
     pure: false
 })
 export class NonConscriptedLeadersPipe implements PipeTransform {
-    transform(leaders: Character[], army: Army): Character[] {
+    transform(leaders: Leader[], army: Army): Leader[] {
         if (!leaders || !army || !army.cohorts) {
             return leaders;
         }

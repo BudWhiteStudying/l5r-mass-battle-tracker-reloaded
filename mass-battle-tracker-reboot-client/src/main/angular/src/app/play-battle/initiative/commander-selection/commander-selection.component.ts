@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Battle, CharacterType } from 'src/app/shared/data-model/mass-battle-tracker-server';
+import { Battle } from 'src/app/shared/data-model/mass-battle-tracker-reboot-server';
 
 @Component({
   selector: 'commander-selection',
@@ -28,12 +28,12 @@ export class CommanderSelectionComponent implements OnInit {
                     {
                       "clan": "",
                       "name": "Bayushi Ogoi",
-                      "characterType" : CharacterType.LEADER
+                      "commander" : false
                     },
                     {
                       "clan": "",
                       "name": "Shosuro Ageko",
-                      "characterType" : CharacterType.LEADER
+                      "commander" : false
                     }
                 ],
                 "currentCasualties": 0,
@@ -49,12 +49,12 @@ export class CommanderSelectionComponent implements OnInit {
                     {
                       "clan": "Lion",
                       "name": "Matsu Mitsui",
-                      "characterType" : CharacterType.LEADER
+                      "commander" : false
                     },
                     {
                       "clan": "Crab",
                       "name": "Hida Gamagori",
-                      "characterType" : CharacterType.LEADER
+                      "commander" : false
                     }
                 ],
                 "currentCasualties": 0,
@@ -78,7 +78,7 @@ export class CommanderSelectionComponent implements OnInit {
   private updateBattle(): Promise<Battle> {
     this.battle.involvedArmies.forEach(
       army => {
-        army.commander.characterType = CharacterType.COMMANDER;
+        army.commander.commander = true;
       }
     );
     return this.httpClient

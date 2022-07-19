@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Action, ActionType, Battle, Character, Commander, ExecutedAction, RoundState } from 'src/app/shared/data-model/mass-battle-tracker-server';
+import { Action, ActionType, Battle, Leader, Commander, ExecutedAction, RoundState } from 'src/app/shared/data-model/mass-battle-tracker-reboot-server';
 
 @Component({
   selector: 'leader-action',
@@ -91,7 +91,7 @@ export class LeaderActionComponent implements OnInit {
     return roundCanGoOn;
   }
 
-  private findAvailableLeaders (roundState : RoundState, battle : Battle, commander : Commander) : Character[]{
+  private findAvailableLeaders (roundState : RoundState, battle : Battle, commander : Commander) : Leader[]{
     return battle.involvedArmies.find(army => army.commander.id==commander.id)
       .cohorts.map(cohort => cohort.leader)
       .filter(

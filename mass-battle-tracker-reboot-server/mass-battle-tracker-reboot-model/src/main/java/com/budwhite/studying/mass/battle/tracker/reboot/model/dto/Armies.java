@@ -1,5 +1,6 @@
 package com.budwhite.studying.mass.battle.tracker.reboot.model.dto;
 
+import io.smallrye.common.constraint.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,5 +15,6 @@ import java.util.List;
 
 @ToString
 public class Armies implements Serializable {
+    @NotNull
     private List<Army> armies;
 }

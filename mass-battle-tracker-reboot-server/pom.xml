@@ -21,38 +21,4 @@
     <module>mass-battle-tracker-reboot-integration</module>
     <module>mass-battle-tracker-reboot-framework</module>
   </modules>
-
-  <profiles>
-    <profile>
-      <id>e2e-build</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>cz.habarta.typescript-generator</groupId>
-            <artifactId>typescript-generator-maven-plugin</artifactId>
-            <version>2.30.840</version>
-            <executions>
-              <execution>
-                <id>generate</id>
-                <goals>
-                  <goal>generate</goal>
-                </goals>
-                <phase>process-classes</phase>
-              </execution>
-            </executions>
-            <configuration>
-              <jsonLibrary>jackson2</jsonLibrary>
-              <outputFile>../mass-battle-tracker-reboot-client/src/main/angular/src/app/shared/data-model/mass-battle-tracker-reboot-server.d.ts</outputFile>
-              <outputKind>module</outputKind>
-              <mapEnum>asEnum</mapEnum>
-              <classPatterns>
-                <pattern>mass.battleEntity.tracker.reboot.model.**</pattern>
-              </classPatterns>
-              <requiredAnnotations>javax.validation.constraints.NotNull</requiredAnnotations>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 </project>
