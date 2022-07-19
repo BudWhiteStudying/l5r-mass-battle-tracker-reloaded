@@ -1,4 +1,4 @@
-<mat-card class="main-card">
+<mat-card class="main-card" id="commander-selection-main-card">
     <form (ngSubmit)="onSubmit()">
         <mat-card class="loosely-spaced" *ngFor="let army of battle.involvedArmies">
             <mat-label>Pick a commander for army "{{army.name}}"</mat-label>

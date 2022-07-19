@@ -1,6 +1,14 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 2.30.840 on 2022-07-19 13:18:03.
+// Generated using typescript-generator version 2.30.840 on 2022-07-19 18:15:24.
+
+export interface Action extends Serializable {
+    type?: ActionType;
+    description?: string;
+    canCauseAttrition?: boolean;
+    canCausePanic?: boolean;
+    canRemovePanic?: boolean;
+}
 
 export interface Armies extends Serializable {
     armies?: Army[];
@@ -54,12 +62,7 @@ export interface Cohorts extends Serializable {
     cohorts?: Cohort[];
 }
 
-export interface ExecutedAction {
-    type?: ActionType;
-    description?: string;
-    canCauseAttrition?: boolean;
-    canCausePanic?: boolean;
-    canRemovePanic?: boolean;
+export interface ExecutedAction extends Action {
     executionRound?: number;
     perpetrator?: Leader;
     perpetratorStance?: ConflictStance;

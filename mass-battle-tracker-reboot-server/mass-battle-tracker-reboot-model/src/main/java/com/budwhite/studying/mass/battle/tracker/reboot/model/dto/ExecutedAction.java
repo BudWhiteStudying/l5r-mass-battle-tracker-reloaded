@@ -2,22 +2,15 @@ package com.budwhite.studying.mass.battle.tracker.reboot.model.dto;
 
 import com.budwhite.studying.mass.battle.tracker.reboot.model.enumeration.ActionType;
 import com.budwhite.studying.mass.battle.tracker.reboot.model.enumeration.ConflictStance;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@EqualsAndHashCode(callSuper = true)
 @ToString
 //OLD
-public class ExecutedAction {
-    private ActionType type;
-    private String description;
-    private boolean canCauseAttrition;
-    private boolean canCausePanic;
-    private boolean canRemovePanic;
+public class ExecutedAction extends Action{
     private int executionRound;
     private Leader perpetrator;
     private ConflictStance perpetratorStance;

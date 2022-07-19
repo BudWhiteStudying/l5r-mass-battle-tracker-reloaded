@@ -1,4 +1,4 @@
-<mat-card class="main-card">
+<mat-card class="main-card" id="final-summary-main-card">
     <form *ngIf="battle" class="full-width">
         <!-- VALUE SET IN THE PREVIOUS VIEW, DISABLED -->
         <div class="loosely-spaced">
@@ -28,5 +28,5 @@
             </mat-card>
         </mat-label>
       </form>
-    <button mat-raised-button color="primary" (click)="onFinalSubmit()" class="wide-button">Done</button>
+    <button id="final-summary-next-button" mat-raised-button color="primary" (click)="onFinalSubmit()" class="wide-button">Done</button>
 </mat-card>

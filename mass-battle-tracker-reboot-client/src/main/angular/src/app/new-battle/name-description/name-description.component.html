@@ -3,13 +3,13 @@
     <form [formGroup]="newBattleForm" class="full-width">
         <mat-form-field class="full-width">
           <mat-label>Name of the battle</mat-label>
-          <input matInput formControlName="name" placeholder="Ex. The Battle of Twilight Mountain" required>
+          <input matInput formControlName="name" placeholder="Ex. The Battle of Twilight Mountain" required id="battle-name-input">
         </mat-form-field>
       
         <mat-form-field class="full-width">
           <mat-label>Description of the battle</mat-label>
-          <textarea matInput formControlName="description" placeholder="A brief description of the battle (motives, involved parties)" required></textarea>
+          <textarea matInput formControlName="description" placeholder="A brief description of the battle (motives, involved parties)" id="battle-description-input"></textarea>
         </mat-form-field>
-        <button type="submit" mat-raised-button color="primary" (click)="onSubmit()" class="wide-button">Next</button>
+        <button type="submit" mat-raised-button color="primary" (click)="onSubmit()" class="wide-button" id="name-description-next-button">Next</button>
       </form>
 </mat-card>

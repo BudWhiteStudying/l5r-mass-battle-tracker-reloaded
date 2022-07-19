@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import {isEqualWith} from "lodash";
 import {isNullOrEmptyString} from "../../shared/utility/string.utility";
 
-import { Battle } from "../../shared/data-model/mass-battle-tracker-server";
+import { Battle } from "../../shared/data-model/mass-battle-tracker-reboot-server";
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
