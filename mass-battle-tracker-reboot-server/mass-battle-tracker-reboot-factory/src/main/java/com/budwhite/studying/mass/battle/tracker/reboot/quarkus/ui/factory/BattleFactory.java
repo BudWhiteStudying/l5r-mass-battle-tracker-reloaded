@@ -25,7 +25,7 @@ public class BattleFactory {
                 .description(battleEntity.getDescription())
                 .name(battleEntity.getName())
                 .zombie(battleEntity.isZombie())
-                .involvedArmies(armyRepository.find("battleId", battleEntity.getId()).stream().map(armyState -> armyFactory.getArmy(armyState)).collect(Collectors.toList()))
+                .involvedArmies(armyRepository.find("battleId", battleEntity.getId()).stream().map(armyEntity -> armyFactory.getArmy(armyEntity)).collect(Collectors.toList()))
                 .build();
     }
 

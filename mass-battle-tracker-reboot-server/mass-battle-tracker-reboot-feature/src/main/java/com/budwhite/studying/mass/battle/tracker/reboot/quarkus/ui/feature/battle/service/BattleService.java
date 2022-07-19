@@ -50,6 +50,7 @@ public class BattleService {
 
     private static final Logger LOG = Logger.getLogger(BattleService.class);
 
+    @Transactional
     public Battles getAllBattles() {
         LOG.debug("Reached getAllBattles");
         return battleFactory.getBattles(battleRepository.listAll());
@@ -81,34 +82,49 @@ public class BattleService {
         LOG.debug("Reached updateArmyEntity with battle "+battle.toString());
         battle.getInvolvedArmies()
                 .forEach(army -> {
+                    LOG.debug("Processing army '"+army.getName()+"'");
                     ArmyEntity armyEntity;
                     if(army.getId()!=null) {
+                        LOG.debug("ArmyId is NOT null, searching for a match");
                         armyEntity = armyRepository.findById(army.getId());
                         if(armyEntity!=null) {
+                            LOG.debug("Match found, cloning DTO");
                             armyEntity.clone(armyFactory.toArmyEntity(army));//
                         }
                         else {
+                            LOG.debug("Match NOT found");
                             armyEntity = armyFactory.toArmyEntity(army);
                         }
                     }
                     else {
+                        LOG.debug("ArmyId is null");
                         armyEntity = armyFactory.toArmyEntity(army);
                     }
+                    LOG.debug("About to persist "+armyEntity.toString());
                     armyRepository.persistAndFlush(armyEntity);
-                    updateCohortEntities(army);
-                    updateLeaderEntities(army);
+                    LOG.debug("Persisted");
+                    updateCohortEntities(army, armyEntity);
+                    updateLeaderEntities(army, armyEntity);
                 });
     }
-    private void updateCohortEntities(Army army){
+    private void updateCohortEntities(Army army, ArmyEntity armyEntity){
         LOG.debug("Reached updateCohortEntities with army "+army.toString());
         army.getCohorts()
                 .forEach(cohort -> {
-                    CohortEntity cohortEntity = cohortRepository.findById(cohort.getId());
-                    cohortEntity.clone(cohortFactory.toCohortEntity(cohort));
-                    cohortRepository.persistAndFlush(cohortEntity);
+                    CohortEntity cohortEntity;
+                    if(cohort!=null && cohort.getId()!=null) {
+                        cohortEntity = cohortRepository.findById(cohort.getId());
+                        if(cohortEntity!=null) {
+                            cohortEntity.clone(cohortFactory.toCohortEntity(cohort));
+                        }
+                        else {
+                            cohortEntity = cohortFactory.toCohortEntity(cohort);
+                        }
+                        cohortRepository.persistAndFlush(cohortEntity);
+                    }
                 });
     }
-    private void updateLeaderEntities(Army army){
+    private void updateLeaderEntities(Army army, ArmyEntity armyEntity){
         LOG.debug("Reached updateLeaderEntities with army "+army.toString());
         // first, "promote" the leader to commander if necessary
         if(army.getCommander()!=null) {
@@ -119,10 +135,24 @@ public class BattleService {
             }
             leaderRepository.persistAndFlush(commanderEntity);
         }
-        army.getCohorts().forEach(
-                cohort -> {
-                    LeaderEntity leaderEntity = leaderRepository.findById(cohort.getLeader().getId());
-                    leaderEntity.clone(leaderFactory.toLeaderEntity(cohort.getLeader()));
+        army.getLeaders().forEach(
+                leader -> {
+                    LeaderEntity leaderEntity;
+                    if(leader.getId()!=null) {
+                        leaderEntity = leaderRepository.findById(leader.getId());
+                        if(leaderEntity!=null) {
+                            leaderEntity.clone(leaderFactory.toLeaderEntity(leader));
+                        }
+                        else {
+                            leaderEntity = leaderFactory.toLeaderEntity(leader);
+                            leaderEntity.setArmyId(armyEntity.getId());
+                        }
+                    }
+                    else {
+                        leaderEntity = leaderFactory.toLeaderEntity(leader);
+                        leaderEntity.setArmyId(armyEntity.getId());
+                    }
+                    LOG.debug("About to persist "+leaderEntity);
                     leaderRepository.persistAndFlush(leaderEntity);
                 }
         );

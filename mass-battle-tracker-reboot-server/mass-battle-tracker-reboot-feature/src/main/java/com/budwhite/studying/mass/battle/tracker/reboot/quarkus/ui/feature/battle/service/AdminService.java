@@ -12,6 +12,7 @@ import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.dto.Lea
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
@@ -34,15 +35,18 @@ public class AdminService {
     
     @Inject
     ArmyFactory armyFactory;
-    
+
+    @Transactional
     public Leaders getLeaders() {
         return new Leaders(leaderRepository.findAll().stream().map(leaderEntity -> leaderFactory.getLeader(leaderEntity)).collect(Collectors.toList()));
     }
 
+    @Transactional
     public Cohorts getCohorts() {
         return new Cohorts(cohortRepository.findAll().stream().map(cohortEntity -> cohortFactory.getCohort(cohortEntity)).collect(Collectors.toList()));
     }
 
+    @Transactional
     public Armies getArmies() {
         return new Armies(armyRepository.findAll().stream().map(armyEntity -> armyFactory.getArmy(armyEntity)).collect(Collectors.toList()));
     }

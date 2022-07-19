@@ -1,9 +1,6 @@
 package com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,6 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Builder
+@ToString
 public class Battle implements Serializable {
     private long id;
     private String name;

@@ -26,7 +26,7 @@ export class FinalSummaryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onFinalSubmit(): void {
+/*   onFinalSubmit(): void {
     this.httpClient
     .post<Battle>("/mass-battle-tracker-reboot/api/battle",this.battle).toPromise()
     .then(
@@ -37,6 +37,11 @@ export class FinalSummaryComponent implements OnInit {
         });
       }
     );
+  } */
+  onFinalSubmit(): void {
+    this.router.navigateByUrl("/play-battle/initiative/commander-selection", {
+      state: {battle: this.battle}
+    });
   }
 
 }

@@ -1,18 +1,15 @@
 package com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @Builder
+@Data
 public class Leader implements Serializable {
-    private long id;
+    private Long id;
     private String name;
     private String clan;
     private boolean commander;

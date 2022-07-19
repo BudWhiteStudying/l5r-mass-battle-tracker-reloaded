@@ -31,13 +31,15 @@ export class InvolvedArmiesComponent implements OnInit {
     strength : 0,
     discipline : 0,
     currentCasualties : 0,
-    currentPanic : 0
+    currentPanic : 0,
+    battleId : 0
   };
 
   leaderInProgress : Character = {
     name : "",
     clan : "",
-    characterType : CharacterType.LEADER
+    characterType : CharacterType.LEADER,
+    armyId : 0
   };
 
   private armyFormValueChangesSubscription: Subscription;
@@ -105,6 +107,7 @@ export class InvolvedArmiesComponent implements OnInit {
         this.armyInProgress.strength = this.newArmyForm.value.armyStrength;
         this.armyInProgress.discipline = this.newArmyForm.value.armyDiscipline;
         this.armyInProgress.attritionReduction = this.newArmyForm.value.armyAttritionReduction;
+        this.armyInProgress.battleId = this.battle.id;
         this.battle.involvedArmies.push(this.armyInProgress);
         console.debug("New state of battle after onNewArmySubmit: " + JSON.stringify(this.battle,null,4));
         this.addingNewArmy = false;

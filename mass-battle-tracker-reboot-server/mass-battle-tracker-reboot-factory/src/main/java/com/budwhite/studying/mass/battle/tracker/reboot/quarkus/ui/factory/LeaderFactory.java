@@ -9,7 +9,8 @@ import javax.enterprise.context.ApplicationScoped;
 public class LeaderFactory {
 
     public Leader getLeader(LeaderEntity leaderEntity) {
-        return Leader.builder()
+        return leaderEntity!=null ?
+                Leader.builder()
                 .id(leaderEntity.getId())
                 .armyId(leaderEntity.getArmyId())
                 .clan(leaderEntity.getClan())
@@ -17,7 +18,8 @@ public class LeaderFactory {
                 .cohortId(leaderEntity.getCohortId())
                 .name(leaderEntity.getName())
                 .initiative(leaderEntity.getInitiative()) // could be null if it's not a commander
-                .build();
+                .build()
+                : null;
     }
 
     public LeaderEntity toLeaderEntity(Leader leader) {
