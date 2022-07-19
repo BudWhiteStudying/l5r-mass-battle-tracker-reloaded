@@ -17,7 +17,7 @@ export class NameDescriptionComponent implements OnInit {
   
   pageTitle = "Set name and description of the Battle";
 
-  private battleEntity: Battle;
+  private battle: Battle;
   private battleFormValueChangesSubscription: Subscription;
 
   newBattleForm: FormGroup;
@@ -42,10 +42,10 @@ export class NameDescriptionComponent implements OnInit {
       this.updateBattle()
       .then(
         response => {
-          console.info("Remote battleEntity has been updated:\n" + JSON.stringify(response));
-          this.battleEntity = response;
-          this.router.navigateByUrl('/new-battleEntity/involved-armies', {
-            state: {battleEntity: this.battleEntity}
+          console.info("Remote battle has been updated:\n" + JSON.stringify(response));
+          this.battle = response;
+          this.router.navigateByUrl('/new-battle/involved-armies', {
+            state: {battle: this.battle}
           });
         }
       );
@@ -57,22 +57,22 @@ export class NameDescriptionComponent implements OnInit {
 
   //TODO: get rid of form
   private updateLocalBattleToFormValues() : void {
-    this.battleEntity.name = this.newBattleForm.value.name;
-    this.battleEntity.description = this.newBattleForm.value.description;
+    this.battle.name = this.newBattleForm.value.name;
+    this.battle.description = this.newBattleForm.value.description;
   }
 
   private updateBattle(): Promise<Battle> {
     return this.httpClient
-    .put<Battle>("/mass-battle-tracker/api/battleEntity", this.battleEntity).toPromise();
+    .put<Battle>("/mass-battle-tracker-reboot/api/battle", this.battle).toPromise();
   }
 
   private retrieveInitializedBattle(): void {
     this.httpClient
-    .get<Battle>("/mass-battle-tracker/api/battleEntity").toPromise()
+    .post<Battle>("/mass-battle-tracker-reboot/api/battle",{}).toPromise()
     .then(
       response => {
-        console.info("Retrieved initialized battleEntity: " + JSON.stringify(response));
-        this.battleEntity = response;
+        console.info("Retrieved initialized battle: " + JSON.stringify(response));
+        this.battle = response;
       }
     );
   }

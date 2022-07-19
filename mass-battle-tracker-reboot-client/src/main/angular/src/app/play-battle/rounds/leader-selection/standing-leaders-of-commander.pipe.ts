@@ -6,13 +6,13 @@ import { Battle, Character, RoundState } from 'src/app/shared/data-model/mass-ba
     pure: false
 })
 export class StandingLeadersOfCommanderPipe implements PipeTransform {
-    transform(battleEntity: Battle, roundState: RoundState): Character[] {
-        if (!battleEntity || !battleEntity.involvedArmies) {
+    transform(battle: Battle, roundState: RoundState): Character[] {
+        if (!battle || !battle.involvedArmies) {
             throw {};
         }
         // filter items array, items which match and return true will be
         // kept, false will be filtered out
-        return battleEntity.involvedArmies
+        return battle.involvedArmies
         .find(army => army.commander.id===roundState.actingCommander.id).cohorts
             .map(cohort => cohort.leader)
             .filter(

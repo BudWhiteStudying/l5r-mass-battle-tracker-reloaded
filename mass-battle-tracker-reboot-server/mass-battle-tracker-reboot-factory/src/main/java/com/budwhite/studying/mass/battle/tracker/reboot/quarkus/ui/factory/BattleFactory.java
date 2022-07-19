@@ -1,9 +1,9 @@
 package com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.factory;
 
-import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.data.entity.ArmyStateEntity;
-import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.data.entity.BattleEntity;
-import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.factory.dto.Battle;
-import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.factory.dto.Battles;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.entity.BattleEntity;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.data.repository.ArmyRepository;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.dto.Battle;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.dto.Battles;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -16,17 +16,20 @@ public class BattleFactory {
     @Inject
     private ArmyFactory armyFactory;
 
+    @Inject
+    private ArmyRepository armyRepository;
+
     public Battle getBattle(BattleEntity battleEntity) {
         return Battle.builder()
-                .id(battleEntity.id)
-                .description(battleEntity.description)
-                .name(battleEntity.name)
-                .zombie(battleEntity.zombie)
-                .involvedArmies(ArmyStateEntity.find("battleId", battleEntity.id).stream().map(armyState -> armyFactory.getArmy((ArmyStateEntity) armyState)).collect(Collectors.toList()))
+                .id(battleEntity.getId())
+                .description(battleEntity.getDescription())
+                .name(battleEntity.getName())
+                .zombie(battleEntity.isZombie())
+                .involvedArmies(armyRepository.find("battleId", battleEntity.getId()).stream().map(armyState -> armyFactory.getArmy(armyState)).collect(Collectors.toList()))
                 .build();
     }
 
-    public BattleEntity toBattle(Battle battle) {
+    public BattleEntity toBattleEntity(Battle battle) {
         return new BattleEntity(
                 battle.getId(),
                 battle.getName(),

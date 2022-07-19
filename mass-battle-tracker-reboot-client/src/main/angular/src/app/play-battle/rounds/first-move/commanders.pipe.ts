@@ -6,12 +6,12 @@ import { Army, Battle, Character } from 'src/app/shared/data-model/mass-battle-t
     pure: false
 })
 export class CommandersPipe implements PipeTransform {
-    transform(battleEntity: Battle): Character[] {
-        if (!battleEntity || !battleEntity.involvedArmies) {
+    transform(battle: Battle): Character[] {
+        if (!battle || !battle.involvedArmies) {
             throw {};
         }
         // filter items array, items which match and return true will be
         // kept, false will be filtered out
-        return battleEntity.involvedArmies.map(army => army.commander);
+        return battle.involvedArmies.map(army => army.commander);
     }
 }

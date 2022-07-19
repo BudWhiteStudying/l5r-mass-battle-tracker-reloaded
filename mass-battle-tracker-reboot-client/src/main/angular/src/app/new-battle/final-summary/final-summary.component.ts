@@ -12,12 +12,12 @@ export class FinalSummaryComponent implements OnInit {
   
   pageTitle = "Final summary";
 
-  battleEntity : Battle;
+  battle : Battle;
 
   constructor(private router : Router,private httpClient: HttpClient) {
     if(this.router.getCurrentNavigation().extras.state) {
-      this.battleEntity = this.router.getCurrentNavigation().extras.state.battleEntity;
-      console.debug("Reached the final screen with battleEntity: " + JSON.stringify(this.battleEntity));
+      this.battle = this.router.getCurrentNavigation().extras.state.battle;
+      console.debug("Reached the final screen with battle: " + JSON.stringify(this.battle));
     }
     else {
       this.router.navigateByUrl("/");
@@ -28,12 +28,12 @@ export class FinalSummaryComponent implements OnInit {
 
   onFinalSubmit(): void {
     this.httpClient
-    .post<Battle>("/mass-battle-tracker/api/battleEntity",this.battleEntity).toPromise()
+    .post<Battle>("/mass-battle-tracker-reboot/api/battle",this.battle).toPromise()
     .then(
       response => {
-        console.info("Finalized battleEntity:\n" + JSON.stringify(response));
-        this.router.navigateByUrl("/play-battleEntity/initiative/commander-selection", {
-          state: {battleEntity: response}
+        console.info("Finalized battle:\n" + JSON.stringify(response));
+        this.router.navigateByUrl("/play-battle/initiative/commander-selection", {
+          state: {battle: response}
         });
       }
     );

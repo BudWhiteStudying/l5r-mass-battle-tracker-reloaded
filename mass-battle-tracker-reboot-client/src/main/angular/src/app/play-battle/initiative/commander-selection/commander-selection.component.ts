@@ -12,15 +12,15 @@ export class CommanderSelectionComponent implements OnInit {
   
   pageTitle = '"Initiative" phase: select a commander for every involved Army';
 
-  battleEntity : Battle;
+  battle : Battle;
 
   constructor(private router:Router,
     private httpClient: HttpClient) {
     if(this.router.getCurrentNavigation().extras.state) {
-      this.battleEntity = this.router.getCurrentNavigation().extras.state.battleEntity;
+      this.battle = this.router.getCurrentNavigation().extras.state.battle;
     }
     else {
-      this.battleEntity = {
+      this.battle = {
         "description": "The Scorpion tries to snatch Kenson Gakka back from Lion hands",
         "involvedArmies": [
             {
@@ -69,35 +69,35 @@ export class CommanderSelectionComponent implements OnInit {
         "name": "The Battle of Kenson Gakka"
     };
     }
-    console.debug("Component has been constructed, battleEntity is " + JSON.stringify(this.battleEntity));
+    console.debug("Component has been constructed, battle is " + JSON.stringify(this.battle));
   }
 
   ngOnInit(): void {
   }
 
   private updateBattle(): Promise<Battle> {
-    this.battleEntity.involvedArmies.forEach(
+    this.battle.involvedArmies.forEach(
       army => {
         army.commander.characterType = CharacterType.COMMANDER;
       }
     );
     return this.httpClient
-    .put<Battle>("/mass-battle-tracker/api/battleEntity", this.battleEntity).toPromise();
+    .put<Battle>("/mass-battle-tracker-reboot/api/battle", this.battle).toPromise();
   }
 
   onSubmit() : void {
-    console.debug("Commanders have been selected, army is:\n" + JSON.stringify(this.battleEntity, null, 4));
-    if(this.battleEntity.involvedArmies.filter(army => !army.commander).length>0) {
+    console.debug("Commanders have been selected, army is:\n" + JSON.stringify(this.battle, null, 4));
+    if(this.battle.involvedArmies.filter(army => !army.commander).length>0) {
       console.warn("Not all commanders have been set");
     }
     else {
       this.updateBattle()
       .then(
         response => {
-          console.info("Remote battleEntity has been updated:\n" + JSON.stringify(response));
-          this.battleEntity = response;
-          this.router.navigateByUrl('/play-battleEntity/initiative/initiative-recording', {
-            state: {battleEntity: this.battleEntity}
+          console.info("Remote battle has been updated:\n" + JSON.stringify(response));
+          this.battle = response;
+          this.router.navigateByUrl('/play-battle/initiative/initiative-recording', {
+            state: {battle: this.battle}
           });
         }
       );

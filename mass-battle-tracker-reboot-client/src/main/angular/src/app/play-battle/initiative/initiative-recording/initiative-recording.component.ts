@@ -12,12 +12,12 @@ export class InitiativeRecordingComponent implements OnInit {
   
   pageTitle = '"Initiative" phase: record initiative of each commander';
 
-  battleEntity : Battle;
+  battle : Battle;
 
   constructor(private router:Router,
     private httpClient: HttpClient) {
     if(this.router.getCurrentNavigation().extras.state) {
-      this.battleEntity = this.router.getCurrentNavigation().extras.state.battleEntity;
+      this.battle = this.router.getCurrentNavigation().extras.state.battle;
     }
     else {
       this.router.navigateByUrl("/");
@@ -29,22 +29,22 @@ export class InitiativeRecordingComponent implements OnInit {
 
   private updateBattle(): Promise<Battle> {
     return this.httpClient
-    .put<Battle>("/mass-battle-tracker/api/battleEntity", this.battleEntity).toPromise();
+    .put<Battle>("/mass-battle-tracker-reboot/api/battle", this.battle).toPromise();
   }
 
   onSubmit(): void {
-    console.debug("Upon submission, battleEntity is:\n" + JSON.stringify(this.battleEntity, null, 4));
-    if(this.battleEntity.involvedArmies.filter(army => !army.commander.initiative).length>0) {
+    console.debug("Upon submission, battle is:\n" + JSON.stringify(this.battle, null, 4));
+    if(this.battle.involvedArmies.filter(army => !army.commander.initiative).length>0) {
       console.warn("Not all initiative values have been set");
     }
     else {
       this.updateBattle()
       .then(
         response => {
-          console.info("Remote battleEntity has been updated:\n" + JSON.stringify(response));
-          this.battleEntity = response;
-          this.router.navigateByUrl('/play-battleEntity/initiative/leaders-selection', {
-            state: {battleEntity: this.battleEntity}
+          console.info("Remote battle has been updated:\n" + JSON.stringify(response));
+          this.battle = response;
+          this.router.navigateByUrl('/play-battle/initiative/leaders-selection', {
+            state: {battle: this.battle}
           });
         }
       );

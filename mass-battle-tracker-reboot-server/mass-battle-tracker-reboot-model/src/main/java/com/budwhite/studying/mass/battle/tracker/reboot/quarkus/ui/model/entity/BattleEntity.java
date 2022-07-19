@@ -1,23 +1,26 @@
-package com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.data.entity;
+package com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.entity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class BattleEntity extends PanacheEntity {
-    public String name;
-    public String description;
-    public boolean zombie;
+@Data
+public class BattleEntity {
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String name;
+    private String description;
+    private boolean zombie;
 
-    public BattleEntity(long id, String name, String description, boolean zombie) {
-        this.id = id;
+    public BattleEntity(String name, String description, boolean zombie) {
         this.name = name;
         this.description = description;
         this.zombie = zombie;

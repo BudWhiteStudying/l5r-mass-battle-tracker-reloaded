@@ -1,14 +1,14 @@
 package com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.feature.battle.rest;
 
-import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.factory.dto.Battle;
-import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.factory.dto.Battles;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.dto.Battle;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.dto.Battles;
 import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.feature.battle.service.BattleService;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-@Path("/battle")
+@Path("/api/battle")
 public class BattleResource {
 
     @Inject

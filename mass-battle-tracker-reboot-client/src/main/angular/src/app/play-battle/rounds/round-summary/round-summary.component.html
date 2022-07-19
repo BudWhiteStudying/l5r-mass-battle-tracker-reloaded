@@ -3,7 +3,7 @@
         <mat-card class="loosely-spaced">
             <mat-label class="bold">Round {{roundState.roundIndex}} summary:</mat-label>
             <br/>
-            <mat-card class="loosely-spaced" *ngFor="let army of battleEntity.involvedArmies">
+            <mat-card class="loosely-spaced" *ngFor="let army of battle.involvedArmies">
                 <mat-label class="bold space-after">{{army.name}}</mat-label>
                 <br/>
                 <mat-form-field class="loosely-spaced">
@@ -30,7 +30,7 @@
         <mat-card class="loosely-spaced">
             <mat-label class="bold">State of armies at the end of round {{roundState.roundIndex}}:</mat-label>
             <br/>
-            <mat-card class="loosely-spaced" *ngFor="let army of battleEntity.involvedArmies">
+            <mat-card class="loosely-spaced" *ngFor="let army of battle.involvedArmies">
                 <mat-label class="bold space-after">{{army.name}}</mat-label>
                 <br/>
             <mat-form-field class="loosely-spaced">
@@ -47,6 +47,6 @@
             </mat-card>
         </mat-card>
         <button mat-raised-button color="primary" class="small-button">Next</button>
-        <button type="button" mat-stroked-button color="primary" class="small-button" *ngFor="let army of battleEntity.involvedArmies">{{army.name}} won</button>
+        <button type="button" mat-stroked-button color="primary" class="small-button" *ngFor="let army of battle.involvedArmies">{{army.name}} won</button>
     </form>
 </mat-card>

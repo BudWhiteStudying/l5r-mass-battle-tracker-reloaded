@@ -1,6 +1,6 @@
 const PROXY_CONFIG = [{
     context : [
-      "/mass-battle-tracker/api/battle"
+      "/mass-battle-tracker-reboot/api/battle"
     ],
     target : "http://localhost:8080",
     secure : false,

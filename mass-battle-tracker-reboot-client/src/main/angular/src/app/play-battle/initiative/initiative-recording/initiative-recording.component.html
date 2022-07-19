@@ -1,6 +1,6 @@
 <mat-card class="main-card">
     <form (ngSubmit)="onSubmit()">
-        <mat-card class="loosely-spaced" *ngFor="let army of battleEntity.involvedArmies">
+        <mat-card class="loosely-spaced" *ngFor="let army of battle.involvedArmies">
             <mat-label>Record initiative result (n° of successes) for commander {{army.commander.name}}</mat-label>
             <br/>
             <mat-form-field>

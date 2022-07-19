@@ -10,7 +10,7 @@ import { Battle, RoundState } from 'src/app/shared/data-model/mass-battle-tracke
 })
 export class LeaderSelectionComponent implements OnInit {
 
-  battleEntity : Battle;
+  battle : Battle;
   roundState : RoundState;
   
   pageTitle = `"Rounds" phase: acting Commander picks a Leader`;
@@ -18,14 +18,14 @@ export class LeaderSelectionComponent implements OnInit {
   constructor(private router:Router,
     private httpClient: HttpClient) {
     if(this.router.getCurrentNavigation().extras.state) {
-      this.battleEntity = this.router.getCurrentNavigation().extras.state.battleEntity;
+      this.battle = this.router.getCurrentNavigation().extras.state.battle;
       this.roundState = this.router.getCurrentNavigation().extras.state.roundState;
     }
   }
 
   private updateBattle(): Promise<Battle> {
     return this.httpClient
-    .put<Battle>("/mass-battle-tracker/api/battleEntity", this.battleEntity).toPromise();
+    .put<Battle>("/mass-battle-tracker-reboot/api/battle", this.battle).toPromise();
   }
 
   ngOnInit(): void {
@@ -35,10 +35,10 @@ export class LeaderSelectionComponent implements OnInit {
     this.updateBattle()
     .then(
       response => {
-        console.info("Remote battleEntity has been updated:\n" + JSON.stringify(response));
-        this.battleEntity = response;
-        this.router.navigateByUrl('/play-battleEntity/rounds/leader-action', {
-          state: {battleEntity: this.battleEntity, roundState : this.roundState}
+        console.info("Remote battle has been updated:\n" + JSON.stringify(response));
+        this.battle = response;
+        this.router.navigateByUrl('/play-battle/rounds/leader-action', {
+          state: {battle: this.battle, roundState : this.roundState}
         });
       }
     );

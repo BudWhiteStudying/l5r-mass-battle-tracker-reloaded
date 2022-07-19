@@ -1,14 +1,14 @@
 <mat-card class="main-card">
-    <form (ngSubmit)="onFinalSubmit()" *ngIf="battleEntity" class="full-width">
+    <form (ngSubmit)="onFinalSubmit()" *ngIf="battle" class="full-width">
         <!-- VALUE SET IN THE PREVIOUS VIEW, DISABLED -->
         <mat-form-field class="full-width">
-          <mat-label>Name of the battleEntity</mat-label>
-          <input matInput value="{{battleEntity.name}}" disabled>
+          <mat-label>Name of the battle</mat-label>
+          <input matInput value="{{battle.name}}" disabled>
         </mat-form-field>
         <!-- VALUE SET IN THE PREVIOUS VIEW, DISABLED -->
         <mat-form-field class="full-width">
-          <mat-label>Description of the battleEntity</mat-label>
-          <textarea matInput value="{{battleEntity.description}}" disabled></textarea>
+          <mat-label>Description of the battle</mat-label>
+          <textarea matInput value="{{battle.description}}" disabled></textarea>
         </mat-form-field>
         <!-- INVOLVED ARMIES -->
         <mat-label>Involved armies:</mat-label>
@@ -16,7 +16,7 @@
             <mat-icon>add_circle</mat-icon>
         </button>
         <!-- "NO ARMIES" LABEL -->
-        <mat-label *ngIf="!battleEntity.involvedArmies.length && !addingNewArmy" class="block">No armies</mat-label>
+        <mat-label *ngIf="!battle.involvedArmies.length && !addingNewArmy" class="block">No armies</mat-label>
         <mat-error *ngIf="notEnoughArmiesError">Provide two armies!</mat-error>
         <!-- ADD NEW ARMY -->
         <mat-card *ngIf="addingNewArmy" class = "loosely-spaced">
@@ -86,7 +86,7 @@
             </form>
         </mat-card>
         <!-- LIST OF ARMIES -->
-        <mat-label class="block" *ngFor="let army of battleEntity.involvedArmies">
+        <mat-label class="block" *ngFor="let army of battle.involvedArmies">
             <mat-card class = "loosely-spaced">
                 <div>
                     <b>{{army.name}}</b> ({{army.leaders.length}} leaders)

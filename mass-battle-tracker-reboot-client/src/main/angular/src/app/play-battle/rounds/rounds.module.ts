@@ -15,7 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
-import { PlayBattleModule } from '../play-battleEntity.module';
+import { PlayBattleModule } from '../play-battle.module';
 import { FirstMoveComponent } from './first-move/first-move.component';
 import { HighestInitCommanderPipe } from './first-move/highest-init-commander.pipe';
 import { CommandersPipe } from './first-move/commanders.pipe';

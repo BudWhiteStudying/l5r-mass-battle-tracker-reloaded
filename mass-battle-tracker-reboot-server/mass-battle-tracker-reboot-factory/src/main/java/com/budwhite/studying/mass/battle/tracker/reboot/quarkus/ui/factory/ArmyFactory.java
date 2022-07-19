@@ -1,9 +1,10 @@
 package com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.factory;
 
-import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.data.entity.ArmyStateEntity;
-import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.data.entity.CharacterEntity;
-import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.data.entity.CohortEntity;
-import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.factory.dto.Army;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.data.repository.ArmyRepository;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.data.repository.LeaderRepository;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.data.repository.CohortRepository;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.dto.Army;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.entity.ArmyEntity;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -16,23 +17,48 @@ public class ArmyFactory {
     private CohortFactory cohortFactory;
 
     @Inject
-    private CharacterFactory characterFactory;
+    private LeaderFactory leaderFactory;
 
-    public Army getArmy(ArmyStateEntity armyStateEntity) {
-        ArmyStateEntity armyState = ArmyStateEntity.findById(armyStateEntity.id);
+    @Inject
+    private CohortRepository cohortRepository;
+
+    @Inject
+    private LeaderRepository leaderRepository;
+
+    @Inject
+    private ArmyRepository armyRepository;
+
+    public Army getArmy(ArmyEntity armyEntity) {
+        ArmyEntity armyState = armyRepository.findById(armyEntity.getId());
         return Army.builder()
-                .id(armyStateEntity.id)
-                .name(armyStateEntity.name)
-                .description(armyStateEntity.description)
-                .mainClan(armyStateEntity.mainClan)
-                .strength(armyStateEntity.strength)
-                .discipline(armyStateEntity.discipline)
-                .cohorts(CohortEntity.find("armyId",armyStateEntity.id).stream().map(cohort -> cohortFactory.getCohort((CohortEntity) cohort)).collect(Collectors.toList()))
-                .currentCasualties(armyState.currentCasualties)
-                .attritionReduction(armyState.attritionReduction)
-                .currentPanic(armyState.currentPanic)
-                .battleId(armyState.battleId)
-                .commander(characterFactory.getCharacter(CharacterEntity.findById(armyStateEntity.commanderId)))
+                .id(armyEntity.getId())
+                .name(armyEntity.getName())
+                .description(armyEntity.getDescription())
+                .mainClan(armyEntity.getMainClan())
+                .strength(armyEntity.getStrength())
+                .discipline(armyEntity.getDiscipline())
+                .cohorts(cohortRepository.find("armyId", armyEntity.getId()).stream().map(cohort -> cohortFactory.getCohort(cohort)).collect(Collectors.toList()))
+                .currentCasualties(armyState.getCurrentCasualties())
+                .attritionReduction(armyState.getAttritionReduction())
+                .currentPanic(armyState.getCurrentPanic())
+                .battleId(armyState.getBattleId())
+                .commander(leaderFactory.getLeader(leaderRepository.findById(armyEntity.getCommanderId())))
                 .build();
+    }
+
+    public ArmyEntity toArmyEntity(Army army) {
+        return new ArmyEntity(
+                army.getId(),
+                army.getName(),
+                army.getCommander()!=null ? army.getCommander().getId() : 0,
+                army.getDescription(),
+                army.getMainClan(),
+                army.getStrength(),
+                army.getDiscipline(),
+                army.getCurrentCasualties(),
+                army.getAttritionReduction(),
+                army.getCurrentPanic(),
+                army.getBattleId()
+        );
     }
 }

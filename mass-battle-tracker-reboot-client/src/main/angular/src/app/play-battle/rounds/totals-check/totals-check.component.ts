@@ -10,13 +10,13 @@ import { Army, Battle, ExecutedAction, RoundState, StrategicObjective } from 'sr
 })
 export class TotalsCheckComponent implements OnInit {
 
-  battleEntity : Battle;
+  battle : Battle;
   roundState : RoundState;
 
   constructor(private router:Router,
     private httpClient: HttpClient) {
     if(this.router.getCurrentNavigation().extras.state) {
-      this.battleEntity = this.router.getCurrentNavigation().extras.state.battleEntity;
+      this.battle = this.router.getCurrentNavigation().extras.state.battle;
       this.roundState = this.router.getCurrentNavigation().extras.state.roundState;
     }
   }
@@ -28,11 +28,11 @@ export class TotalsCheckComponent implements OnInit {
     this.updateBattle()
     .then(
       response => {
-        console.info("Remote battleEntity has been updated:\n" + JSON.stringify(response));
-        this.battleEntity = response;
+        console.info("Remote battle has been updated:\n" + JSON.stringify(response));
+        this.battle = response;
         console.debug("Upon submission, roundState is\n" + JSON.stringify(this.roundState, null, 4));
-        this.router.navigateByUrl('/play-battleEntity/rounds/round-summary', {
-          state: {battleEntity: this.battleEntity, roundState : this.roundState}
+        this.router.navigateByUrl('/play-battle/rounds/round-summary', {
+          state: {battle: this.battle, roundState : this.roundState}
         });
       }
     );
@@ -73,7 +73,7 @@ export class TotalsCheckComponent implements OnInit {
 
   private updateBattle(): Promise<Battle> {
     return this.httpClient
-    .put<Battle>("/mass-battle-tracker/api/battleEntity", this.battleEntity).toPromise();
+    .put<Battle>("/mass-battle-tracker-reboot/api/battle", this.battle).toPromise();
   }
 
   private retrieveHostileActions(army : Army) : ExecutedAction[] {
@@ -89,7 +89,7 @@ export class TotalsCheckComponent implements OnInit {
       && army.leaders.includes(action.perpetrator));
   }
   private retrieveHostileObjective(army : Army) : StrategicObjective {
-    let opposingArmy = this.battleEntity.involvedArmies.find(anArmy => anArmy!=army);
+    let opposingArmy = this.battle.involvedArmies.find(anArmy => anArmy!=army);
     return this.roundState.currentObjectivePerArmyName[opposingArmy.name].reached
     ? this.roundState.currentObjectivePerArmyName[opposingArmy.name]
     : null;
@@ -101,7 +101,7 @@ export class TotalsCheckComponent implements OnInit {
   }
 
   private registerTotals() : void {
-    this.battleEntity.involvedArmies.forEach(
+    this.battle.involvedArmies.forEach(
       army => {
         this.roundState.scorePerArmyName[army.name].totalAttritionSuffered = this.determineTotalAttritionSuffered(army);
         this.roundState.scorePerArmyName[army.name].totalPanicSuffered = this.determineTotalPanicSuffered(army);

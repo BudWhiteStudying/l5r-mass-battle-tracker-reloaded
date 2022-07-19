@@ -3,7 +3,7 @@
         <mat-card class="loosely-spaced">
             <mat-label class="bold">Round sub-totals</mat-label>
             <br/>
-            <mat-card class="loosely-spaced" *ngFor="let army of battleEntity.involvedArmies">
+            <mat-card class="loosely-spaced" *ngFor="let army of battle.involvedArmies">
                 <mat-label class="bold">{{army.name}}</mat-label>
                 <br/>
                 <div class="indented-block">
@@ -20,7 +20,7 @@
         <mat-card class="loosely-spaced">
             <mat-label class="bold">Strategic objectives</mat-label>
             <br/>
-            <mat-card class="loosely-spaced" *ngFor="let army of battleEntity.involvedArmies">
+            <mat-card class="loosely-spaced" *ngFor="let army of battle.involvedArmies">
                 <mat-label class="bold">{{army.name}}</mat-label>
                 <br/>
                 <mat-label>Mark objectives that have been reached this round</mat-label>
@@ -48,7 +48,7 @@
         <mat-card class="loosely-spaced">
             <mat-label class="bold">Round totals</mat-label>
             <br/>
-            <mat-card class="loosely-spaced" *ngFor="let army of battleEntity.involvedArmies">
+            <mat-card class="loosely-spaced" *ngFor="let army of battle.involvedArmies">
                 <mat-label class="bold">{{army.name}}</mat-label>
                 <br/>
                 <div class="indented-block">

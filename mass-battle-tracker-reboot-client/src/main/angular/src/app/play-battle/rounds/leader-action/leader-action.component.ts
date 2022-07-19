@@ -10,7 +10,7 @@ import { Action, ActionType, Battle, Character, Commander, ExecutedAction, Round
 })
 export class LeaderActionComponent implements OnInit {
 
-  battleEntity : Battle;
+  battle : Battle;
   roundState : RoundState;
 
   availableActions : Action[] = [
@@ -35,7 +35,7 @@ export class LeaderActionComponent implements OnInit {
   constructor(private router:Router,
     private httpClient: HttpClient) {
     if(this.router.getCurrentNavigation().extras.state) {
-      this.battleEntity = this.router.getCurrentNavigation().extras.state.battleEntity;
+      this.battle = this.router.getCurrentNavigation().extras.state.battle;
       this.roundState = this.router.getCurrentNavigation().extras.state.roundState;
     }
   }
@@ -45,17 +45,17 @@ export class LeaderActionComponent implements OnInit {
     this.updateBattle()
     .then(
       response => {
-        console.info("Remote battleEntity has been updated:\n" + JSON.stringify(response));
-        this.battleEntity = response;
+        console.info("Remote battle has been updated:\n" + JSON.stringify(response));
+        this.battle = response;
         console.debug("Upon submission, roundState is\n" + JSON.stringify(this.roundState, null, 4));
-        if(this.switchToNextCommander(this.roundState, this.battleEntity)) {
-          this.router.navigateByUrl('/play-battleEntity/rounds/leader-selection', {
-            state: {battleEntity: this.battleEntity, roundState : this.roundState}
+        if(this.switchToNextCommander(this.roundState, this.battle)) {
+          this.router.navigateByUrl('/play-battle/rounds/leader-selection', {
+            state: {battle: this.battle, roundState : this.roundState}
           });
         }
         else {
-          this.router.navigateByUrl('/play-battleEntity/rounds/totals-check', {
-            state: {battleEntity: this.battleEntity, roundState : this.roundState}
+          this.router.navigateByUrl('/play-battle/rounds/totals-check', {
+            state: {battle: this.battle, roundState : this.roundState}
           });
         }
       }
@@ -64,7 +64,7 @@ export class LeaderActionComponent implements OnInit {
 
   private updateBattle(): Promise<Battle> {
     return this.httpClient
-    .put<Battle>("/mass-battle-tracker/api/battleEntity", this.battleEntity).toPromise();
+    .put<Battle>("/mass-battle-tracker-reboot/api/battle", this.battle).toPromise();
   }
 
   recordAction(action : ExecutedAction, roundState : RoundState) : void {
@@ -73,12 +73,12 @@ export class LeaderActionComponent implements OnInit {
     roundState.actionHistory.push(action);
   }
 
-  switchToNextCommander(roundState : RoundState, battleEntity : Battle): Boolean {
+  switchToNextCommander(roundState : RoundState, battle : Battle): Boolean {
     let roundCanGoOn = true;
     let currentCommander = roundState.actingCommander;
-    let nextCommander = battleEntity.involvedArmies.map(army => army.commander).find(commander => commander.id!=currentCommander.id);
-    let availableLeadersForCurrentCommander = this.findAvailableLeaders(roundState, battleEntity, currentCommander).length;
-    let availableLeadersForNextCommander = this.findAvailableLeaders(roundState, battleEntity, nextCommander).length;
+    let nextCommander = battle.involvedArmies.map(army => army.commander).find(commander => commander.id!=currentCommander.id);
+    let availableLeadersForCurrentCommander = this.findAvailableLeaders(roundState, battle, currentCommander).length;
+    let availableLeadersForNextCommander = this.findAvailableLeaders(roundState, battle, nextCommander).length;
     if(availableLeadersForNextCommander>0) {
       roundState.actingCommander = nextCommander;
     }
@@ -91,8 +91,8 @@ export class LeaderActionComponent implements OnInit {
     return roundCanGoOn;
   }
 
-  private findAvailableLeaders (roundState : RoundState, battleEntity : Battle, commander : Commander) : Character[]{
-    return battleEntity.involvedArmies.find(army => army.commander.id==commander.id)
+  private findAvailableLeaders (roundState : RoundState, battle : Battle, commander : Commander) : Character[]{
+    return battle.involvedArmies.find(army => army.commander.id==commander.id)
       .cohorts.map(cohort => cohort.leader)
       .filter(
         leader => !roundState.actionHistory

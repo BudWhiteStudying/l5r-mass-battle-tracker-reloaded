@@ -1,22 +1,21 @@
-package com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.factory.dto;
+package com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.dto;
 
-import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.data.enumeration.CharacterType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Builder
-@Data
-public class Character implements Serializable {
+public class Leader implements Serializable {
     private long id;
     private String name;
     private String clan;
-    private CharacterType characterType;
+    private boolean commander;
     private long armyId;
     private long cohortId;
     private Integer initiative;

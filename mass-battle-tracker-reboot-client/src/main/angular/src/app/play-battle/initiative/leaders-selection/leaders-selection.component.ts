@@ -12,7 +12,7 @@ export class LeadersSelectionComponent implements OnInit {
 
   pageTitle = '"Initiative" phase: for each Army, form one or more Cohorts, and nominate the Leaders that will lead them'
 
-  battleEntity : Battle;
+  battle : Battle;
   cohortInProgress : Cohort = {name : "", leader : {name : "", clan : "", characterType : CharacterType.LEADER}};
   addingNewCohort : Boolean;
   currentArmyName : String;
@@ -21,7 +21,7 @@ export class LeadersSelectionComponent implements OnInit {
   constructor(private router:Router,
     private httpClient: HttpClient) {
     if(this.router.getCurrentNavigation().extras.state) {
-      this.battleEntity = this.router.getCurrentNavigation().extras.state.battleEntity;
+      this.battle = this.router.getCurrentNavigation().extras.state.battle;
     }
     else {
       this.router.navigateByUrl("/");
@@ -45,22 +45,22 @@ export class LeadersSelectionComponent implements OnInit {
   onNewCohortSubmit(containingArmy : Army): void {
     this.notEnoughCohortsError = false;
     console.debug("Cohort submitted for army " + containingArmy.name + ", cohortInProgress is\n" + JSON.stringify(this.cohortInProgress, null, 3));
-    if(!this.battleEntity.involvedArmies.find(army => army.name==containingArmy.name).cohorts) {
-      this.battleEntity.involvedArmies.find(army => army.name==containingArmy.name).cohorts = [];
+    if(!this.battle.involvedArmies.find(army => army.name==containingArmy.name).cohorts) {
+      this.battle.involvedArmies.find(army => army.name==containingArmy.name).cohorts = [];
     }
-    this.battleEntity.involvedArmies.find(army => army.name==containingArmy.name).cohorts.push(this.cohortInProgress);
+    this.battle.involvedArmies.find(army => army.name==containingArmy.name).cohorts.push(this.cohortInProgress);
     this.addingNewCohort = false;
     this.cohortInProgress = {name : "", leader : {name : "", clan : "", characterType : CharacterType.LEADER}};
   }
 
   private updateBattle(): Promise<Battle> {
     return this.httpClient
-    .put<Battle>("/mass-battle-tracker/api/battleEntity", this.battleEntity).toPromise();
+    .put<Battle>("/mass-battle-tracker-reboot/api/battle", this.battle).toPromise();
   }
 
   onSubmit(): void {
-    console.debug("Upon submission, battleEntity is:\n" + JSON.stringify(this.battleEntity, null, 4));
-    for (let army of this.battleEntity.involvedArmies) {
+    console.debug("Upon submission, battle is:\n" + JSON.stringify(this.battle, null, 4));
+    for (let army of this.battle.involvedArmies) {
       if(!army.cohorts || !army.cohorts.length) {
         console.warn("Cohorts were not defined in at least one case");
         this.notEnoughCohortsError = true;
@@ -70,10 +70,10 @@ export class LeadersSelectionComponent implements OnInit {
       this.updateBattle()
       .then(
         response => {
-          console.info("Remote battleEntity has been updated:\n" + JSON.stringify(response));
-          this.battleEntity = response;
-          this.router.navigateByUrl('/play-battleEntity/rounds/objective-selection', {
-            state: {battleEntity: this.battleEntity}
+          console.info("Remote battle has been updated:\n" + JSON.stringify(response));
+          this.battle = response;
+          this.router.navigateByUrl('/play-battle/rounds/objective-selection', {
+            state: {battle: this.battle}
           });
         }
       );

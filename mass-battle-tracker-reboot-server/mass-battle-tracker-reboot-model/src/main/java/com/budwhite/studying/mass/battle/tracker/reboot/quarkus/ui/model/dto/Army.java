@@ -1,7 +1,8 @@
-package com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.factory.dto;
+package com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
@@ -10,11 +11,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
 public class Army implements Serializable {
     // independent properties
-    private long id;
+    private Long id;
     private String name;
-    private long commanderId;
     private String description;
     private String mainClan;
     private int strength;
@@ -22,10 +23,10 @@ public class Army implements Serializable {
     private List<Cohort> cohorts;
 
     // battle-dependent properties
-    public int currentCasualties;
-    public int attritionReduction;
-    public int currentPanic;
-    public Long battleId;
-    private List<Character> leaders;
-    private Character commander;
+    private int currentCasualties;
+    private int attritionReduction;
+    private int currentPanic;
+    private Long battleId;
+    private List<Leader> leaders;
+    private Leader commander;
 }

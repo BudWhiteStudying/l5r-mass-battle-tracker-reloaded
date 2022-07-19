@@ -16,7 +16,7 @@ export class InvolvedArmiesComponent implements OnInit {
   
   pageTitle = "Set involved armies";
 
-  battleEntity : Battle;
+  battle : Battle;
   addingNewArmy : Boolean = false;
   addingNewLeader : Boolean = false;
   notEnoughArmiesError : Boolean = false;
@@ -50,7 +50,7 @@ export class InvolvedArmiesComponent implements OnInit {
     private router:Router,
     private httpClient: HttpClient) {
     if(this.router.getCurrentNavigation().extras.state) {
-      this.battleEntity = this.router.getCurrentNavigation().extras.state.battleEntity;
+      this.battle = this.router.getCurrentNavigation().extras.state.battle;
       this.buildArmyForm();
       this.buildLeaderForm();
     }
@@ -62,13 +62,13 @@ export class InvolvedArmiesComponent implements OnInit {
   ngOnInit(): void {}
 
   onFinalSubmit(): void {
-    if(this.battleEntity.involvedArmies.length>=2) {
+    if(this.battle.involvedArmies.length>=2) {
       this.updateBattle().then(
         response => {
-          console.info("Remote battleEntity has been updated:\n" + JSON.stringify(response));
-          this.battleEntity = response;
-          this.router.navigateByUrl('/new-battleEntity/final-summary', {
-            state: {battleEntity: this.battleEntity}
+          console.info("Remote battle has been updated:\n" + JSON.stringify(response));
+          this.battle = response;
+          this.router.navigateByUrl('/new-battle/final-summary', {
+            state: {battle: this.battle}
           });
         }
       );
@@ -105,8 +105,8 @@ export class InvolvedArmiesComponent implements OnInit {
         this.armyInProgress.strength = this.newArmyForm.value.armyStrength;
         this.armyInProgress.discipline = this.newArmyForm.value.armyDiscipline;
         this.armyInProgress.attritionReduction = this.newArmyForm.value.armyAttritionReduction;
-        this.battleEntity.involvedArmies.push(this.armyInProgress);
-        console.debug("New state of battleEntity after onNewArmySubmit: " + JSON.stringify(this.battleEntity,null,4));
+        this.battle.involvedArmies.push(this.armyInProgress);
+        console.debug("New state of battle after onNewArmySubmit: " + JSON.stringify(this.battle,null,4));
         this.addingNewArmy = false;
         this.newArmyForm.reset();
         this.notEnoughArmiesError = false;
@@ -144,16 +144,16 @@ export class InvolvedArmiesComponent implements OnInit {
 
   private updateBattle(): Promise<Battle> {
     return this.httpClient
-    .put<Battle>("/mass-battle-tracker/api/battleEntity", this.battleEntity).toPromise();
+    .put<Battle>("/mass-battle-tracker-reboot/api/battle", this.battle).toPromise();
   }
 
   private buildArmyForm(): void {
     this.newArmyForm = this.formBuilder.group({
-      armyName: new FormControl('', Validators.required),//[this.battleEntity.name, Validators.required],
-      armyClan: new FormControl('', Validators.required),//[this.battleEntity.name, Validators.required],
-      armyStrength: new FormControl('', Validators.required),//[this.battleEntity.description, Validators.required],//[this.battleEntity.name, Validators.required],
-      armyDiscipline: new FormControl('', Validators.required),//[this.battleEntity.description, Validators.required],
-      armyAttritionReduction: new FormControl('', Validators.required)//[this.battleEntity.description, Validators.required]
+      armyName: new FormControl('', Validators.required),//[this.battle.name, Validators.required],
+      armyClan: new FormControl('', Validators.required),//[this.battle.name, Validators.required],
+      armyStrength: new FormControl('', Validators.required),//[this.battle.description, Validators.required],//[this.battle.name, Validators.required],
+      armyDiscipline: new FormControl('', Validators.required),//[this.battle.description, Validators.required],
+      armyAttritionReduction: new FormControl('', Validators.required)//[this.battle.description, Validators.required]
     });
 
     let formInitialValue = this.newArmyForm.value;
@@ -174,8 +174,8 @@ export class InvolvedArmiesComponent implements OnInit {
 
   private buildLeaderForm(): void {
     this.newLeaderForm = this.formBuilder.group({
-      leaderName: new FormControl('', Validators.required),//[this.battleEntity.name, Validators.required],
-      leaderClan: new FormControl('', Validators.required)//[this.battleEntity.description, Validators.required]
+      leaderName: new FormControl('', Validators.required),//[this.battle.name, Validators.required],
+      leaderClan: new FormControl('', Validators.required)//[this.battle.description, Validators.required]
     });
 
     let formInitialValue = this.newLeaderForm.value;

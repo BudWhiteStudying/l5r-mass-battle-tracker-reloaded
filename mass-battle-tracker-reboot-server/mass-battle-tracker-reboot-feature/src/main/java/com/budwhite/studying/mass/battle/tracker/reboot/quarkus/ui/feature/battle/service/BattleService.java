@@ -1,9 +1,21 @@
 package com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.feature.battle.service;
 
-import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.data.entity.BattleEntity;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.data.repository.ArmyRepository;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.data.repository.LeaderRepository;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.data.repository.CohortRepository;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.factory.ArmyFactory;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.factory.CohortFactory;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.factory.LeaderFactory;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.dto.Army;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.entity.ArmyEntity;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.entity.BattleEntity;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.data.repository.BattleRepository;
 import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.factory.BattleFactory;
-import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.factory.dto.Battle;
-import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.factory.dto.Battles;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.dto.Battle;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.dto.Battles;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.entity.LeaderEntity;
+import com.budwhite.studying.mass.battle.tracker.reboot.quarkus.ui.model.entity.CohortEntity;
+import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -15,22 +27,104 @@ public class BattleService {
     @Inject
     BattleFactory battleFactory;
 
+    @Inject
+    ArmyFactory armyFactory;
+
+    @Inject
+    CohortFactory cohortFactory;
+
+    @Inject
+    LeaderFactory leaderFactory;
+
+    @Inject
+    BattleRepository battleRepository;
+
+    @Inject
+    ArmyRepository armyRepository;
+
+    @Inject
+    CohortRepository cohortRepository;
+
+    @Inject
+    LeaderRepository leaderRepository;
+
+    private static final Logger LOG = Logger.getLogger(BattleService.class);
+
     public Battles getAllBattles() {
-        return battleFactory.getBattles(BattleEntity.listAll());
+        LOG.debug("Reached getAllBattles");
+        return battleFactory.getBattles(battleRepository.listAll());
     }
 
     @Transactional
     public Battle initializeBattle() {
+        LOG.debug("Reached initializeBattle");
         BattleEntity battleEntity = new BattleEntity("", "", true);
-        battleEntity.persistAndFlush();
+        battleRepository.persistAndFlush(battleEntity);
         return battleFactory.getBattle(battleEntity);
     }
 
     @Transactional
     public Battle updateBattle(Battle battle) {
-        BattleEntity persistedBattle = BattleEntity.findById(battle.getId());
-        persistedBattle.clone(battleFactory.toBattle(battle));
-        persistedBattle.persistAndFlush();
-        return battle;
+        LOG.debug("Reached updateBattle with battle "+battle.toString());
+        updateBattleEntity(battle);
+        return battleFactory.getBattle(battleRepository.findById(battle.getId()));
+    }
+
+    private void updateBattleEntity(Battle battle) {
+        LOG.debug("Reached updateBattleEntity with battle "+battle.toString());
+        BattleEntity battleEntity = battleRepository.findById(battle.getId());
+        battleEntity.clone(battleFactory.toBattleEntity(battle));
+        battleRepository.persistAndFlush(battleEntity);
+        updateArmyEntity(battle);
+    }
+    private void updateArmyEntity(Battle battle){
+        LOG.debug("Reached updateArmyEntity with battle "+battle.toString());
+        battle.getInvolvedArmies()
+                .forEach(army -> {
+                    ArmyEntity armyEntity;
+                    if(army.getId()!=null) {
+                        armyEntity = armyRepository.findById(army.getId());
+                        if(armyEntity!=null) {
+                            armyEntity.clone(armyFactory.toArmyEntity(army));//
+                        }
+                        else {
+                            armyEntity = armyFactory.toArmyEntity(army);
+                        }
+                    }
+                    else {
+                        armyEntity = armyFactory.toArmyEntity(army);
+                    }
+                    armyRepository.persistAndFlush(armyEntity);
+                    updateCohortEntities(army);
+                    updateLeaderEntities(army);
+                });
+    }
+    private void updateCohortEntities(Army army){
+        LOG.debug("Reached updateCohortEntities with army "+army.toString());
+        army.getCohorts()
+                .forEach(cohort -> {
+                    CohortEntity cohortEntity = cohortRepository.findById(cohort.getId());
+                    cohortEntity.clone(cohortFactory.toCohortEntity(cohort));
+                    cohortRepository.persistAndFlush(cohortEntity);
+                });
+    }
+    private void updateLeaderEntities(Army army){
+        LOG.debug("Reached updateLeaderEntities with army "+army.toString());
+        // first, "promote" the leader to commander if necessary
+        if(army.getCommander()!=null) {
+            LeaderEntity commanderEntity = leaderRepository.findById(army.getCommander().getId());
+            if(!commanderEntity.isCommander()) {
+                LOG.debug("Promoting "+commanderEntity.getName()+" to commander");
+                commanderEntity.setCommander(true);
+            }
+            leaderRepository.persistAndFlush(commanderEntity);
+        }
+        army.getCohorts().forEach(
+                cohort -> {
+                    LeaderEntity leaderEntity = leaderRepository.findById(cohort.getLeader().getId());
+                    leaderEntity.clone(leaderFactory.toLeaderEntity(cohort.getLeader()));
+                    leaderRepository.persistAndFlush(leaderEntity);
+                }
+        );
     }
 }

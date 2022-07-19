@@ -16,9 +16,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.budwhite.studying</groupId>
-            <artifactId>mass-battle-tracker-reboot-data</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-hibernate-orm-panache</artifactId>
         </dependency>
     </dependencies>
 </project>

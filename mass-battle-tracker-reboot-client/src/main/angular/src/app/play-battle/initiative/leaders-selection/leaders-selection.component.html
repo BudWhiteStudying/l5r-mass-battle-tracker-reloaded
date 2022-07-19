@@ -1,6 +1,6 @@
 <mat-card class="main-card">
     <form (ngSubmit)="onSubmit()">
-        <mat-card class="loosely-spaced" *ngFor="let army of battleEntity.involvedArmies">
+        <mat-card class="loosely-spaced" *ngFor="let army of battle.involvedArmies">
             <mat-label>Cohorts of army "{{army.name}}"</mat-label>
             <button type="button" (click)="onAddCohortClicked(army)" mat-icon-button color="primary" aria-label="Add Cohort" [disabled]="!(army.leaders | nonconscriptedleaders:army).length">
                 <mat-icon>add_circle</mat-icon>

@@ -3,22 +3,22 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LandingComponent } from './landing/landing/landing.component';
 
-import { NameDescriptionComponent } from './new-battleEntity/name-description/name-description.component';
-import { InvolvedArmiesComponent } from './new-battleEntity/involved-armies/involved-armies.component';
-import { FinalSummaryComponent } from './new-battleEntity/final-summary/final-summary.component';
+import { NameDescriptionComponent } from './new-battle/name-description/name-description.component';
+import { InvolvedArmiesComponent } from './new-battle/involved-armies/involved-armies.component';
+import { FinalSummaryComponent } from './new-battle/final-summary/final-summary.component';
 
-import { AvailableBattlesComponent } from './resume-battleEntity/available-battles/available-battles.component';
+import { AvailableBattlesComponent } from './resume-battle/available-battles/available-battles.component';
 
-import { CommanderSelectionComponent } from './play-battleEntity/initiative/commander-selection/commander-selection.component';
-import { InitiativeRecordingComponent } from './play-battleEntity/initiative/initiative-recording/initiative-recording.component';
-import { LeadersSelectionComponent } from './play-battleEntity/initiative/leaders-selection/leaders-selection.component';
+import { CommanderSelectionComponent } from './play-battle/initiative/commander-selection/commander-selection.component';
+import { InitiativeRecordingComponent } from './play-battle/initiative/initiative-recording/initiative-recording.component';
+import { LeadersSelectionComponent } from './play-battle/initiative/leaders-selection/leaders-selection.component';
 
-import { ObjectiveSelectionComponent } from './play-battleEntity/rounds/objective-selection/objective-selection.component';
-import { LeaderSelectionComponent } from './play-battleEntity/rounds/leader-selection/leader-selection.component';
-import { LeaderActionComponent } from './play-battleEntity/rounds/leader-action/leader-action.component';
-import { TotalsCheckComponent } from './play-battleEntity/rounds/totals-check/totals-check.component';
-import { FirstMoveComponent } from './play-battleEntity/rounds/first-move/first-move.component';
-import { RoundSummaryComponent } from './play-battleEntity/rounds/round-summary/round-summary.component';
+import { ObjectiveSelectionComponent } from './play-battle/rounds/objective-selection/objective-selection.component';
+import { LeaderSelectionComponent } from './play-battle/rounds/leader-selection/leader-selection.component';
+import { LeaderActionComponent } from './play-battle/rounds/leader-action/leader-action.component';
+import { TotalsCheckComponent } from './play-battle/rounds/totals-check/totals-check.component';
+import { FirstMoveComponent } from './play-battle/rounds/first-move/first-move.component';
+import { RoundSummaryComponent } from './play-battle/rounds/round-summary/round-summary.component';
 
 
 const routes: Routes = [
@@ -27,55 +27,55 @@ const routes: Routes = [
     component: LandingComponent
   },
   {
-    path: 'new-battleEntity/name-description',
+    path: 'new-battle/name-description',
     component: NameDescriptionComponent
   },
   {
-    path: 'new-battleEntity/involved-armies',
+    path: 'new-battle/involved-armies',
     component: InvolvedArmiesComponent
   },
   {
-    path: 'new-battleEntity/final-summary',
+    path: 'new-battle/final-summary',
     component: FinalSummaryComponent
   },
   {
-    path: 'resume-battleEntity/available-battles',
+    path: 'resume-battle/available-battles',
     component: AvailableBattlesComponent
   },
   {
-    path: 'play-battleEntity/initiative/commander-selection',
+    path: 'play-battle/initiative/commander-selection',
     component: CommanderSelectionComponent
   },
   {
-    path: 'play-battleEntity/initiative/initiative-recording',
+    path: 'play-battle/initiative/initiative-recording',
     component: InitiativeRecordingComponent
   },
   {
-    path: 'play-battleEntity/initiative/leaders-selection',
+    path: 'play-battle/initiative/leaders-selection',
     component: LeadersSelectionComponent
   },
   {
-    path: 'play-battleEntity/rounds/objective-selection',
+    path: 'play-battle/rounds/objective-selection',
     component: ObjectiveSelectionComponent
   },
   {
-    path: 'play-battleEntity/rounds/first-move',
+    path: 'play-battle/rounds/first-move',
     component: FirstMoveComponent
   },
   {
-    path: 'play-battleEntity/rounds/leader-selection',
+    path: 'play-battle/rounds/leader-selection',
     component: LeaderSelectionComponent
   },
   {
-    path: 'play-battleEntity/rounds/leader-action',
+    path: 'play-battle/rounds/leader-action',
     component: LeaderActionComponent
   },
   {
-    path: 'play-battleEntity/rounds/totals-check',
+    path: 'play-battle/rounds/totals-check',
     component: TotalsCheckComponent
   },
   {
-    path: 'play-battleEntity/rounds/round-summary',
+    path: 'play-battle/rounds/round-summary',
     component: RoundSummaryComponent
   },
   {

@@ -23,5 +23,10 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-jdbc-h2</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.budwhite.studying</groupId>
+            <artifactId>mass-battle-tracker-reboot-model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

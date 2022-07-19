@@ -1,19 +1,19 @@
 <mat-card class="main-card">
-    <form *ngIf="battleEntity" class="full-width">
+    <form *ngIf="battle" class="full-width">
         <!-- VALUE SET IN THE PREVIOUS VIEW, DISABLED -->
         <div class="loosely-spaced">
-            <b>Name of the battleEntity: </b> {{battleEntity.name}}
+            <b>Name of the battle: </b> {{battle.name}}
         </div>
         <!-- VALUE SET IN THE PREVIOUS VIEW, DISABLED -->
         <div class="loosely-spaced">
-            <b>Description of the battleEntity: </b> {{battleEntity.description}}
+            <b>Description of the battle: </b> {{battle.description}}
         </div>
         <!-- INVOLVED ARMIES -->
         <div class="loosely-spaced">
             <b>Involved armies: </b>
         </div>
         <!-- LIST OF ARMIES -->
-        <mat-label class="block" *ngFor="let army of battleEntity.involvedArmies">
+        <mat-label class="block" *ngFor="let army of battle.involvedArmies">
             <mat-card class = "extra-loosely-spaced">
                 <div class="loosely-spaced">
                     <b>{{army.name}}</b> ({{army.leaders.length}} leaders)
