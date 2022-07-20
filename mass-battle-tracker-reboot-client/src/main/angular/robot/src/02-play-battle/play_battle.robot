@@ -6,22 +6,16 @@ Resource          resource.robot
 
 *** Test Cases ***
 
-Insert Description and Fail to Proceed
-    Insert Battle Description
-    Navigation Should Fail
+Select Army Commanders
+    Select First Army Commander
+    Select Second Army Commander
 
-Insert Name and Manage to Proceed
-    Insert Battle Name
-    Navigation to Involved Armies Page Should Succeed
+Navigate to Initiative Recording
+    Navigation to Initiative Recording Should Succeed
 
-Insert Armies
-    Add First Army
-    Add Second Army
+Insert Initiative of Commanders
+    Insert Initiative of Commanders
 
-Navigate to Final Summary
-    Navigation to Final Summary Should Succeed
-
-Navigate to Commander Selection
-    Navigation to Commander Selection Should Succeed
-    Sleep    2s
+Navigate to Leaders Selection Page
+    Navigation to Leaders Selection Should Succeed
     [Teardown]    Close Browser

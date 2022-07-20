@@ -98,7 +98,7 @@ Navigation to Final Summary Should Succeed
     Should Match Regexp                 ${url}                              .*/final-summary
 
 Navigation to Commander Selection Should Succeed
-    Sleep    2s    Briefly look at the summary
+    #Sleep    2s    Briefly look at the summary
     Click Button                        id=final-summary-next-button
     Wait Until Page Contains Element    id=commander-selection-main-card
     ${url}=   Get Location

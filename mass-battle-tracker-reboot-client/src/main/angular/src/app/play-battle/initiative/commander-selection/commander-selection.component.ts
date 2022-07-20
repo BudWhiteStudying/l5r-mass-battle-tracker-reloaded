@@ -78,7 +78,13 @@ export class CommanderSelectionComponent implements OnInit {
   private updateBattle(): Promise<Battle> {
     this.battle.involvedArmies.forEach(
       army => {
-        army.commander.commander = true;
+        army.leaders.forEach(
+          leader => {
+            if(leader.id==army.commanderId) {
+              leader.commander = true;
+            }
+          }
+        )
       }
     );
     return this.httpClient
@@ -86,8 +92,8 @@ export class CommanderSelectionComponent implements OnInit {
   }
 
   onSubmit() : void {
-    console.debug("Commanders have been selected, army is:\n" + JSON.stringify(this.battle, null, 4));
-    if(this.battle.involvedArmies.filter(army => !army.commander).length>0) {
+    console.debug("Commanders have been selected, battle is:\n" + JSON.stringify(this.battle, null, 4));
+    if(this.battle.involvedArmies.filter(army => !army.commanderId).length>0) {
       console.warn("Not all commanders have been set");
     }
     else {

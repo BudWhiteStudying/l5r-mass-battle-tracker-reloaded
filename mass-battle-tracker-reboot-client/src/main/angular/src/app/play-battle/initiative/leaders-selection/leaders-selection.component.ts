@@ -13,7 +13,7 @@ export class LeadersSelectionComponent implements OnInit {
   pageTitle = '"Initiative" phase: for each Army, form one or more Cohorts, and nominate the Leaders that will lead them'
 
   battle : Battle;
-  cohortInProgress : Cohort = {name : "", leader : {name : "", clan : "", commander : false}};
+  cohortInProgress : Cohort = {name : "", leaderId : -1};
   addingNewCohort : Boolean;
   currentArmyName : String;
   notEnoughCohortsError : Boolean;
@@ -50,7 +50,7 @@ export class LeadersSelectionComponent implements OnInit {
     }
     this.battle.involvedArmies.find(army => army.name==containingArmy.name).cohorts.push(this.cohortInProgress);
     this.addingNewCohort = false;
-    this.cohortInProgress = {name : "", leader : {name : "", clan : "", commander : false}};
+    this.cohortInProgress = {name : "", leaderId : -1};
   }
 
   private updateBattle(): Promise<Battle> {

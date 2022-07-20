@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Action, ActionType, Battle, Leader, ExecutedAction, RoundState } from 'src/app/shared/data-model/mass-battle-tracker-reboot-server';
+import { StandingLeadersOfCommanderPipe } from 'src/app/shared/util/standing-leaders-of-commander.pipe';
 
 @Component({
   selector: 'leader-action',
@@ -33,7 +34,8 @@ export class LeaderActionComponent implements OnInit {
   pageTitle = `"Rounds" phase: chosen Leader performs his action`;
 
   constructor(private router:Router,
-    private httpClient: HttpClient) {
+    private httpClient: HttpClient,
+    private standingLeadersOfCommanderPipe: StandingLeadersOfCommanderPipe) {
     if(this.router.getCurrentNavigation().extras.state) {
       this.battle = this.router.getCurrentNavigation().extras.state.battle;
       this.roundState = this.router.getCurrentNavigation().extras.state.roundState;
@@ -76,9 +78,9 @@ export class LeaderActionComponent implements OnInit {
   switchToNextCommander(roundState : RoundState, battle : Battle): Boolean {
     let roundCanGoOn = true;
     let currentCommander = roundState.actingCommander;
-    let nextCommander = battle.involvedArmies.map(army => army.commander).find(commander => commander.id!=currentCommander.id);
-    let availableLeadersForCurrentCommander = this.findAvailableLeaders(roundState, battle, currentCommander).length;
-    let availableLeadersForNextCommander = this.findAvailableLeaders(roundState, battle, nextCommander).length;
+    let nextCommander = battle.involvedArmies.map(army => army.leaders.filter(leader => leader.id===army.commanderId)[0]).find(commander => commander.id!=currentCommander.id);
+    let availableLeadersForCurrentCommander = this.standingLeadersOfCommanderPipe.transform(battle, roundState, currentCommander.id).length;
+    let availableLeadersForNextCommander = this.standingLeadersOfCommanderPipe.transform(battle, roundState, nextCommander.id).length;
     if(availableLeadersForNextCommander>0) {
       roundState.actingCommander = nextCommander;
     }
@@ -91,8 +93,9 @@ export class LeaderActionComponent implements OnInit {
     return roundCanGoOn;
   }
 
+  /*
   private findAvailableLeaders (roundState : RoundState, battle : Battle, commander : Leader) : Leader[]{
-    return battle.involvedArmies.find(army => army.commander.id==commander.id)
+    return battle.involvedArmies.find(army => army.commanderId==commander.id)
       .cohorts.map(cohort => cohort.leader)
       .filter(
         leader => !roundState.actionHistory
@@ -100,7 +103,7 @@ export class LeaderActionComponent implements OnInit {
           .map(action => action.perpetrator.id)
           .includes(leader.id));
   }
-
+  */
   ngOnInit(): void {
   }
 

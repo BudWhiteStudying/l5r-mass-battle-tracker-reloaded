@@ -1,16 +1,16 @@
 <mat-card class="main-card" id="commander-selection-main-card">
     <form (ngSubmit)="onSubmit()">
-        <mat-card class="loosely-spaced" *ngFor="let army of battle.involvedArmies">
+        <mat-card class="loosely-spaced" *ngFor="let army of battle.involvedArmies; index as i">
             <mat-label>Pick a commander for army "{{army.name}}"</mat-label>
             <br/>
             <mat-form-field>
-                <mat-select [(ngModel)]="army.commander" name="{{army.name}}" required>
-                <mat-option *ngFor="let leader of army.leaders" [value]="leader">
+                <mat-select id="commander-selection-dropdown-{{i}}" [(ngModel)]="army.commanderId" name="{{army.name}}" required>
+                <mat-option *ngFor="let leader of army.leaders; index as j" [value]="leader.id" id="{{i}}-{{j}}">
                     {{leader.name}}
                 </mat-option>
                 </mat-select>
             </mat-form-field>
         </mat-card>
-        <button mat-raised-button color="primary" class="wide-button">Next</button>
+        <button id="commander-selection-next-button" mat-raised-button color="primary" class="wide-button">Next</button>
     </form>
 </mat-card>

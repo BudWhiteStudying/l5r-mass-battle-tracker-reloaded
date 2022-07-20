@@ -16,5 +16,5 @@ public class Cohort implements Serializable {
     private String name;
     private long armyId;
     @NotNull
-    private Leader leader;
+    private Long leaderId;
 }

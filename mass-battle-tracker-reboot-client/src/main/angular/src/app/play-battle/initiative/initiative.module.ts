@@ -14,12 +14,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 
 import { PlayBattleModule } from '../play-battle.module';
-import { NonConscriptedLeadersPipe } from './leaders-selection/non-conscripted-leaders.pipe';
+import { UtilModule } from 'src/app/shared/util/util.module';
+import { CommanderOfArmyPipe } from 'src/app/shared/util/commander-of-army.pipe';
 
 
 
 @NgModule({
-  declarations: [CommanderSelectionComponent, InitiativeRecordingComponent, LeadersSelectionComponent, NonConscriptedLeadersPipe],
+  declarations: [CommanderSelectionComponent, InitiativeRecordingComponent, LeadersSelectionComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
@@ -32,7 +33,9 @@ import { NonConscriptedLeadersPipe } from './leaders-selection/non-conscripted-l
     MatIconModule,
     MatFormFieldModule,
     PlayBattleModule,
-    MatSelectModule
-  ]
+    MatSelectModule,
+    UtilModule
+  ],
+  providers : [CommanderOfArmyPipe]
 })
 export class InitiativeModule { }

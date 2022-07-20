@@ -23,5 +23,3 @@ Navigate to Final Summary
 
 Navigate to Commander Selection
     Navigation to Commander Selection Should Succeed
-    Sleep    2s
-    [Teardown]    Close Browser

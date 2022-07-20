@@ -9,17 +9,17 @@ Library           SeleniumLibrary
 *** Variables ***
 ${SERVER}         localhost:4200
 ${BROWSER}        Chrome
-${DELAY}          0
-${LANDING URL}      http://${SERVER}/
+${DELAY}          0.1s
+${LANDING URL}    http://${SERVER}/
 
 ${BATTLE NAME}            Battle of the Osari Plains
 ${BATTLE DESCRIPTION}     The Lion Clan launches a ferocious offensive on the castle of Toshi Ranbo
 
 *** Keywords ***
 Open Browser To Landing Page
-    Open Browser    ${LANDING URL}    ${BROWSER}
+    Open Browser                ${LANDING URL}    ${BROWSER}
     Maximize Browser Window
-    Set Selenium Speed    ${DELAY}
+    Set Selenium Speed          ${DELAY}
     Landing Page Should Be Open
 
 Landing Page Should Be Open

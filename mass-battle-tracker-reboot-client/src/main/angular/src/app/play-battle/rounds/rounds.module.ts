@@ -17,15 +17,13 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { PlayBattleModule } from '../play-battle.module';
 import { FirstMoveComponent } from './first-move/first-move.component';
-import { HighestInitCommanderPipe } from './first-move/highest-init-commander.pipe';
-import { CommandersPipe } from './first-move/commanders.pipe';
-import { StandingLeadersOfCommanderPipe } from './leader-selection/standing-leaders-of-commander.pipe';
 import { RoundSummaryComponent } from './round-summary/round-summary.component';
+import { UtilModule } from 'src/app/shared/util/util.module';
 
 
 
 @NgModule({
-  declarations: [ObjectiveSelectionComponent, LeaderSelectionComponent, LeaderActionComponent, TotalsCheckComponent, FirstMoveComponent, HighestInitCommanderPipe, CommandersPipe, StandingLeadersOfCommanderPipe, RoundSummaryComponent],
+  declarations: [ObjectiveSelectionComponent, LeaderSelectionComponent, LeaderActionComponent, TotalsCheckComponent, FirstMoveComponent, RoundSummaryComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
@@ -39,7 +37,8 @@ import { RoundSummaryComponent } from './round-summary/round-summary.component';
     MatFormFieldModule,
     PlayBattleModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    UtilModule
   ]
 })
 export class RoundsModule { }

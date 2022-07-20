@@ -29,5 +29,5 @@ public class Army implements Serializable {
     @NotNull
     private List<Leader> leaders;
     private List<Cohort> cohorts;
-    private Leader commander;
+    private Long commanderId;
 }

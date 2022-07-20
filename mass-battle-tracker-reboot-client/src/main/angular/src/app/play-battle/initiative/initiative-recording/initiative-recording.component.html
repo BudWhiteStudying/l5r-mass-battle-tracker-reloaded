@@ -1,12 +1,12 @@
-<mat-card class="main-card">
+<mat-card class="main-card" id="initiative-recording-main-card">
     <form (ngSubmit)="onSubmit()">
-        <mat-card class="loosely-spaced" *ngFor="let army of battle.involvedArmies">
-            <mat-label>Record initiative result (n° of successes) for commander {{army.commander.name}}</mat-label>
+        <mat-card class="loosely-spaced" *ngFor="let commander of commanders; index as i">
+            <mat-label>Record initiative result (n° of successes) for commander {{commander.name}}</mat-label>
             <br/>
             <mat-form-field>
-                <input [(ngModel)]="army.commander.initiative" matInput type="number" name="{{army.commander.name}}" required>
+                <input id="initiative-recording-input-{{i}}" [(ngModel)]="commander.initiative" matInput type="number" name="{{commander.name}}" required>
             </mat-form-field>
         </mat-card>
-        <button mat-raised-button color="primary" class="wide-button">Next</button>
+        <button id="initiative-recording-next-button" mat-raised-button color="primary" class="wide-button">Next</button>
     </form>
 </mat-card>

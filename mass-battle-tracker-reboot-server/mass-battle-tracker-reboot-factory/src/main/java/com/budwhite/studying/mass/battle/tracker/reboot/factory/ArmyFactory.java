@@ -43,7 +43,7 @@ public class ArmyFactory {
                 .attritionReduction(armyState.getAttritionReduction())
                 .currentPanic(armyState.getCurrentPanic())
                 .battleId(armyState.getBattleId())
-                .commander(leaderFactory.getLeader(leaderRepository.findById(armyEntity.getCommanderId())))
+                .commanderId(armyEntity.getCommanderId())
                 .build();
     }
 
@@ -51,7 +51,7 @@ public class ArmyFactory {
         return new ArmyEntity(
                 army.getId(),
                 army.getName(),
-                army.getCommander()!=null ? army.getCommander().getId() : 0,
+                army.getCommanderId(),
                 army.getDescription(),
                 army.getMainClan(),
                 army.getStrength(),

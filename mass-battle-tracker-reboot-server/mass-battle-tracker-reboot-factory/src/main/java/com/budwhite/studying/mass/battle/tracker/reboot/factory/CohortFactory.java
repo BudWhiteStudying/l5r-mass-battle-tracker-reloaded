@@ -20,7 +20,7 @@ public class CohortFactory {
         return Cohort.builder()
                 .id(cohortEntity.getId())
                 .armyId(cohortEntity.getArmyId())
-                .leader(leaderFactory.getLeader(leaderRepository.findById(cohortEntity.getLeaderId())))
+                .leaderId(cohortEntity.getLeaderId())
                 .name(cohortEntity.getName())
                 .build();
     }
@@ -29,7 +29,7 @@ public class CohortFactory {
         return new CohortEntity(
                 cohort.getId(),
                 cohort.getName(),
-                cohort.getLeader().getId(),
+                cohort.getLeaderId(),
                 cohort.getArmyId()
         );
     }

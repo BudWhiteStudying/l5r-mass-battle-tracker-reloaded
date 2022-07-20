@@ -33,73 +33,36 @@ ${SECOND ARMY L1 CLAN}        Crane
 ${SECOND ARMY L2 NAME}        Daidoji Uji
 ${SECOND ARMY L2 CLAN}        Crane
 
+${FIRST COMMANDER INITIATIVE}   3
+${SECOND COMMANDER INITIATIVE}  2
+
 *** Keywords ***
 
-Insert Battle Name
-    Input Text    id=battle-name-input    ${BATTLE NAME}
+Select First Army Commander
+    Click Element                        id=commander-selection-dropdown-0
+    Wait Until Element Is Visible        id=0-0
+    Click Element                        id=0-0
 
-Insert Battle Description
-    Input Text    id=battle-description-input    ${BATTLE DESCRIPTION}
+Select Second Army Commander
+    Click Element                        id=commander-selection-dropdown-1
+    Wait Until Element Is Visible        id=1-0
+    Click Element                        id=1-0
 
-Navigation Should Fail
-    Click Button    id=name-description-next-button
+Navigation to Initiative Recording Should Succeed
+    Wait Until Element Is Enabled       id=commander-selection-next-button
+    Click Button                        id=commander-selection-next-button
+    Wait Until Page Contains Element    id=initiative-recording-main-card
     ${url}=   Get Location
-    Should Match Regexp  ${url}  .*/name-description
+    Should Match Regexp                 ${url}                              .*/initiative-recording
 
-Navigation to Involved Armies Page Should Succeed
-    Click Button    id=name-description-next-button
+Insert Initiative of Commanders
+    Input Text      id=initiative-recording-input-0            ${FIRST COMMANDER INITIATIVE}
+    Input Text      id=initiative-recording-input-1            ${SECOND COMMANDER INITIATIVE}
+
+Navigation to Leaders Selection Should Succeed
+    Sleep           15s                                        Debug
+    Wait Until Element Is Enabled       id=initiative-recording-next-button
+    Click Button                        id=initiative-recording-next-button
+    Wait Until Page Contains Element    id=leader-selection-main-card
     ${url}=   Get Location
-    Should Match Regexp  ${url}  .*/involved-armies
-
-Add First Army Leaders
-    Click Button    id=involved-armies-new-leader-button
-    Input Text      id=involved-armies-leader-name-input          ${FIRST ARMY L1 NAME}
-    Input Text      id=involved-armies-leader-clan-input          ${FIRST ARMY L1 CLAN}
-    Click Button    id=involved-armies-add-leader-button
-    Click Button    id=involved-armies-new-leader-button
-    Input Text      id=involved-armies-leader-name-input          ${FIRST ARMY L2 NAME}
-    Input Text      id=involved-armies-leader-clan-input          ${FIRST ARMY L2 CLAN}
-    Click Button    id=involved-armies-add-leader-button
-
-Add Second Army Leaders
-    Click Button    id=involved-armies-new-leader-button
-    Input Text      id=involved-armies-leader-name-input          ${SECOND ARMY L1 NAME}
-    Input Text      id=involved-armies-leader-clan-input          ${SECOND ARMY L1 CLAN}
-    Click Button    id=involved-armies-add-leader-button
-    Click Button    id=involved-armies-new-leader-button
-    Input Text      id=involved-armies-leader-name-input          ${SECOND ARMY L2 NAME}
-    Input Text      id=involved-armies-leader-clan-input          ${SECOND ARMY L2 CLAN}
-    Click Button    id=involved-armies-add-leader-button
-
-Add First Army
-    Click Button    id=involved-armies-new-army-button
-    Input Text      id=involved-armies-army-name-input            ${FIRST ARMY NAME}
-    Input Text      id=involved-armies-army-clan-input            ${FIRST ARMY CLAN NAME}
-    Input Text      id=involved-armies-army-strength-input        ${FIRST ARMY STRENGTH}
-    Input Text      id=involved-armies-army-discipline-input      ${FIRST ARMY DISCIPLINE}
-    Input Text      id=involved-armies-army-attr-reduction-input  ${FIRST ARMY ATTR REDUX}
-    Add First Army Leaders
-    Click Button    id=involved-armies-add-army-button
-
-Add Second Army
-    Click Button    id=involved-armies-new-army-button
-    Input Text      id=involved-armies-army-name-input            ${SECOND ARMY NAME}
-    Input Text      id=involved-armies-army-clan-input            ${SECOND ARMY CLAN NAME}
-    Input Text      id=involved-armies-army-strength-input        ${SECOND ARMY STRENGTH}
-    Input Text      id=involved-armies-army-discipline-input      ${SECOND ARMY DISCIPLINE}
-    Input Text      id=involved-armies-army-attr-reduction-input  ${SECOND ARMY ATTR REDUX}
-    Add Second Army Leaders
-    Click Button    id=involved-armies-add-army-button
-
-Navigation to Final Summary Should Succeed
-    Click Button                        id=involved-armies-next-button
-    Wait Until Page Contains Element    id=final-summary-main-card
-    ${url}=   Get Location
-    Should Match Regexp                 ${url}                              .*/final-summary
-
-Navigation to Commander Selection Should Succeed
-    Sleep    2s    Briefly look at the summary
-    Click Button                        id=final-summary-next-button
-    Wait Until Page Contains Element    id=commander-selection-main-card
-    ${url}=   Get Location
-    Should Match Regexp                 ${url}                              .*/commander-selection
+    Should Match Regexp                 ${url}                              .*/leader-selection

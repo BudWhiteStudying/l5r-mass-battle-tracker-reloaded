@@ -2,7 +2,7 @@
     <form (ngSubmit)="onSubmit()">
         <mat-card class="loosely-spaced" *ngFor="let army of battle.involvedArmies">
             <mat-label>Cohorts of army "{{army.name}}"</mat-label>
-            <button type="button" (click)="onAddCohortClicked(army)" mat-icon-button color="primary" aria-label="Add Cohort" [disabled]="!(army.leaders | nonconscriptedleaders:army).length">
+            <button type="button" (click)="onAddCohortClicked(army)" mat-icon-button color="primary" aria-label="Add Cohort" [disabled]="!(army.leaders | nonConscriptedLeadersOfArmy:army).length">
                 <mat-icon>add_circle</mat-icon>
             </button>
             <!-- LIST OF COHORTS -->
@@ -24,7 +24,7 @@
                     <mat-form-field class="loosely-spaced">
                         <mat-label>Cohort leader</mat-label>
                         <mat-select [(ngModel)]="cohortInProgress.leader" name="ld-name-{{army.name}}" required>
-                            <mat-option *ngFor="let leader of army.leaders | nonconscriptedleaders:army" [value]="leader">
+                            <mat-option *ngFor="let leader of army.leaders | nonConscriptedLeadersOfArmy:army" [value]="leader">
                                 {{leader.name}}
                             </mat-option>
                         </mat-select>

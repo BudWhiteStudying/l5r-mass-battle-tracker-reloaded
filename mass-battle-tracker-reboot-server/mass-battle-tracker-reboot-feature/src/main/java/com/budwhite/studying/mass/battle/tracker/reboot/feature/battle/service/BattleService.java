@@ -126,15 +126,18 @@ public class BattleService {
     }
     private void updateLeaderEntities(Army army, ArmyEntity armyEntity){
         LOG.debug("Reached updateLeaderEntities with army "+army.toString());
+
         // first, "promote" the leader to commander if necessary
-        if(army.getCommander()!=null) {
-            LeaderEntity commanderEntity = leaderRepository.findById(army.getCommander().getId());
+        /*
+        if(army.getCommanderId()!=null) {
+            LeaderEntity commanderEntity = leaderRepository.findById(army.getCommanderId());
             if(!commanderEntity.isCommander()) {
                 LOG.debug("Promoting "+commanderEntity.getName()+" to commander");
                 commanderEntity.setCommander(true);
             }
             leaderRepository.persistAndFlush(commanderEntity);
         }
+        */
         army.getLeaders().forEach(
                 leader -> {
                     LeaderEntity leaderEntity;

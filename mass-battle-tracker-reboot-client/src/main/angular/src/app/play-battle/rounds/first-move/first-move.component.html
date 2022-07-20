@@ -1,9 +1,9 @@
 <mat-card class="main-card">
     <form (ngSubmit)="onSubmit()">
-        <mat-label class="block">Commander <b>{{(battle | highestinitcommander).name}}</b>, having the highest initiative, decides which commander makes the first move</mat-label>
+        <mat-label class="block">Commander <b>{{(battle | highestInitCommanderInBattle).name}}</b>, having the highest initiative, decides which commander makes the first move</mat-label>
         <mat-form-field>
             <mat-select [(ngModel)]="roundState.actingCommander" name="acting-commander-select" required>
-            <mat-option *ngFor="let commander of (battle | commanders)" [value]="commander">
+            <mat-option *ngFor="let commander of (battle | commandersInBattle)" [value]="commander">
                 {{commander.name}}
             </mat-option>
             </mat-select>

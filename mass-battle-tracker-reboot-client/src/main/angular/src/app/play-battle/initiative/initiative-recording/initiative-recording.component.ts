@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Battle } from 'src/app/shared/data-model/mass-battle-tracker-reboot-server';
+import { Battle, Leader } from 'src/app/shared/data-model/mass-battle-tracker-reboot-server';
+import { CommanderOfArmyPipe } from 'src/app/shared/util/commander-of-army.pipe';
 
 @Component({
   selector: 'initiative-recording',
@@ -13,9 +14,11 @@ export class InitiativeRecordingComponent implements OnInit {
   pageTitle = '"Initiative" phase: record initiative of each commander';
 
   battle : Battle;
+  commanders : Leader[]
 
   constructor(private router:Router,
-    private httpClient: HttpClient) {
+    private httpClient: HttpClient,
+    private commanderOfArmyPipe : CommanderOfArmyPipe) {
     if(this.router.getCurrentNavigation().extras.state) {
       this.battle = this.router.getCurrentNavigation().extras.state.battle;
     }
@@ -25,6 +28,7 @@ export class InitiativeRecordingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.commanders = this.battle.involvedArmies.map(army => this.commanderOfArmyPipe.transform(army));
   }
 
   private updateBattle(): Promise<Battle> {
@@ -32,9 +36,15 @@ export class InitiativeRecordingComponent implements OnInit {
     .put<Battle>("/mass-battle-tracker-reboot/api/battle", this.battle).toPromise();
   }
 
+  private registerInitiativeValues() : void {
+    this.battle.involvedArmies.forEach(army => {
+      army.leaders.filter(leader => leader.id===army.commanderId)[0]=this.commanders.filter(commander => commander.id===army.commanderId)[0];
+    })
+  }
+
   onSubmit(): void {
     console.debug("Upon submission, battle is:\n" + JSON.stringify(this.battle, null, 4));
-    if(this.battle.involvedArmies.filter(army => !army.commander.initiative).length>0) {
+    if(this.battle.involvedArmies.filter(army => !this.commanderOfArmyPipe.transform(army).initiative).length>0) {
       console.warn("Not all initiative values have been set");
     }
     else {

@@ -18,7 +18,7 @@ public class ArmyEntity {
     private Long id;
 
     private String name;
-    private long commanderId;
+    private Long commanderId;
     private String description;
     private String mainClan;
     private int strength;
