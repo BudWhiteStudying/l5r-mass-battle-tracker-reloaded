@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 2.30.840 on 2022-07-20 16:23:30.
+// Generated using typescript-generator version 2.30.840 on 2022-07-20 20:10:32.
 
 export interface Action extends Serializable {
     type?: ActionType;
