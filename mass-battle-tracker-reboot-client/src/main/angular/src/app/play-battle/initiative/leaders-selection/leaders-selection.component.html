@@ -1,15 +1,15 @@
-<mat-card class="main-card">
+<mat-card class="main-card" id="leaders-selection-main-card">
     <form (ngSubmit)="onSubmit()">
-        <mat-card class="loosely-spaced" *ngFor="let army of battle.involvedArmies">
+        <mat-card class="loosely-spaced" *ngFor="let army of battle.involvedArmies; index as j">
             <mat-label>Cohorts of army "{{army.name}}"</mat-label>
-            <button type="button" (click)="onAddCohortClicked(army)" mat-icon-button color="primary" aria-label="Add Cohort" [disabled]="!(army.leaders | nonConscriptedLeadersOfArmy:army).length">
+            <button id="leaders-selection-new-cohort-button-{{j}}" type="button" (click)="onAddCohortClicked(army)" mat-icon-button color="primary" aria-label="Add Cohort" [disabled]="!(army.leaders | nonConscriptedLeadersOfArmy:army).length">
                 <mat-icon>add_circle</mat-icon>
             </button>
             <!-- LIST OF COHORTS -->
             <mat-label class="block" *ngFor="let cohort of army.cohorts">
                 <mat-card class = "loosely-spaced">
                     <div>
-                        <b>{{cohort.name}}</b>, led by {{cohort.leader.name}}
+                        <b>{{cohort.name}}</b>, led by {{cohort.leaderId}}
                     </div>
                 </mat-card>
             </mat-label>
@@ -23,8 +23,8 @@
                     <br/>
                     <mat-form-field class="loosely-spaced">
                         <mat-label>Cohort leader</mat-label>
-                        <mat-select [(ngModel)]="cohortInProgress.leader" name="ld-name-{{army.name}}" required>
-                            <mat-option *ngFor="let leader of army.leaders | nonConscriptedLeadersOfArmy:army" [value]="leader">
+                        <mat-select id="leaders-selection-leaders-dropdown-{{j}}" [(ngModel)]="cohortInProgress.leaderId" name="ld-name-{{army.name}}" required>
+                            <mat-option *ngFor="let leader of army.leaders | nonConscriptedLeadersOfArmy:army; index as i" id="leaders-selection-option-{{j}}-{{i}}" [value]="leader.id">
                                 {{leader.name}}
                             </mat-option>
                         </mat-select>
@@ -32,14 +32,14 @@
                     <br/>
                     <mat-form-field class="loosely-spaced">
                         <mat-label>Cohort name</mat-label>
-                        <input [(ngModel)]="cohortInProgress.name" name="ch-name-{{army.name}}" matInput placeholder="e.g. Heavy Infantry" required>
+                        <input id="leaders-selection-cohort-name-input-{{j}}" [(ngModel)]="cohortInProgress.name" name="ch-name-{{army.name}}" matInput placeholder="e.g. Heavy Infantry" required>
                     </mat-form-field>
                     <br/>
-                    <button mat-raised-button color="primary" class="small-button">Form cohort</button>
-                    <button mat-stroked-button type="button" color="primary" class="small-button" (click)="onDiscardCohortClicked()">Discard</button>
+                    <button id="leaders-selection-add-cohort-button-{{j}}" mat-raised-button color="primary" class="small-button">Form cohort</button>
+                    <button id="leaders-selection-discard-cohort-button-{{j}}" mat-stroked-button type="button" color="primary" class="small-button" (click)="onDiscardCohortClicked()">Discard</button>
                 </form>
             </mat-card>
         </mat-card>
-        <button mat-raised-button color="primary" class="wide-button">Next</button>
+        <button id="leaders-selection-next-button" mat-raised-button color="primary" class="wide-button">Next</button>
     </form>
 </mat-card>

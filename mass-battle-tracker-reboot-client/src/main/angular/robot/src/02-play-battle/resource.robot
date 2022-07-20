@@ -36,6 +36,11 @@ ${SECOND ARMY L2 CLAN}        Crane
 ${FIRST COMMANDER INITIATIVE}   3
 ${SECOND COMMANDER INITIATIVE}  2
 
+${FIRST ARMY C1 NAME}      Elite Vanguard
+
+${SECOND ARMY C1 NAME}     Mounted Archers
+${SECOND ARMY C2 NAME}     Heavy Infantry
+
 *** Keywords ***
 
 Select First Army Commander
@@ -60,9 +65,37 @@ Insert Initiative of Commanders
     Input Text      id=initiative-recording-input-1            ${SECOND COMMANDER INITIATIVE}
 
 Navigation to Leaders Selection Should Succeed
-    Sleep           15s                                        Debug
     Wait Until Element Is Enabled       id=initiative-recording-next-button
     Click Button                        id=initiative-recording-next-button
-    Wait Until Page Contains Element    id=leader-selection-main-card
+    Wait Until Page Contains Element    id=leaders-selection-main-card
     ${url}=   Get Location
-    Should Match Regexp                 ${url}                              .*/leader-selection
+    Should Match Regexp                 ${url}                              .*/leaders-selection
+
+Form First Army Cohorts
+    Click Button                    id=leaders-selection-new-cohort-button-0
+    Click Element                   id=leaders-selection-leaders-dropdown-0
+    Wait Until Element Is Visible   id=leaders-selection-option-0-0
+    Click Element                   id=leaders-selection-option-0-0
+    Input Text                      id=leaders-selection-cohort-name-input-0           ${FIRST ARMY C1 NAME}
+    Click Button                    id=leaders-selection-add-cohort-button-0
+
+Form Second Army Cohorts
+    Click Button                    id=leaders-selection-new-cohort-button-1
+    Click Element                   id=leaders-selection-leaders-dropdown-1
+    Wait Until Element Is Visible   id=leaders-selection-option-1-0
+    Click Element                   id=leaders-selection-option-1-0
+    Input Text                      id=leaders-selection-cohort-name-input-1           ${SECOND ARMY C1 NAME}
+    Click Button                    id=leaders-selection-add-cohort-button-1
+    Click Button                    id=leaders-selection-new-cohort-button-1
+    Click Element                   id=leaders-selection-leaders-dropdown-1
+    Wait Until Element Is Visible   id=leaders-selection-option-1-0
+    Click Element                   id=leaders-selection-option-1-0
+    Input Text                      id=leaders-selection-cohort-name-input-1           ${SECOND ARMY C2 NAME}
+    Click Button                    id=leaders-selection-add-cohort-button-1
+    
+Navigation to Objective Selection Should Succeed
+    Wait Until Element Is Enabled       id=leaders-selection-next-button
+    Click Button                        id=leaders-selection-next-button
+    Wait Until Page Contains Element    id=objective-selection-main-card
+    ${url}=   Get Location
+    Should Match Regexp                 ${url}                              .*/objective-selection

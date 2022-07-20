@@ -18,4 +18,11 @@ Insert Initiative of Commanders
 
 Navigate to Leaders Selection Page
     Navigation to Leaders Selection Should Succeed
+
+Form Cohorts
+    Form First Army Cohorts
+    Form Second Army Cohorts
+
+Navigate to Objective Selection
+    Navigation to Objective Selection Should Succeed
     [Teardown]    Close Browser
