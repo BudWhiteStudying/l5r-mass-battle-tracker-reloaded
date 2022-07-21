@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 2.30.840 on 2022-07-20 20:10:32.
+// Generated using typescript-generator version 2.30.840 on 2022-07-21 11:38:31.
 
 export interface Action extends Serializable {
     type?: ActionType;
@@ -77,7 +77,6 @@ export interface Leader extends Serializable {
     clan?: string;
     commander?: boolean;
     armyId?: number;
-    cohortId?: number;
     initiative?: number;
 }
 

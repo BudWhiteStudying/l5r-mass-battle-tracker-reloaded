@@ -15,7 +15,6 @@ public class LeaderFactory {
                 .armyId(leaderEntity.getArmyId())
                 .clan(leaderEntity.getClan())
                 .commander(leaderEntity.isCommander())
-                .cohortId(leaderEntity.getCohortId())
                 .name(leaderEntity.getName())
                 .initiative(leaderEntity.getInitiative()) // could be null if it's not a commander
                 .build()
@@ -28,7 +27,6 @@ public class LeaderFactory {
                 leader.getName(),
                 leader.getClan(),
                 leader.getArmyId(),
-                leader.getCohortId(),
                 leader.getInitiative(),
                 leader.isCommander()
         );

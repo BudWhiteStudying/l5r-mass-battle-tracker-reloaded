@@ -19,7 +19,6 @@ public class LeaderEntity {
     private String name;
     private String clan;
     private long armyId;
-    private long cohortId;
     private Integer initiative;
     private boolean commander = false;
 
@@ -28,7 +27,6 @@ public class LeaderEntity {
         this.name = leaderEntity.getName();
         this.clan = leaderEntity.getClan();
         this.armyId = leaderEntity.getArmyId();
-        this.cohortId = leaderEntity.getCohortId();
         this.initiative = leaderEntity.getInitiative();
         this.commander = leaderEntity.isCommander();
     }

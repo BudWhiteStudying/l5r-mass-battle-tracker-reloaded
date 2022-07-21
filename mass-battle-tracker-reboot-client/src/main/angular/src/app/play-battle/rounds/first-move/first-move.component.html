@@ -1,13 +1,13 @@
-<mat-card class="main-card">
+<mat-card class="main-card" id="first-move-main-card">
     <form (ngSubmit)="onSubmit()">
         <mat-label class="block">Commander <b>{{(battle | highestInitCommanderInBattle).name}}</b>, having the highest initiative, decides which commander makes the first move</mat-label>
         <mat-form-field>
-            <mat-select [(ngModel)]="roundState.actingCommander" name="acting-commander-select" required>
-            <mat-option *ngFor="let commander of (battle | commandersInBattle)" [value]="commander">
+            <mat-select id="first-move-commanders-dropdown" [(ngModel)]="roundState.actingCommander" name="acting-commander-select" required>
+            <mat-option *ngFor="let commander of (battle | commandersInBattle); index as i" id="first-move-commander-option-{{i}}" [value]="commander">
                 {{commander.name}}
             </mat-option>
             </mat-select>
         </mat-form-field>
-        <button mat-raised-button color="primary" class="wide-button">Next</button>
+        <button id="first-move-next-button" mat-raised-button color="primary" class="wide-button">Next</button>
     </form>
 </mat-card>

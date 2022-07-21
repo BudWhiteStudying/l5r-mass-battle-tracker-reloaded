@@ -44,6 +44,7 @@ export class LeadersSelectionComponent implements OnInit {
 
   onNewCohortSubmit(containingArmy : Army): void {
     this.notEnoughCohortsError = false;
+    this.cohortInProgress.armyId = containingArmy.id;
     console.debug("Cohort submitted for army " + containingArmy.name + ", cohortInProgress is\n" + JSON.stringify(this.cohortInProgress, null, 3));
     if(!this.battle.involvedArmies.find(army => army.name==containingArmy.name).cohorts) {
       this.battle.involvedArmies.find(army => army.name==containingArmy.name).cohorts = [];
@@ -59,7 +60,7 @@ export class LeadersSelectionComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.debug("Upon submission, battle is:\n" + JSON.stringify(this.battle, null, 4));
+    console.debug("Right before cohorts submission, battle is:\n" + JSON.stringify(this.battle, null, 4));
     for (let army of this.battle.involvedArmies) {
       if(!army.cohorts || !army.cohorts.length) {
         console.warn("Cohorts were not defined in at least one case");
@@ -70,7 +71,7 @@ export class LeadersSelectionComponent implements OnInit {
       this.updateBattle()
       .then(
         response => {
-          console.info("Remote battle has been updated:\n" + JSON.stringify(response));
+          console.info("Remote battle has been updated with cohorts:\n" + JSON.stringify(response));
           this.battle = response;
           this.router.navigateByUrl('/play-battle/rounds/objective-selection', {
             state: {battle: this.battle}

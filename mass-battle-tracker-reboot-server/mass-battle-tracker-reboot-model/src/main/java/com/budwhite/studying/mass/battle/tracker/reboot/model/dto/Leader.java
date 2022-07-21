@@ -18,6 +18,5 @@ public class Leader implements Serializable {
     private boolean commander;
     @NotNull
     private long armyId;
-    private long cohortId;
     private Integer initiative;
 }

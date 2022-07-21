@@ -1,12 +1,12 @@
 <mat-card class="main-card" id="objective-selection-main-card">
     <form (ngSubmit)="onSubmit()">
-        <mat-card class="loosely-spaced" *ngFor="let army of battle.involvedArmies">
+        <mat-card class="loosely-spaced" *ngFor="let army of battle.involvedArmies; index as i">
             <mat-label>Record strategic objective chosen by commander {{army.commanderId}} for this round</mat-label>
             <br/>
             <mat-form-field>
-                <input [(ngModel)]="roundState.currentObjectivePerArmyName[army.name].name" matInput name="obj-{{army.commanderId}}" required>
-              </mat-form-field>
+                <input id="objective-selection-input-{{i}}" [(ngModel)]="roundState.currentObjectivePerArmyName[army.name].name" matInput name="obj-{{army.commanderId}}" required>
+            </mat-form-field>
         </mat-card>
-        <button mat-raised-button color="primary" class="wide-button">Next</button>
+        <button id="objective-selection-next-button" mat-raised-button color="primary" class="wide-button">Next</button>
     </form>
 </mat-card>

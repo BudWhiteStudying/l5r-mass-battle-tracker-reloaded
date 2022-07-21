@@ -1,9 +1,9 @@
 <mat-card class="main-card" id="leader-selection-main-card">
     <form (ngSubmit)="onSubmit()">
-        <mat-label class="block">Commander <b>{{roundState.actingCommander.name}}</b> decides which leader will now take his turn</mat-label>
+        <mat-label class="block">Commander <b>{{roundState.actingCommander.name}}</b> decides which leader will now take their turn</mat-label>
         <mat-form-field>
-            <mat-select [(ngModel)]="roundState.actingLeader" name="acting-leader-select" required>
-            <mat-option *ngFor="let leader of (battle | standingLeadersOfCommander:roundState)" [value]="leader">
+            <mat-select id="leader-selection-leaders-dropdown" [(ngModel)]="roundState.actingLeader" name="acting-leader-select" required>
+            <mat-option *ngFor="let leader of (battle | standingLeadersOfCommander:roundState); index as i" id="leader-selection-leader-option-{{i}}" [value]="leader">
                 {{leader.name}}
             </mat-option>
             </mat-select>

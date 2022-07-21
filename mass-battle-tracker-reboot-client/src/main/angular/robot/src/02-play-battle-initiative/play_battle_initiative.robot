@@ -1,10 +1,13 @@
 *** Settings ***
-Documentation     Suite testing the New Battle module
-...
+Documentation     Suite testing the Initiative section
+...               of the Play Battle module
 ...               It is supposed to run after the Landing suite
 Resource          resource.robot
 
 *** Test Cases ***
+
+Prepare
+    Register Keyword To Run On Failure  None
 
 Select Army Commanders
     Select First Army Commander
@@ -25,4 +28,3 @@ Form Cohorts
 
 Navigate to Objective Selection
     Navigation to Objective Selection Should Succeed
-    [Teardown]    Close Browser

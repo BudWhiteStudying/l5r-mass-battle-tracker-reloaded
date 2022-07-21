@@ -112,32 +112,30 @@ public class BattleService {
         army.getCohorts()
                 .forEach(cohort -> {
                     CohortEntity cohortEntity;
-                    if(cohort!=null && cohort.getId()!=null) {
-                        cohortEntity = cohortRepository.findById(cohort.getId());
-                        if(cohortEntity!=null) {
-                            cohortEntity.clone(cohortFactory.toCohortEntity(cohort));
+                    if(cohort!=null) {
+                        if(cohort.getId()!=null) {
+                            LOG.debug("cohort is NOT null, its id is NOT null either");
+                            cohortEntity = cohortRepository.findById(cohort.getId());
+                            if(cohortEntity!=null) {
+                                LOG.debug("retrieved an existing entity");
+                                cohortEntity.clone(cohortFactory.toCohortEntity(cohort));
+                            }
+                            else {
+                                LOG.debug("did not retrieve an existing entity");
+                                cohortEntity = cohortFactory.toCohortEntity(cohort);
+                            }
                         }
                         else {
+                            LOG.debug("cohort is NOT null, its id IS null ");
                             cohortEntity = cohortFactory.toCohortEntity(cohort);
                         }
+                        LOG.debug("About to persist cohortEntity "+cohortEntity.toString());
                         cohortRepository.persistAndFlush(cohortEntity);
                     }
                 });
     }
     private void updateLeaderEntities(Army army, ArmyEntity armyEntity){
         LOG.debug("Reached updateLeaderEntities with army "+army.toString());
-
-        // first, "promote" the leader to commander if necessary
-        /*
-        if(army.getCommanderId()!=null) {
-            LeaderEntity commanderEntity = leaderRepository.findById(army.getCommanderId());
-            if(!commanderEntity.isCommander()) {
-                LOG.debug("Promoting "+commanderEntity.getName()+" to commander");
-                commanderEntity.setCommander(true);
-            }
-            leaderRepository.persistAndFlush(commanderEntity);
-        }
-        */
         army.getLeaders().forEach(
                 leader -> {
                     LeaderEntity leaderEntity;

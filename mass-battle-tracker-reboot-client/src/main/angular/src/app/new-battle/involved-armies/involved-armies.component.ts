@@ -37,7 +37,6 @@ export class InvolvedArmiesComponent implements OnInit {
 
   leaderInProgress : Leader = {
     id : 0,
-    cohortId : 0,
     name : "",
     clan : "",
     commander : false,
