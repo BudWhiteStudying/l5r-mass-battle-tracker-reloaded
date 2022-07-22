@@ -4,7 +4,8 @@ Documentation     A resource file with reusable keywords and variables.
 ...               The system specific keywords created here form our own
 ...               domain specific language. They utilize keywords provided
 ...               by the imported SeleniumLibrary.
-Library           SeleniumLibrary
+Resource          ../common/resource.robot
+Resource          additional_resource.robot
 
 *** Variables ***
 
@@ -47,59 +48,28 @@ Navigation Should Fail
     Should Match Regexp  ${url}  .*/name-description
 
 Navigation to Involved Armies Page Should Succeed
-    Click Button    id=name-description-next-button
-    ${url}=   Get Location
-    Should Match Regexp  ${url}  .*/involved-armies
+    Navigation to Page Should Succeed    name-description-next-button    involved-armies-main-card    involved-armies
 
 Add First Army Leaders
-    Click Button    id=involved-armies-new-leader-button
-    Input Text      id=involved-armies-leader-name-input          ${FIRST ARMY L1 NAME}
-    Input Text      id=involved-armies-leader-clan-input          ${FIRST ARMY L1 CLAN}
-    Click Button    id=involved-armies-add-leader-button
-    Click Button    id=involved-armies-new-leader-button
-    Input Text      id=involved-armies-leader-name-input          ${FIRST ARMY L2 NAME}
-    Input Text      id=involved-armies-leader-clan-input          ${FIRST ARMY L2 CLAN}
-    Click Button    id=involved-armies-add-leader-button
+    Add Leader    ${FIRST ARMY L1 NAME}    ${FIRST ARMY L1 CLAN}
+    Add Leader    ${FIRST ARMY L2 NAME}    ${FIRST ARMY L2 CLAN}
 
 Add Second Army Leaders
-    Click Button    id=involved-armies-new-leader-button
-    Input Text      id=involved-armies-leader-name-input          ${SECOND ARMY L1 NAME}
-    Input Text      id=involved-armies-leader-clan-input          ${SECOND ARMY L1 CLAN}
-    Click Button    id=involved-armies-add-leader-button
-    Click Button    id=involved-armies-new-leader-button
-    Input Text      id=involved-armies-leader-name-input          ${SECOND ARMY L2 NAME}
-    Input Text      id=involved-armies-leader-clan-input          ${SECOND ARMY L2 CLAN}
-    Click Button    id=involved-armies-add-leader-button
+    Add Leader    ${SECOND ARMY L1 NAME}   ${SECOND ARMY L1 CLAN}
+    Add Leader    ${SECOND ARMY L2 NAME}   ${SECOND ARMY L2 CLAN}
 
 Add First Army
-    Click Button    id=involved-armies-new-army-button
-    Input Text      id=involved-armies-army-name-input            ${FIRST ARMY NAME}
-    Input Text      id=involved-armies-army-clan-input            ${FIRST ARMY CLAN NAME}
-    Input Text      id=involved-armies-army-strength-input        ${FIRST ARMY STRENGTH}
-    Input Text      id=involved-armies-army-discipline-input      ${FIRST ARMY DISCIPLINE}
-    Input Text      id=involved-armies-army-attr-reduction-input  ${FIRST ARMY ATTR REDUX}
+    Add Army    ${FIRST ARMY NAME}  ${FIRST ARMY CLAN NAME}  ${FIRST ARMY STRENGTH}  ${FIRST ARMY DISCIPLINE}  ${FIRST ARMY ATTR REDUX}
     Add First Army Leaders
     Click Button    id=involved-armies-add-army-button
 
 Add Second Army
-    Click Button    id=involved-armies-new-army-button
-    Input Text      id=involved-armies-army-name-input            ${SECOND ARMY NAME}
-    Input Text      id=involved-armies-army-clan-input            ${SECOND ARMY CLAN NAME}
-    Input Text      id=involved-armies-army-strength-input        ${SECOND ARMY STRENGTH}
-    Input Text      id=involved-armies-army-discipline-input      ${SECOND ARMY DISCIPLINE}
-    Input Text      id=involved-armies-army-attr-reduction-input  ${SECOND ARMY ATTR REDUX}
+    Add Army    ${SECOND ARMY NAME}  ${SECOND ARMY CLAN NAME}  ${SECOND ARMY STRENGTH}  ${SECOND ARMY DISCIPLINE}  ${SECOND ARMY ATTR REDUX}
     Add Second Army Leaders
     Click Button    id=involved-armies-add-army-button
 
 Navigation to Final Summary Should Succeed
-    Click Button                        id=involved-armies-next-button
-    Wait Until Page Contains Element    id=final-summary-main-card
-    ${url}=   Get Location
-    Should Match Regexp                 ${url}                              .*/final-summary
+    Navigation to Page Should Succeed    involved-armies-next-button    final-summary-main-card    final-summary
 
 Navigation to Commander Selection Should Succeed
-    #Sleep    2s    Briefly look at the summary
-    Click Button                        id=final-summary-next-button
-    Wait Until Page Contains Element    id=commander-selection-main-card
-    ${url}=   Get Location
-    Should Match Regexp                 ${url}                              .*/commander-selection
+    Navigation to Page Should Succeed    final-summary-next-button  commander-selection-main-card  commander-selection

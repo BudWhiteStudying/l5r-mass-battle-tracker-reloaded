@@ -4,13 +4,8 @@ Documentation     A resource file with reusable keywords and variables.
 ...               The system specific keywords created here form our own
 ...               domain specific language. They utilize keywords provided
 ...               by the imported SeleniumLibrary.
-Library           SeleniumLibrary
-
+Resource          ../common/resource.robot
 *** Variables ***
-${SERVER}         localhost:4200
-${BROWSER}        Chrome
-${DELAY}          0.05s
-${LANDING URL}    http://${SERVER}/
 
 ${BATTLE NAME}            Battle of the Osari Plains
 ${BATTLE DESCRIPTION}     The Lion Clan launches a ferocious offensive on the castle of Toshi Ranbo
@@ -19,7 +14,7 @@ ${BATTLE DESCRIPTION}     The Lion Clan launches a ferocious offensive on the ca
 Open Browser To Landing Page
     Open Browser                ${LANDING URL}    ${BROWSER}
     Maximize Browser Window
-    Set Selenium Speed          ${DELAY}
+    Set Selenium Speed          ${SELENIUM DELAY}
     Landing Page Should Be Open
 
 Landing Page Should Be Open

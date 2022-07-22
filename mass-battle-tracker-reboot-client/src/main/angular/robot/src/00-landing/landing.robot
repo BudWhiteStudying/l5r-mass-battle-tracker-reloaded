@@ -5,6 +5,10 @@ Documentation     Suite testing the Landing module
 Resource          resource.robot
 
 *** Test Cases ***
+
+Prepare
+    Register Keyword To Run On Failure  None
+    
 Land Correctly
     Open Browser To Landing Page
 

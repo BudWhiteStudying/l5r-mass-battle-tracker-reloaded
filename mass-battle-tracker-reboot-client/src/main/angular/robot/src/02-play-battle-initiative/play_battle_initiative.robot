@@ -6,9 +6,6 @@ Resource          resource.robot
 
 *** Test Cases ***
 
-Prepare
-    Register Keyword To Run On Failure  None
-
 Select Army Commanders
     Select First Army Commander
     Select Second Army Commander
