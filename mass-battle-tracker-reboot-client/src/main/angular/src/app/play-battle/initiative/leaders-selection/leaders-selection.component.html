@@ -9,7 +9,7 @@
             <mat-label class="block" *ngFor="let cohort of army.cohorts">
                 <mat-card class = "loosely-spaced">
                     <div>
-                        <b>{{cohort.name}}</b>, led by {{cohort.leaderId}}
+                        <b>{{cohort.name}}</b>, led by {{army | leaderNameById:cohort.leaderId}}
                     </div>
                 </mat-card>
             </mat-label>

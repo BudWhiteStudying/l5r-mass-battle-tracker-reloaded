@@ -63,8 +63,7 @@ export class LeaderActionComponent implements OnInit {
   switchToNextCommander(roundState : RoundState, battle : Battle): Boolean {
     let roundCanGoOn = true;
     let currentCommander = roundState.actingCommander;
-    let nextCommander = battle.involvedArmies.map(army => army.leaders.filter(leader => leader.id===army.commanderId)[0]).find(commander => commander.id!=currentCommander.id);
-    debugger;
+    let nextCommander = battle.involvedArmies.map(army => army.leaders.filter(leader => leader.id===army.commanderId)[0]).find(commander => commander.id!=currentCommander.id);    
     let availableLeadersForCurrentCommander = this.standingLeadersOfCommanderPipe.transform(battle, roundState, currentCommander.id).length;
     let availableLeadersForNextCommander = this.standingLeadersOfCommanderPipe.transform(battle, roundState, nextCommander.id).length;
     if(availableLeadersForNextCommander>0) {

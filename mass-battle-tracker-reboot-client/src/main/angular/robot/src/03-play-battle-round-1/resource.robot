@@ -54,6 +54,7 @@ Navigation to Leader Selection Page Should Succeed
     Should Match Regexp                 ${url}                              .*/leader-selection
 
 Select Acting Leader
+    Wait Until Element Is Visible   id=leader-selection-leaders-dropdown
     #Sleep  30s  Activate debugger in chrome
     Click Element                   id=leader-selection-leaders-dropdown
     #Sleep  20s  Debug

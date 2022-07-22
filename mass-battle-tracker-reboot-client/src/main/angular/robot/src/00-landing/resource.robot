@@ -9,7 +9,7 @@ Library           SeleniumLibrary
 *** Variables ***
 ${SERVER}         localhost:4200
 ${BROWSER}        Chrome
-${DELAY}          0.1s
+${DELAY}          0.05s
 ${LANDING URL}    http://${SERVER}/
 
 ${BATTLE NAME}            Battle of the Osari Plains
