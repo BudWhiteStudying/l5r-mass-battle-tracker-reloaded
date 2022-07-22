@@ -21,10 +21,5 @@ Landing Page Should Be Open
     Page Should Contain Element    id=new-battle-button
     Page Should Contain Element    id=resume-battle-button
 
-Select New Battle
-    Wait Until Page Contains Element    id=new-battle-button
-    Click Link                          id=new-battle-button
-
-Land on New Battle Page
-    ${url}=   Get Location
-    Should Match Regexp  ${url}  .*/new-battle
+Navigation to New Battle Page Should Succeed
+    Navigation to Page Should Succeed    new-battle-button    name-description-main-card    name-description

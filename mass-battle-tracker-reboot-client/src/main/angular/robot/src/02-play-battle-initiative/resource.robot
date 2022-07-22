@@ -54,22 +54,14 @@ Select Second Army Commander
     Click Element                        id=1-0
 
 Navigation to Initiative Recording Should Succeed
-    Wait Until Element Is Enabled       id=commander-selection-next-button
-    Click Button                        id=commander-selection-next-button
-    Wait Until Page Contains Element    id=initiative-recording-main-card
-    ${url}=   Get Location
-    Should Match Regexp                 ${url}                              .*/initiative-recording
+    Navigation to Page Should Succeed    commander-selection-next-button    initiative-recording-main-card    initiative-recording
 
 Insert Initiative of Commanders
     Input Text      id=initiative-recording-input-0            ${FIRST COMMANDER INITIATIVE}
     Input Text      id=initiative-recording-input-1            ${SECOND COMMANDER INITIATIVE}
 
 Navigation to Leaders Selection Should Succeed
-    Wait Until Element Is Enabled       id=initiative-recording-next-button
-    Click Button                        id=initiative-recording-next-button
-    Wait Until Page Contains Element    id=leaders-selection-main-card
-    ${url}=   Get Location
-    Should Match Regexp                 ${url}                              .*/leaders-selection
+    Navigation to Page Should Succeed    initiative-recording-next-button    leaders-selection-main-card    leaders-selection
 
 Form First Army Cohorts
     Click Button                    id=leaders-selection-new-cohort-button-0
@@ -94,8 +86,4 @@ Form Second Army Cohorts
     Click Button                    id=leaders-selection-add-cohort-button-1
     
 Navigation to Objective Selection Should Succeed
-    Wait Until Element Is Enabled       id=leaders-selection-next-button
-    Click Button                        id=leaders-selection-next-button
-    Wait Until Page Contains Element    id=objective-selection-main-card
-    ${url}=   Get Location
-    Should Match Regexp                 ${url}                              .*/objective-selection
+    Navigation to Page Should Succeed    leaders-selection-next-button    objective-selection-main-card    objective-selection

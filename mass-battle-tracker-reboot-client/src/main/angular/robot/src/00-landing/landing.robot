@@ -8,10 +8,9 @@ Resource          resource.robot
 
 Prepare
     Register Keyword To Run On Failure  None
-    
+
 Land Correctly
     Open Browser To Landing Page
 
 Navigate to New Battle
-    Select New Battle
-    Land on New Battle Page
+   Navigation to New Battle Page Should Succeed

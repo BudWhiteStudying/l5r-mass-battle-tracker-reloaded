@@ -46,7 +46,7 @@
             <mat-label class="space-left loosely-spaced" [class.red] = "army.currentPanic+roundState.scorePerArmyId[army.id].totalPanicSuffered-roundState.scorePerArmyId[army.id].totalPanicRemoved>army.discipline">against Discipline <b>{{army.discipline}}</b></mat-label>
             </mat-card>
         </mat-card>
-        <button mat-raised-button color="primary" class="small-button">Next round</button>
-        <button type="button" mat-stroked-button color="primary" class="small-button" *ngFor="let army of battle.involvedArmies">{{army.name}} won</button>
+        <button id="round-summary-next-button" mat-raised-button color="primary" class="small-button">Next round</button>
+        <button type="button" mat-stroked-button color="primary" class="small-button" *ngFor="let army of battle.involvedArmies; index as i" id="round-summary-army-{{i}}-won-button">{{army.name}} won</button>
     </form>
 </mat-card>
