@@ -80,33 +80,33 @@ export class TotalsCheckComponent implements OnInit {
     return this.roundState.actionHistory
     .filter(action =>
       action.executionRound===this.roundState.roundIndex
-      && !army.leaders.includes(action.perpetrator));
+      && !army.leaders.map(leader => leader.id).includes(action.perpetratorId));
   }
   private retrieveFriendlyActions(army : Army) : ExecutedAction[] {
     return this.roundState.actionHistory
     .filter(action =>
       action.executionRound===this.roundState.roundIndex
-      && army.leaders.includes(action.perpetrator));
+      && army.leaders.map(leader => leader.id).includes(action.perpetratorId));
   }
   private retrieveHostileObjective(army : Army) : StrategicObjective {
     let opposingArmy = this.battle.involvedArmies.find(anArmy => anArmy!=army);
-    return this.roundState.currentObjectivePerArmyName[opposingArmy.name].reached
-    ? this.roundState.currentObjectivePerArmyName[opposingArmy.name]
+    return this.roundState.currentObjectivePerArmyId[opposingArmy.id].reached
+    ? this.roundState.currentObjectivePerArmyId[opposingArmy.id]
     : null;
   }
   private retrieveFriendlyObjective(army : Army) : StrategicObjective {
-    return this.roundState.currentObjectivePerArmyName[army.name].reached
-    ? this.roundState.currentObjectivePerArmyName[army.name]
+    return this.roundState.currentObjectivePerArmyId[army.id].reached
+    ? this.roundState.currentObjectivePerArmyId[army.id]
     : null;
   }
 
   private registerTotals() : void {
     this.battle.involvedArmies.forEach(
       army => {
-        this.roundState.scorePerArmyName[army.name].totalAttritionSuffered = this.determineTotalAttritionSuffered(army);
-        this.roundState.scorePerArmyName[army.name].totalPanicSuffered = this.determineTotalPanicSuffered(army);
-        this.roundState.scorePerArmyName[army.name].totalPanicRemoved = this.determineTotalPanicRemoved(army);
-        this.roundState.scorePerArmyName[army.name].totalCasualtiesSuffered = this.roundState.scorePerArmyName[army.name].totalAttritionSuffered-army.attritionReduction;
+        this.roundState.scorePerArmyId[army.id].totalAttritionSuffered = this.determineTotalAttritionSuffered(army);
+        this.roundState.scorePerArmyId[army.id].totalPanicSuffered = this.determineTotalPanicSuffered(army);
+        this.roundState.scorePerArmyId[army.id].totalPanicRemoved = this.determineTotalPanicRemoved(army);
+        this.roundState.scorePerArmyId[army.id].totalCasualtiesSuffered = this.roundState.scorePerArmyId[army.id].totalAttritionSuffered-army.attritionReduction;
       });
   }
 }

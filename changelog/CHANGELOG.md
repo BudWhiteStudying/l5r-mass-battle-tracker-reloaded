@@ -1,4 +1,5 @@
 
+ -  make automated testing work up until the actual Play phase ([4a5451645d7f6d8](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/4a5451645d7f6d8))
  -  make automated testing work up until objective selection ([374ac2c5044cae8](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/374ac2c5044cae8))
  -  make automated testing work until cohorts selection ([041659dc6a0c9e4](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/041659dc6a0c9e4))
  -  sketch automated testing ([3fd9d2121b3a1fb](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/3fd9d2121b3a1fb))

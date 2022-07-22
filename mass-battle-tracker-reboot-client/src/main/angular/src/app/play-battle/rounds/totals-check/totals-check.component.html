@@ -1,4 +1,4 @@
-<mat-card class="main-card">
+<mat-card class="main-card" id="totals-check-main-card">
     <form (ngSubmit)="onSubmit()">
         <mat-card class="loosely-spaced">
             <mat-label class="bold">Round sub-totals</mat-label>
@@ -25,22 +25,22 @@
                 <br/>
                 <mat-label>Mark objectives that have been reached this round</mat-label>
                 <div class="indented-block loosely-spaced">
-                    <mat-checkbox [(ngModel)]="roundState.currentObjectivePerArmyName[army.name].reached" name="reach-check-{{roundState.currentObjectivePerArmyName[army.name].name}}" class="italic">{{roundState.currentObjectivePerArmyName[army.name].name}}</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="roundState.currentObjectivePerArmyId[army.id].reached" name="reach-check-{{roundState.currentObjectivePerArmyId[army.id].name}}" class="italic">{{roundState.currentObjectivePerArmyId[army.id].name}}</mat-checkbox>
                 </div>
-                <div class="indented-block" *ngIf="roundState.currentObjectivePerArmyName[army.name].reached">
+                <div class="indented-block" *ngIf="roundState.currentObjectivePerArmyId[army.id].reached">
                     <mat-form-field class="block">
                         <mat-label>Attrition caused</mat-label>
-                        <input matInput [(ngModel)]="roundState.currentObjectivePerArmyName[army.name].attritionCaused" type="number" name="attrition-caused-{{roundState.currentObjectivePerArmyName[army.name].name}}" required>
+                        <input matInput [(ngModel)]="roundState.currentObjectivePerArmyId[army.id].attritionCaused" type="number" name="attrition-caused-{{roundState.currentObjectivePerArmyId[army.id].name}}" required>
                     </mat-form-field>
                     <br/>
                     <mat-form-field class="block">
                         <mat-label>Panic caused</mat-label>
-                        <input matInput [(ngModel)]="roundState.currentObjectivePerArmyName[army.name].panicCaused" type="number" name="panic-caused-{{roundState.currentObjectivePerArmyName[army.name].name}}" required>
+                        <input matInput [(ngModel)]="roundState.currentObjectivePerArmyId[army.id].panicCaused" type="number" name="panic-caused-{{roundState.currentObjectivePerArmyId[army.id].name}}" required>
                     </mat-form-field>
                     <br/>
                     <mat-form-field class="block">
                         <mat-label>Discipline recovered</mat-label>
-                        <input matInput [(ngModel)]="roundState.currentObjectivePerArmyName[army.name].panicRemoved" type="number" name="panic-removed-{{roundState.currentObjectivePerArmyName[army.name].name}}" required>
+                        <input matInput [(ngModel)]="roundState.currentObjectivePerArmyId[army.id].panicRemoved" type="number" name="panic-removed-{{roundState.currentObjectivePerArmyId[army.id].name}}" required>
                     </mat-form-field>
                 </div>
             </mat-card>
@@ -62,6 +62,6 @@
                 </div>
             </mat-card>
         </mat-card>
-        <button mat-raised-button color="primary" class="wide-button">Next</button>
+        <button id="totals-check-next-button" mat-raised-button color="primary" class="wide-button">Next</button>
     </form>
 </mat-card>

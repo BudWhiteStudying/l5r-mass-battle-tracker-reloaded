@@ -1,7 +1,5 @@
 package com.budwhite.studying.mass.battle.tracker.reboot.model.dto;
 
-import com.budwhite.studying.mass.battle.tracker.reboot.model.enumeration.ActionType;
-import com.budwhite.studying.mass.battle.tracker.reboot.model.enumeration.ConflictStance;
 import lombok.*;
 
 @NoArgsConstructor
@@ -12,8 +10,7 @@ import lombok.*;
 //OLD
 public class ExecutedAction extends Action{
     private int executionRound;
-    private Leader perpetrator;
-    private ConflictStance perpetratorStance;
+    private Long perpetratorId;
     private int attritionCaused;
     private int panicCaused;
     private int panicRemoved;

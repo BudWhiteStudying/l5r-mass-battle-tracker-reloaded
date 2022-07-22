@@ -18,7 +18,7 @@ public class RoundState implements Serializable {
     private int roundIndex;
     private Leader actingCommander;
     private Leader actingLeader;
-    private Map<String, StrategicObjective> currentObjectivePerArmyName;
-    private Map<String, RoundScore> scorePerArmyName;
+    private Map<Long, StrategicObjective> currentObjectivePerArmyId;
+    private Map<Long, RoundScore> scorePerArmyId;
     private List<ExecutedAction> actionHistory;
 }

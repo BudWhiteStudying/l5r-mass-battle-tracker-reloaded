@@ -25,8 +25,8 @@ export class ObjectiveSelectionComponent implements OnInit {
       else {
         this.roundState = {
           roundIndex : 0,
-          currentObjectivePerArmyName : {},
-          scorePerArmyName : {},
+          currentObjectivePerArmyId : {},
+          scorePerArmyId : {},
           actionHistory : []
         };
       }
@@ -53,7 +53,7 @@ export class ObjectiveSelectionComponent implements OnInit {
   private initializeStrategicObjectives() : void {
     this.battle.involvedArmies.forEach(
       army => {
-        this.roundState.currentObjectivePerArmyName[army.name] = {
+        this.roundState.currentObjectivePerArmyId[army.id] = {
           name : "",
           reached : false
         };
@@ -64,7 +64,7 @@ export class ObjectiveSelectionComponent implements OnInit {
   private initializeRoundScores() : void {
     this.battle.involvedArmies.forEach(
       army => {
-        this.roundState.scorePerArmyName[army.name] = {
+        this.roundState.scorePerArmyId[army.id] = {
           totalAttritionSuffered : 0,
           totalPanicSuffered : 0,
           totalPanicRemoved : 0

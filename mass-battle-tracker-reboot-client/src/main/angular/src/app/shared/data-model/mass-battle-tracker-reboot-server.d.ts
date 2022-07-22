@@ -1,13 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 2.30.840 on 2022-07-21 11:38:31.
+// Generated using typescript-generator version 2.30.840 on 2022-07-22 10:08:15.
 
 export interface Action extends Serializable {
-    type?: ActionType;
     description?: string;
-    canCauseAttrition?: boolean;
-    canCausePanic?: boolean;
-    canRemovePanic?: boolean;
 }
 
 export interface Armies extends Serializable {
@@ -64,8 +60,7 @@ export interface Cohorts extends Serializable {
 
 export interface ExecutedAction extends Action {
     executionRound?: number;
-    perpetrator?: Leader;
-    perpetratorStance?: ConflictStance;
+    perpetratorId?: number;
     attritionCaused?: number;
     panicCaused?: number;
     panicRemoved?: number;
@@ -98,13 +93,12 @@ export interface RoundState extends Serializable {
     roundIndex?: number;
     actingCommander?: Leader;
     actingLeader?: Leader;
-    currentObjectivePerArmyName?: { [index: string]: StrategicObjective };
-    scorePerArmyName?: { [index: string]: RoundScore };
+    currentObjectivePerArmyId?: { [index: string]: StrategicObjective };
+    scorePerArmyId?: { [index: string]: RoundScore };
     actionHistory?: ExecutedAction[];
 }
 
 export interface StrategicObjective {
-    type?: StrategicObjectiveType;
     name?: string;
     reached?: boolean;
     attritionCaused?: number;
@@ -113,26 +107,4 @@ export interface StrategicObjective {
 }
 
 export interface Serializable {
-}
-
-export const enum ActionType {
-    ASSAULT = "ASSAULT",
-    CHALLENGE = "CHALLENGE",
-    REINFORCE = "REINFORCE",
-    RALLY = "RALLY",
-    MARCH = "MARCH",
-}
-
-export const enum ConflictStance {
-    AIR = "AIR",
-    EARTH = "EARTH",
-    FIRE = "FIRE",
-    VOID = "VOID",
-    WATER = "WATER",
-}
-
-export const enum StrategicObjectiveType {
-    TODO1 = "TODO1",
-    TODO2 = "TODO2",
-    TO_VICTORY = "TO_VICTORY",
 }

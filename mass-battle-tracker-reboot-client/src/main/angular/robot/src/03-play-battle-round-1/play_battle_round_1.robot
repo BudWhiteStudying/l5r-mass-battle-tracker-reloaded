@@ -26,19 +26,32 @@ Select Acting Leader for First Army
 
 Navigate to Leader Action Page
     Navigation to Leader Action Page Should Succeed
-    Sleep  10s
-    [Teardown]    Close Browser
 
-Register Leader Action for First Army
+Register First Army First Leader Action
+    Register First Army First Leader Action
 
 Select Acting Leader for Second Army
+    Select Acting Leader
 
-Register Leader Action for Second Army
+Return to Leader Action Page
+    Navigation to Leader Action Page Should Succeed
+
+Register Second Army First Leader Action
+    Register Second Army First Leader Action
 
 Select Last Acting Leader for Second Army
+    Select Acting Leader
 
-Register Last Leader Action for Second Army
+Return to Leader Action Page Again
+    Navigation to Leader Action Page Should Succeed
 
-Display Round Summary
+Register Second Army Last Leader Action
+    Register Second Army Second Leader Action
 
-Display Total Checks
+Navigate to Totals Check Page
+    Navigation to Totals Check Page Should Succeed
+
+Navigate to Round Summary Page
+    Navigation to Round Summary Page Should Succeed
+    Sleep  20s
+    [Teardown]    Close Browser

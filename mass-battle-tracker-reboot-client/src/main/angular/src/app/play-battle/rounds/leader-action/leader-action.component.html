@@ -2,35 +2,26 @@
     <form (ngSubmit)="onSubmit()">
         <mat-label class="block">Record action performed by Leader <b>{{roundState.actingLeader.name}}</b></mat-label>
         <br/>
-        <mat-form-field>
-            <mat-select [(ngModel)]="currentAction" name="current-action-select" required>
-            <mat-option *ngFor="let action of availableActions" [value]="action">
-                {{action.description}}
-            </mat-option>
-            </mat-select>
+        <mat-form-field class="block">
+            <mat-label>Action name</mat-label>
+            <input id="leader-action-name-input" [(ngModel)]="currentAction.description" matInput name="action-name" placeholder="e.g. Assault" required>
         </mat-form-field>
-        <div *ngIf="currentAction">
-            <mat-form-field class="block">
-                <mat-label>Stance adopted</mat-label>
-                <input [(ngModel)]="currentAction.perpetratorStance" matInput name="stance-adopted" required>
-            </mat-form-field>
-            <br/>
-            <mat-form-field class="block">
-                <mat-label>Attrition caused</mat-label>
-                <input [disabled]="!currentAction.canCauseAttrition" [(ngModel)]="currentAction.attritionCaused" matInput type="number" name="attrition-caused" required>
-            </mat-form-field>
-            <br/>
-            <mat-form-field class="block">
-                <mat-label>Panic caused</mat-label>
-                <input [disabled]="!currentAction.canCausePanic" [(ngModel)]="currentAction.panicCaused" matInput type="number" name="panic-caused" required>
-            </mat-form-field>
-            <br/>
-            <mat-form-field class="block">
-                <mat-label>Discipline recovered</mat-label>
-                <input [disabled]="!currentAction.canRemovePanic" [(ngModel)]="currentAction.panicRemoved" matInput type="number" name="panic-removed" required>
-            </mat-form-field>
-            <br/>
-        </div>
-        <button mat-raised-button color="primary" class="wide-button">Next</button>
+        <br/>
+        <mat-form-field class="block">
+            <mat-label>Attrition caused</mat-label>
+            <input id="leader-action-attrition-caused-input" [(ngModel)]="currentAction.attritionCaused" matInput type="number" name="attrition-caused" required>
+        </mat-form-field>
+        <br/>
+        <mat-form-field class="block">
+            <mat-label>Panic caused</mat-label>
+            <input id="leader-action-panic-caused-input" [(ngModel)]="currentAction.panicCaused" matInput type="number" name="panic-caused" required>
+        </mat-form-field>
+        <br/>
+        <mat-form-field class="block">
+            <mat-label>Discipline recovered</mat-label>
+            <input id="leader-action-panic-removed-input" [(ngModel)]="currentAction.panicRemoved" matInput type="number" name="panic-removed" required>
+        </mat-form-field>
+        <br/>
+        <button id="leader-action-next-button" mat-raised-button color="primary" class="wide-button">Next</button>
     </form>
 </mat-card>

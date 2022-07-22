@@ -19,6 +19,7 @@ import { PlayBattleModule } from '../play-battle.module';
 import { FirstMoveComponent } from './first-move/first-move.component';
 import { RoundSummaryComponent } from './round-summary/round-summary.component';
 import { UtilModule } from 'src/app/shared/util/util.module';
+import { StandingLeadersOfCommanderPipe } from 'src/app/shared/util/standing-leaders-of-commander.pipe';
 
 
 
@@ -39,6 +40,7 @@ import { UtilModule } from 'src/app/shared/util/util.module';
     MatSelectModule,
     MatCheckboxModule,
     UtilModule
-  ]
+  ],
+  providers : [StandingLeadersOfCommanderPipe]
 })
 export class RoundsModule { }

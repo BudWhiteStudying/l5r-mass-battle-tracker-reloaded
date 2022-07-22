@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Action, ActionType, Battle, Leader, ExecutedAction, RoundState } from 'src/app/shared/data-model/mass-battle-tracker-reboot-server';
+import { Battle, ExecutedAction, RoundState } from 'src/app/shared/data-model/mass-battle-tracker-reboot-server';
 import { StandingLeadersOfCommanderPipe } from 'src/app/shared/util/standing-leaders-of-commander.pipe';
 
 @Component({
@@ -13,21 +13,6 @@ export class LeaderActionComponent implements OnInit {
 
   battle : Battle;
   roundState : RoundState;
-
-  availableActions : Action[] = [
-    {
-      description : "Assault",
-      type : ActionType.ASSAULT,
-      canCauseAttrition : true,
-      canCausePanic : false
-    },
-    {
-      description : "Challenge",
-      type : ActionType.CHALLENGE,
-      canCauseAttrition : false,
-      canCausePanic : true
-    }
-  ];
   
   currentAction : ExecutedAction;
 
@@ -70,7 +55,7 @@ export class LeaderActionComponent implements OnInit {
   }
 
   recordAction(action : ExecutedAction, roundState : RoundState) : void {
-    action.perpetrator = roundState.actingLeader;
+    action.perpetratorId = roundState.actingLeader.id;
     action.executionRound = roundState.roundIndex;
     roundState.actionHistory.push(action);
   }
@@ -79,6 +64,7 @@ export class LeaderActionComponent implements OnInit {
     let roundCanGoOn = true;
     let currentCommander = roundState.actingCommander;
     let nextCommander = battle.involvedArmies.map(army => army.leaders.filter(leader => leader.id===army.commanderId)[0]).find(commander => commander.id!=currentCommander.id);
+    debugger;
     let availableLeadersForCurrentCommander = this.standingLeadersOfCommanderPipe.transform(battle, roundState, currentCommander.id).length;
     let availableLeadersForNextCommander = this.standingLeadersOfCommanderPipe.transform(battle, roundState, nextCommander.id).length;
     if(availableLeadersForNextCommander>0) {
@@ -105,6 +91,14 @@ export class LeaderActionComponent implements OnInit {
   }
   */
   ngOnInit(): void {
+    this.currentAction = {
+      description: null,
+      executionRound: -1,
+      perpetratorId: null,
+      attritionCaused: 0,
+      panicCaused: 0,
+      panicRemoved: 0
+    }
   }
 
 }

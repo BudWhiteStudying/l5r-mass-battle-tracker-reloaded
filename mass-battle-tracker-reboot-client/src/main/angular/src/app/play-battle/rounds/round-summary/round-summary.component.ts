@@ -46,8 +46,8 @@ export class RoundSummaryComponent implements OnInit {
 
   private recordArmyTotals() : void {
     this.battle.involvedArmies.forEach(army => {
-      army.currentCasualties += this.roundState.scorePerArmyName[army.name].totalCasualtiesSuffered;
-      army.currentPanic += Math.max(0,this.roundState.scorePerArmyName[army.name].totalPanicSuffered-this.roundState.scorePerArmyName[army.name].totalPanicRemoved);
+      army.currentCasualties += this.roundState.scorePerArmyId[army.id].totalCasualtiesSuffered;
+      army.currentPanic += Math.max(0,this.roundState.scorePerArmyId[army.id].totalPanicSuffered-this.roundState.scorePerArmyId[army.id].totalPanicRemoved);
     });
   }
 }
