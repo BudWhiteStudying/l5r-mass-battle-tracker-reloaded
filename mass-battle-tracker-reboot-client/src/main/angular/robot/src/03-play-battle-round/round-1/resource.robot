@@ -4,8 +4,8 @@ Documentation     A resource file with reusable keywords and variables.
 ...               The system specific keywords created here form our own
 ...               domain specific language. They utilize keywords provided
 ...               by the imported SeleniumLibrary.
-Resource          ../common/resource.robot
-Resource    additional_resource.robot
+Resource          ../../common/resource.robot
+Resource          ../resource.robot
 
 *** Variables ***
 
@@ -75,6 +75,7 @@ Navigation to Totals Check Page Should Succeed
 
 Navigation to Round Summary Page Should Succeed
     Navigation to Page Should Succeed    totals-check-next-button    round-summary-main-card    round-summary
+    Sleep    10s  Check results
 
 Navigation to Next Round Page Should Succeed
     Navigation to Page Should Succeed    round-summary-next-button    objective-selection-main-card    objective-selection

@@ -56,4 +56,3 @@ Navigate to Round Summary Page
 
 Proceed to Next Round
     Navigation to Next Round Page Should Succeed
-    [Teardown]    Close Browser

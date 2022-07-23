@@ -4,28 +4,28 @@ Documentation     A resource file with reusable keywords and variables.
 ...               The system specific keywords created here form our own
 ...               domain specific language. They utilize keywords provided
 ...               by the imported SeleniumLibrary.
-Resource          ../common/resource.robot
-Resource    additional_resource.robot
+Resource          ../../common/resource.robot
+Resource          ../resource.robot
 
 *** Variables ***
 
-${FIRST ARMY STRATEGIC OBJ}                Capture Position
-${SECOND ARMY STRATEGIC OBJ}               Draw Them In
+${FIRST ARMY STRATEGIC OBJ}                Cut Off the Head
+${SECOND ARMY STRATEGIC OBJ}               Grind Them Down
 
 ${FIRST ARMY FIRST LEADER ACTION NAME}         Assault
-${FIRST ARMY FIRST LEADER ATTR CAUSED}         3
+${FIRST ARMY FIRST LEADER ATTR CAUSED}         4
 ${FIRST ARMY FIRST LEADER PANIC CAUSED}        0
 ${FIRST ARMY FIRST LEADER PANIC REMOVED}       0
 
-${SECOND ARMY FIRST LEADER ACTION NAME}        Challenge
-${SECOND ARMY FIRST LEADER ATTR CAUSED}        0
-${SECOND ARMY FIRST LEADER PANIC CAUSED}       3
+${SECOND ARMY FIRST LEADER ACTION NAME}        Assault
+${SECOND ARMY FIRST LEADER ATTR CAUSED}        3
+${SECOND ARMY FIRST LEADER PANIC CAUSED}       0
 ${SECOND ARMY FIRST LEADER PANIC REMOVED}      0
 
-${SECOND ARMY SECOND LEADER ACTION NAME}       Rally
+${SECOND ARMY SECOND LEADER ACTION NAME}       Challenge
 ${SECOND ARMY SECOND LEADER ATTR CAUSED}       0
-${SECOND ARMY SECOND LEADER PANIC CAUSED}      0
-${SECOND ARMY SECOND LEADER PANIC REMOVED}     3
+${SECOND ARMY SECOND LEADER PANIC CAUSED}      3
+${SECOND ARMY SECOND LEADER PANIC REMOVED}     0
 
 *** Keywords ***
 
@@ -75,6 +75,7 @@ Navigation to Totals Check Page Should Succeed
 
 Navigation to Round Summary Page Should Succeed
     Navigation to Page Should Succeed    totals-check-next-button    round-summary-main-card    round-summary
+    Sleep    10s  Check results
 
 Navigation to Next Round Page Should Succeed
     Navigation to Page Should Succeed    round-summary-next-button    objective-selection-main-card    objective-selection

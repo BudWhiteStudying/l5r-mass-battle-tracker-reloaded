@@ -3,10 +3,10 @@ Documentation     A common resource file to be imported in all other scripts
 Library           SeleniumLibrary
 
 *** Variables ***
-${SERVER}         localhost:4200
-${BROWSER}        Chrome
-${SELENIUM DELAY}          0
-${LANDING URL}    http://${SERVER}/
+${SERVER}              localhost:4200
+${BROWSER}             Chrome
+${SELENIUM DELAY}      0.1s
+${LANDING URL}         http://${SERVER}/
 
 *** Keywords ***
 
