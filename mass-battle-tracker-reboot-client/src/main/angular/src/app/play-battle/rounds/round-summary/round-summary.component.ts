@@ -31,6 +31,7 @@ export class RoundSummaryComponent implements OnInit {
 
   onSubmit() : void {
     this.recordArmyTotals();
+    this.battle.lastCompletedRound = this.roundState.roundIndex;
     this.updateBattle()
     .then(
       response => {

@@ -17,6 +17,8 @@ public class Battle implements Serializable {
     private String name;
     @NotNull
     private String description;
-    private boolean zombie;
+    private boolean defined;
+    private boolean ended;
+    private Integer lastCompletedRound;
     private List<Army> involvedArmies;
 }

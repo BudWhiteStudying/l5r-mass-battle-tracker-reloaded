@@ -18,17 +18,22 @@ public class BattleEntity {
     private Long id;
     private String name;
     private String description;
-    private boolean zombie;
+    private boolean defined;
+    private boolean ended;
+    private Integer lastCompletedRound;
 
-    public BattleEntity(String name, String description, boolean zombie) {
+    public BattleEntity(String name, String description, boolean defined, boolean ended) {
         this.name = name;
         this.description = description;
-        this.zombie = zombie;
+        this.defined = defined;
+        this.ended = ended;
     }
 
     public void clone(BattleEntity battleEntity) {
         this.name = battleEntity.name;
         this.description = battleEntity.description;
-        this.zombie = battleEntity.zombie;
+        this.defined = battleEntity.defined;
+        this.ended = battleEntity.ended;
+        this.lastCompletedRound = battleEntity.lastCompletedRound;
     }
 }

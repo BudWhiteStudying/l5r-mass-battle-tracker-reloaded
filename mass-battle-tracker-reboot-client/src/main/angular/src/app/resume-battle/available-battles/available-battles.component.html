@@ -1,5 +1,6 @@
-<p>available-battles works!</p>
-
-<nav>
-    <a routerLink="/">Done</a>
-</nav>
+<mat-card class="main-card" id="available-battles-main-card">
+    <div id="available-battles-title">Pick a battle to resume</div>
+    <mat-card class="loosely-spaced" *ngFor="let battle of availableBattles; index as i" id="available-battles-battle-{{i}}" (click)="resumeBattle(battle)">
+        {{battle.name}}
+    </mat-card>
+</mat-card>

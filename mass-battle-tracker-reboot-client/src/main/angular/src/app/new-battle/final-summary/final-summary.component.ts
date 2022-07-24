@@ -38,10 +38,20 @@ export class FinalSummaryComponent implements OnInit {
       }
     );
   } */
+
+  private updateBattle(): Promise<Battle> {
+    return this.httpClient
+    .put<Battle>("/mass-battle-tracker-reboot/api/battle", this.battle).toPromise();
+  }
+
   onFinalSubmit(): void {
-    this.router.navigateByUrl("/play-battle/initiative/commander-selection", {
-      state: {battle: this.battle}
-    });
+    this.battle.defined = true;
+    this.updateBattle()
+    .then((response) => {
+      this.router.navigateByUrl("/play-battle/initiative/commander-selection", {
+        state: {battle: response}
+      });
+    })
   }
 
 }

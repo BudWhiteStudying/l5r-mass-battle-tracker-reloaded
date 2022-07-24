@@ -79,6 +79,10 @@ const routes: Routes = [
     component: RoundSummaryComponent
   },
   {
+    path: 'resume-battle/available-battles',
+    component: AvailableBattlesComponent
+  },
+  {
     path: '',
     redirectTo: '/landing',
     pathMatch: 'full'

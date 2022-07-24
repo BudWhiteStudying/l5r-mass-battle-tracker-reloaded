@@ -59,7 +59,7 @@ public class BattleService {
     @Transactional
     public Battle initializeBattle() {
         LOG.debug("Reached initializeBattle");
-        BattleEntity battleEntity = new BattleEntity("", "", true);
+        BattleEntity battleEntity = new BattleEntity("", "", false, false);
         battleRepository.persistAndFlush(battleEntity);
         return battleFactory.getBattle(battleEntity);
     }

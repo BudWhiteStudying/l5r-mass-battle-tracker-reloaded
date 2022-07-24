@@ -24,7 +24,9 @@ public class BattleFactory {
                 .id(battleEntity.getId())
                 .description(battleEntity.getDescription())
                 .name(battleEntity.getName())
-                .zombie(battleEntity.isZombie())
+                .defined(battleEntity.isDefined())
+                .ended(battleEntity.isEnded())
+                .lastCompletedRound(battleEntity.getLastCompletedRound())
                 .involvedArmies(armyRepository.find("battleId", battleEntity.getId()).stream().map(armyEntity -> armyFactory.getArmy(armyEntity)).collect(Collectors.toList()))
                 .build();
     }
@@ -34,7 +36,9 @@ public class BattleFactory {
                 battle.getId(),
                 battle.getName(),
                 battle.getDescription(),
-                battle.isZombie()
+                battle.isDefined(),
+                battle.isEnded(),
+                battle.getLastCompletedRound()
         );
     }
 
