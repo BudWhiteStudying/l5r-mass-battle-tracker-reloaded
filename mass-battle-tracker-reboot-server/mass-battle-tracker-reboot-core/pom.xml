@@ -149,6 +149,9 @@
     <profiles>
         <profile>
             <id>e2e-build</id>
+            <properties>
+                <quarkus.package.type>uber-jar</quarkus.package.type>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -171,7 +174,7 @@
                                     <outputDirectory>src/main/resources/META-INF/resources</outputDirectory>
                                     <resources>
                                         <resource>
-                                            <directory>../../mass-battle-tracker-reboot-client/src/main/angular/dist/mass-battle-tracker-reboot</directory>
+                                            <directory>../../mass-battle-tracker-reboot-client/src/main/angular/dist/mass-battle-tracker-client</directory>
                                         </resource>
                                     </resources>
                                 </configuration>

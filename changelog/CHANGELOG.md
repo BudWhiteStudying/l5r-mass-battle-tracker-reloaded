@@ -1,4 +1,5 @@
 
+ -  bring the whole project to an alpha-acceptable state ([0f311826778a6d5](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/0f311826778a6d5))
  -  sketch 'history' feature ([2cbd40262ecfaad](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/2cbd40262ecfaad))
  -  make pretty much all features work ([3b85edf81b7dc61](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/3b85edf81b7dc61))
  -  implement leader-name-by-id pipe for fixing cosmetic issues ([daa48922d8174de](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/daa48922d8174de))
