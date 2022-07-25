@@ -21,6 +21,20 @@ public class BattleResource {
         return battleService.getAllBattles();
     }
 
+    @GET
+    @Path("/unfinished")
+    @Produces(value = MediaType.APPLICATION_JSON)
+    public Battles getUnfinishedBattles() {
+        return battleService.getUnfinishedBattles();
+    }
+
+    @GET
+    @Path("/completed")
+    @Produces(value = MediaType.APPLICATION_JSON)
+    public Battles getCompletedBattles() {
+        return battleService.getCompletedBattles();
+    }
+
     @POST
     @Produces(value = MediaType.APPLICATION_JSON)
     public Battle getBattle() {

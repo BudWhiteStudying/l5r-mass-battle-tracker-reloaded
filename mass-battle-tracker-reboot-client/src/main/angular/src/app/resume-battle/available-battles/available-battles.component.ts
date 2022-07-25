@@ -14,14 +14,15 @@ export class AvailableBattlesComponent implements OnInit {
     private router : Router) { }
 
   availableBattles : Battle[];
+  pageTitle = "Pick a battle to resume";
 
   private retrieveBattles(): void {
     this.httpClient
-    .get<Battles>("/mass-battle-tracker-reboot/api/battle/all",{}).toPromise()
+    .get<Battles>("/mass-battle-tracker-reboot/api/battle/unfinished",{}).toPromise()
     .then(
       response => {
         console.info("Retrieved initialized battle: " + JSON.stringify(response));
-        this.availableBattles = response.battles.filter(battle => battle.defined && !battle.ended);
+        this.availableBattles = response.battles;
       }
     );
   }

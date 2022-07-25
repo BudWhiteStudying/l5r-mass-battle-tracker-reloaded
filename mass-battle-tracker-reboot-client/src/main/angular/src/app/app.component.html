@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-    <span>L5R Mass Battle Tracker</span>
+    <span class="clickable" (click)="returnToRoot()">L5R Mass Battle Tracker</span>
 </mat-toolbar>
 <mat-toolbar color="secondary" *ngIf="pageTitle">
     <span class="page-title">{{pageTitle}}</span>

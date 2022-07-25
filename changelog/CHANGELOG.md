@@ -1,4 +1,5 @@
 
+ -  make pretty much all features work ([3b85edf81b7dc61](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/3b85edf81b7dc61))
  -  implement leader-name-by-id pipe for fixing cosmetic issues ([daa48922d8174de](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/daa48922d8174de))
  -  make automated testing work up until the end of round 1 ([fdb04e696fa642f](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/fdb04e696fa642f))
  -  make automated testing work up until the actual Play phase ([4a5451645d7f6d8](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/4a5451645d7f6d8))

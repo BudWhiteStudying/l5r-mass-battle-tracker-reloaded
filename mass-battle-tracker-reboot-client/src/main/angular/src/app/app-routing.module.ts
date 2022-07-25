@@ -19,6 +19,7 @@ import { LeaderActionComponent } from './play-battle/rounds/leader-action/leader
 import { TotalsCheckComponent } from './play-battle/rounds/totals-check/totals-check.component';
 import { FirstMoveComponent } from './play-battle/rounds/first-move/first-move.component';
 import { RoundSummaryComponent } from './play-battle/rounds/round-summary/round-summary.component';
+import { PastBattlesComponent } from './battle-history/past-battles/past-battles.component';
 
 
 const routes: Routes = [
@@ -81,6 +82,10 @@ const routes: Routes = [
   {
     path: 'resume-battle/available-battles',
     component: AvailableBattlesComponent
+  },
+  {
+    path: 'battle-history/past-battles',
+    component: PastBattlesComponent
   },
   {
     path: '',

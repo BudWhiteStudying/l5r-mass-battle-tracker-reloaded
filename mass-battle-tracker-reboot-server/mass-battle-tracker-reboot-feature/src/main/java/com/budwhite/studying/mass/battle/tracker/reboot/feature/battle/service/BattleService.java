@@ -20,6 +20,7 @@ import org.jboss.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class BattleService {
@@ -54,6 +55,18 @@ public class BattleService {
     public Battles getAllBattles() {
         LOG.debug("Reached getAllBattles");
         return battleFactory.getBattles(battleRepository.listAll());
+    }
+
+    @Transactional
+    public Battles getUnfinishedBattles() {
+        LOG.debug("Reached getUnfinishedBattles");
+        return battleFactory.getBattles(battleRepository.listAll().stream().filter(battleEntity -> battleEntity.isDefined() && !battleEntity.isEnded()).collect(Collectors.toList()));
+    }
+
+    @Transactional
+    public Battles getCompletedBattles() {
+        LOG.debug("Reached getCompletedBattles");
+        return battleFactory.getBattles(battleRepository.listAll().stream().filter(battleEntity -> battleEntity.isDefined() && battleEntity.isEnded()).collect(Collectors.toList()));
     }
 
     @Transactional

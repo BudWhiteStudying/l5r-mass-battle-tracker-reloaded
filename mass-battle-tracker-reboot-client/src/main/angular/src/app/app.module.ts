@@ -13,6 +13,7 @@ import { ResumeBattleModule } from './resume-battle/resume-battle.module';
 import { PlayBattleModule } from './play-battle/play-battle.module';
 import { InitiativeModule } from './play-battle/initiative/initiative.module';
 import { RoundsModule } from './play-battle/rounds/rounds.module';
+import { BattleHistoryModule } from './battle-history/battle-history.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { RoundsModule } from './play-battle/rounds/rounds.module';
     ResumeBattleModule,
     PlayBattleModule,
     InitiativeModule,
-    RoundsModule
+    RoundsModule,
+    BattleHistoryModule
   ],
   providers: [],
   bootstrap: [AppComponent]
