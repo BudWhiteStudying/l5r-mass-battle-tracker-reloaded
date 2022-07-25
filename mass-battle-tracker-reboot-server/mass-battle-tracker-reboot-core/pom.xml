@@ -151,6 +151,7 @@
             <id>e2e-build</id>
             <properties>
                 <quarkus.package.type>uber-jar</quarkus.package.type>
+                <dist.directory>../../dist</dist.directory>
             </properties>
             <build>
                 <plugins>
@@ -165,7 +166,7 @@
                         </configuration>
                         <executions>
                             <execution>
-                                <id>copy-resources</id>
+                                <id>copy-client-resources</id>
                                 <phase>validate</phase>
                                 <goals>
                                     <goal>copy-resources</goal>
@@ -177,6 +178,24 @@
                                             <directory>../../mass-battle-tracker-reboot-client/src/main/angular/dist/mass-battle-tracker-client</directory>
                                         </resource>
                                     </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.coderplus.maven.plugins</groupId>
+                        <artifactId>copy-rename-maven-plugin</artifactId>
+                        <version>1.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>copy-build-artifacts</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <sourceFile>target/${artifactId}-${version}-runner.jar</sourceFile>
+                                    <destinationFile>${dist.directory}/mass-battle-tracker-runnable.jar</destinationFile>
                                 </configuration>
                             </execution>
                         </executions>

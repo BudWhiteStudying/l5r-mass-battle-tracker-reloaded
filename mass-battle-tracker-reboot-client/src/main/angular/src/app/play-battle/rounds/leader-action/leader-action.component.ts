@@ -16,7 +16,7 @@ export class LeaderActionComponent implements OnInit {
   
   currentAction : ExecutedAction;
 
-  pageTitle = `"Rounds" phase: chosen Leader performs his action`;
+  pageTitle = `"Rounds" phase: chosen Leader performs their action`;
 
   constructor(private router:Router,
     private httpClient: HttpClient,

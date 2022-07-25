@@ -1,4 +1,7 @@
 
+
+
+
  -  make the standalone uber-jar functional ([75e223bd851d919](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/75e223bd851d919))
  -  bring the whole project to an alpha-acceptable state ([0f311826778a6d5](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/0f311826778a6d5))
  -  sketch 'history' feature ([2cbd40262ecfaad](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/2cbd40262ecfaad))

@@ -47,5 +47,5 @@ report.html
 selenium-screenshot*.png
 # Node/Angular
 node_modules
-dist
+*-client/**/dist
 
