@@ -20,5 +20,6 @@ public class Battle implements Serializable {
     private boolean defined;
     private boolean ended;
     private Integer lastCompletedRound;
+    private Long victoriousArmyId;
     private List<Army> involvedArmies;
 }

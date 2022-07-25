@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 2.30.840 on 2022-07-25 10:27:17.
+// Generated using typescript-generator version 2.30.840 on 2022-07-25 11:27:35.
 
 export interface Action extends Serializable {
     description?: string;
@@ -36,6 +36,7 @@ export interface Battle extends Serializable {
     defined?: boolean;
     ended?: boolean;
     lastCompletedRound?: number;
+    victoriousArmyId?: number;
     involvedArmies?: Army[];
 }
 

@@ -8,14 +8,15 @@ import { StandingLeadersOfCommanderPipe } from './standing-leaders-of-commander.
 import { LeaderNameByIdPipe } from './leader-name-by-id.pipe';
 import { MaxBetweenTwoPipe } from './max-between-two.pipe';
 import { MinBetweenTwoPipe } from './min-between-two.pipe';
+import { ArmyByIdPipe } from './army-by-id.pipe';
 
 
 
 @NgModule({
-  declarations: [CommanderOfArmyPipe, CommandersInBattlePipe, NonConscriptedLeadersOfArmyPipe, HighestInitCommanderInBattlePipe, StandingLeadersOfCommanderPipe, LeaderNameByIdPipe, MaxBetweenTwoPipe, MinBetweenTwoPipe],
+  declarations: [CommanderOfArmyPipe, CommandersInBattlePipe, NonConscriptedLeadersOfArmyPipe, HighestInitCommanderInBattlePipe, StandingLeadersOfCommanderPipe, LeaderNameByIdPipe, MaxBetweenTwoPipe, MinBetweenTwoPipe, ArmyByIdPipe],
   imports: [
     CommonModule
   ],
-  exports: [CommanderOfArmyPipe, CommandersInBattlePipe, NonConscriptedLeadersOfArmyPipe, HighestInitCommanderInBattlePipe, StandingLeadersOfCommanderPipe, LeaderNameByIdPipe]
+  exports: [CommanderOfArmyPipe, CommandersInBattlePipe, NonConscriptedLeadersOfArmyPipe, HighestInitCommanderInBattlePipe, StandingLeadersOfCommanderPipe, LeaderNameByIdPipe, ArmyByIdPipe]
 })
 export class UtilModule { }

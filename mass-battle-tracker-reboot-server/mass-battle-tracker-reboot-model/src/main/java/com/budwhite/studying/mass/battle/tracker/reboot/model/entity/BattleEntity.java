@@ -21,6 +21,7 @@ public class BattleEntity {
     private boolean defined;
     private boolean ended;
     private Integer lastCompletedRound;
+    private Long victoriousArmyId;
 
     public BattleEntity(String name, String description, boolean defined, boolean ended) {
         this.name = name;
@@ -35,5 +36,6 @@ public class BattleEntity {
         this.defined = battleEntity.defined;
         this.ended = battleEntity.ended;
         this.lastCompletedRound = battleEntity.lastCompletedRound;
+        this.victoriousArmyId = battleEntity.getVictoriousArmyId();
     }
 }

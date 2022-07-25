@@ -45,6 +45,21 @@ export class RoundSummaryComponent implements OnInit {
     );
   }
 
+  declareWinner(victoriousArmyId : number) {
+    this.recordArmyTotals();
+    this.battle.lastCompletedRound = this.roundState.roundIndex;
+    this.battle.ended = true;
+    this.battle.victoriousArmyId = victoriousArmyId;
+    console.warn("Ending battle, winner is " + victoriousArmyId);
+    this.updateBattle()
+    .then(
+      response => {
+        console.info("Remote battle has been updated:\n" + JSON.stringify(response));
+        this.router.navigateByUrl('/', {});
+      }
+    );
+  }
+
   private recordArmyTotals() : void {
     this.battle.involvedArmies.forEach(army => {
       army.currentCasualties += this.roundState.scorePerArmyId[army.id].totalCasualtiesSuffered;

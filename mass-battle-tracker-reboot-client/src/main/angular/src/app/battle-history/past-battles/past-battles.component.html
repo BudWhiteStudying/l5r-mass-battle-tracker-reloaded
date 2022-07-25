@@ -1,7 +1,7 @@
 <mat-card class="main-card" id="past-battles-main-card">
     <div *ngIf="pastBattles && pastBattles.length" id="past-battles-list-container">
         <mat-card class="loosely-spaced" *ngFor="let battle of pastBattles; index as i" id="past-battles-battle-{{i}}" (click)="getDetailedInfo(battle)">
-            {{battle.name}}
+            <b>{{battle.name}}</b>, won by <b>{{battle | armyById:battle.victoriousArmyId}}</b>
         </mat-card>
     </div>
     <div *ngIf="!pastBattles || !pastBattles.length" id="past-battles-no-records-container">

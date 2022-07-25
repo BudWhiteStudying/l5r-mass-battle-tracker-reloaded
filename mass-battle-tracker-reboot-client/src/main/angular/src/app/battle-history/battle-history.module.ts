@@ -12,6 +12,7 @@ import { PlayBattleModule } from '../play-battle/play-battle.module';
 import { MatSelectModule } from '@angular/material/select';
 import { UtilModule } from '../shared/util/util.module';
 import { PastBattlesComponent } from './past-battles/past-battles.component';
+import { ArmyByIdPipe } from '../shared/util/army-by-id.pipe';
 
 
 
@@ -31,6 +32,7 @@ import { PastBattlesComponent } from './past-battles/past-battles.component';
     PlayBattleModule,
     MatSelectModule,
     UtilModule
-  ]
+  ],
+  providers: [ArmyByIdPipe]
 })
 export class BattleHistoryModule { }
