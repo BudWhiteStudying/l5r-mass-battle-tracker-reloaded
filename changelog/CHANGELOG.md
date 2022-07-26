@@ -1,4 +1,5 @@
 
+ -  export and version a runnable JAR ([3e7be06fc7b260d](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/3e7be06fc7b260d))
 
 
 
