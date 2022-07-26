@@ -2,6 +2,7 @@
  -  export and version a runnable JAR ([3e7be06fc7b260d](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/3e7be06fc7b260d))
 
 
+ -  remove ending '/' to the base href on the Angular side ([6bf7b7b16716995](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/6bf7b7b16716995))
 
  -  make the standalone uber-jar functional ([75e223bd851d919](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/75e223bd851d919))
  -  bring the whole project to an alpha-acceptable state ([0f311826778a6d5](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/0f311826778a6d5))

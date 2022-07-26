@@ -48,6 +48,7 @@
                                 <pattern>com.budwhite.studying.mass.battle.tracker.reboot.model.dto.**</pattern>
                             </classPatterns>
                             <requiredAnnotations>io.smallrye.common.constraint.NotNull</requiredAnnotations>
+                            <noFileComment>true</noFileComment>
                         </configuration>
                     </plugin>
                 </plugins>
