@@ -1,9 +1,8 @@
 
+##  [0.0.1](https:github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/tags/0.0.1) (2022-07-26) 
+
+### Features
  -  export and version a runnable JAR ([3e7be06fc7b260d](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/3e7be06fc7b260d))
-
-
- -  remove ending '/' to the base href on the Angular side ([6bf7b7b16716995](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/6bf7b7b16716995))
-
  -  make the standalone uber-jar functional ([75e223bd851d919](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/75e223bd851d919))
  -  bring the whole project to an alpha-acceptable state ([0f311826778a6d5](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/0f311826778a6d5))
  -  sketch 'history' feature ([2cbd40262ecfaad](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/2cbd40262ecfaad))
@@ -18,9 +17,12 @@
  -  make 'new battle' module operational ([4c020829f01a940](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/4c020829f01a940))
  -  WIP on the server-side, migrate client-side from v1 project ([f38ac3a71d0065f](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/f38ac3a71d0065f))
 
+### Changes
  -  reorganise robot folder again ([9667a0c8804a14d](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/9667a0c8804a14d))
  -  complete rationalisation effort on robot files ([89101999ba9c192](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/89101999ba9c192))
  -  start rationalisation effort on robot files ([c20f94a5dd229d9](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/c20f94a5dd229d9))
  -  cleanup wrong package from arch generation ([003b912694cb3da](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/003b912694cb3da))
  -  multiple devastating refactoring operations ([3ad8da0cc1f28c4](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/3ad8da0cc1f28c4))
 
+### Bug Fixes
+ -  remove ending '/' to the base href on the Angular side ([6bf7b7b16716995](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/6bf7b7b16716995))

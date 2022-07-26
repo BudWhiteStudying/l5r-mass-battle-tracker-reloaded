@@ -1,6 +1,9 @@
 {{#tags}}
 
+## {{#ifEquals name 'Next release'}} *{{name}}* {{else}} [{{name}}](https:github.com/{{ownerName}}/{{repoName}}/tags/{{name}}) ({{tagDate}}) {{/ifEquals}}
+
     {{#ifContainsType commits type='feat'}}
+### Features
         {{#commits}}
             {{#ifCommitType . type='feat'}}
  - {{#eachCommitScope .}} **{{.}}** {{/eachCommitScope}} {{{commitDescription .}}} ([{{hash}}](https://github.com/{{ownerName}}/{{repoName}}/commit/{{hash}}))
@@ -9,6 +12,7 @@
     {{/ifContainsType}}
 
     {{#ifContainsType commits type='refactor'}}
+### Changes
         {{#commits}}
             {{#ifCommitType . type='refactor'}}
  - {{#eachCommitScope .}} **{{.}}** {{/eachCommitScope}} {{{commitDescription .}}} ([{{hash}}](https://github.com/{{ownerName}}/{{repoName}}/commit/{{hash}}))
@@ -17,6 +21,7 @@
     {{/ifContainsType}}
 
     {{#ifContainsType commits type='fix'}}
+### Bug Fixes
         {{#commits}}
             {{#ifCommitType . type='fix'}}
  - {{#eachCommitScope .}} **{{.}}** {{/eachCommitScope}} {{{commitDescription .}}} ([{{hash}}](https://github.com/{{ownerName}}/{{repoName}}/commit/{{hash}}))

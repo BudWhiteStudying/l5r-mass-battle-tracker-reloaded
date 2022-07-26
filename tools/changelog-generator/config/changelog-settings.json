@@ -1,6 +1,6 @@
 {
   "templatePath": "config/changelog-template.mustache",
-  "fromRef": "1.0-SNAPSHOT",
+  "fromRef": "0.0.0",
   "toRef": "master",
   "untaggedName": "Next release"
 }
