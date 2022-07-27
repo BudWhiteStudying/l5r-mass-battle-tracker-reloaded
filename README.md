@@ -24,6 +24,19 @@ Requirements
 --
 - Java 11 or newer
 
+**How to download and install Java 11?**
+
+1. Get the `.zip` package from the
+[Oracle Archive website](https://www.oracle.com/uk/java/technologies/javase/jdk11-archive-downloads.html) (pick
+the package type matching your operating system as indicated in the *name* of the package);
+2. Unzip the package, and copy the unzipped directory (which will be named like `jdk-11.0.10.jdk`) in the location
+where you keep other Java installations (e.g. it could be `/Library/Java/JavaVirtualMachines/` on a Mac);
+3. If you're on a Mac, update the `JAVA_HOME` environment variable to the location of `Home` subdirectory within
+the directory you just moved e.g. `/Library/Java/JavaVirtualMachines/jdk-11.0.10.jdk/Contents/Home`; if you're
+on Windows edit the `Path` environment variable by adding a new record *at the top of the list* containing the
+location of the `Home` subdirectory within the directory you just moved;
+4. Open a new Terminal window and issue the `java -version` command, it should tell you that you're using Java 11
+
 Running the application
 --
 
