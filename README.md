@@ -1,91 +1,54 @@
-QuarkusUi Project
+L5R Mass Battle Tracker
 ===
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+The purpose of this project is to assist the Game Master of a
+[Legend of the Five Rings 5e](https://www.fantasyflightgames.com/en/legend-of-the-five-rings-roleplaying-game/)
+game in managing the many variables they have to keep track of, when orchestrating a Conflict of type Mass Battle.
 
-If you want to learn more about Quarkus, please visit its website: [https://quarkus.io](https://quarkus.io).
-
-Notes about transitioning from Spring boot to Quarkus
+Summary
 --
 
-Data sources
----
-- the equivalent of Spring JPA is Panache entities (see the `data` module)
-- basically there is no need for DAO objects anymore, since JPA repo capabilities are included
-within the entity objects that extend the `PanacheEntity` class
-- apart from that, connection to a data source is pretty much the same (see `application.properties`
-in the `core` module)
+- [Brief technical description](#brief-technical-description)
+- [Requirements](#requirements)
+- [Running the application](#running-the-application)
+- [A note about copyright](#a-note-about-copyright)
 
-Unit testing
----
-- looks the same as the JUnit/Jupiter kind of thing you do with Spring Boot, but I still need to
-get my hands dirty with mocking
+Brief technical description
+--
+This project is a Java webapp, packaged in a runnable `.jar` file. After successfully starting the application by
+running the `.jar` file, the user interface of the web application will be available from any browser that is able to
+connect to the local host. The application relies on a file-based database, i.e. it reads and writes data on an external
+file, so that even if the application is stopped it will be able to resume the previous state at the following start.
 
-Dependency injection
----
-- whereas in Spring you would annotate e.g. a service class with the `@Service` annotation, and then
-declare it in another class with the `@Autowired` annotation, in Quarkus you annotate the service class
-with the `@ApplicationScope` annotation, and then declare it with the `@Inject` annotation in another class
-- Quarkus actually offers backwards compatibility with Spring DI through the `quarkus-spring-di` feature,
-but I think it makes sense to do things in a "quarky" way, rather than trying to replicate the patterns
-of a different framework
+Requirements
+--
+- Java 11 or newer
 
-Packaging
----
-- There is no way to build a `.war` file from Quarkus, get over it
-- Quarkus is made for packaging containerized applications
-
-Running the application in dev mode
+Running the application
 --
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
-```
+1. download the `.jar` file of the latest release (use the Releases function here on GitHub)
+2. open a `Terminal window` (MacOS) or a `cmd` window (Windows)
+3. navigate to the location of the `.jar` file
+4. execute the command `java -jar mass-battle-tracker-runnable.jar`
+5. a quick startup operation will be executed, wait 3-5s for the application to start up
+6. through a web browser, navigate the address
+[http://localhost.8080/mass-battle-tracker-reboot/](http://localhost.8080/mass-battle-tracker-reboot/); if you're on
+Windows pay specific attention to the trailing `/` character, since the web page will not load without it
+7. the application is ready to be used, click the `New Battle` button in order to start orchestrating a brand new
+battle, or click the `Resume Battle` button in order to list past, unfinished battles, and eventually resume one
+of those into play again; finally you can click on the `Battle History` button in order to list past, completed battles.
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+> The application will generate a database file in the home directory of the OS running it, more specifically
+> database files are saved in a subdirectory, in the home directory of the user running the JAR i.e. they are saved in
+> `~/l5r-mbt/database`.
 
-Packaging and running the application
+A note about copyright
 --
+This project is an "empty shell", i.e. it contains basically no explicit information coming from the L5R rulebooks.
+For example the user doesn't get to *select* an action type to perform during a round, as that would require the
+application to be aware of the different action types that are described on the rulebooks, instead the user is
+required to *type* the action name in a plain input field.
 
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
-
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
-
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-Creating a native executable
---
-
-You can create a native executable using: 
-```shell script
-./mvnw package -Pnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/enterprise-application-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
-
-Provided Code
---
-
-RESTEasy Reactive
-
-Easily start your Reactive RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+The only concepts that can be traced back to the rulebook are that of *Army*, *Clan*, *Leader*, etc; but those should
+be generic enough not to stir any trouble in terms of IP and copyright.
