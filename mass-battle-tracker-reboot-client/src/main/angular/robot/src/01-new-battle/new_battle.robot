@@ -1,11 +1,12 @@
 *** Settings ***
-Documentation     Suite testing the Play Battle module
+Documentation       Suite testing the Play Battle module
 ...
-...               It is supposed to run after the New Battle suite
-Resource          resource.robot
+...                 It is supposed to run after the New Battle suite
+
+Resource            resource.robot
+
 
 *** Test Cases ***
-
 Select Commander for First Army
     Insert Battle Description
     Navigation Should Fail
