@@ -17,7 +17,6 @@ ${FIRST ARMY NAME}              Lion Attackers
 ${FIRST ARMY CLAN NAME}         Lion
 ${FIRST ARMY STRENGTH}          90
 ${FIRST ARMY DISCIPLINE}        100
-${FIRST ARMY ATTR REDUX}        0
 
 ${FIRST ARMY L1 NAME}           Akodo Arasou
 ${FIRST ARMY L1 CLAN}           Lion
@@ -28,7 +27,6 @@ ${SECOND ARMY NAME}             Crane Defenders
 ${SECOND ARMY CLAN NAME}        Crane
 ${SECOND ARMY STRENGTH}         100
 ${SECOND ARMY DISCIPLINE}       90
-${SECOND ARMY ATTR REDUX}       1
 
 ${SECOND ARMY L1 NAME}          Doji Hotaru
 ${SECOND ARMY L1 CLAN}          Crane
@@ -65,7 +63,6 @@ Add First Army
     ...    ${FIRST ARMY CLAN NAME}
     ...    ${FIRST ARMY STRENGTH}
     ...    ${FIRST ARMY DISCIPLINE}
-    ...    ${FIRST ARMY ATTR REDUX}
     Add First Army Leaders
     Click Button    id=involved-armies-add-army-button
 
@@ -75,7 +72,6 @@ Add Second Army
     ...    ${SECOND ARMY CLAN NAME}
     ...    ${SECOND ARMY STRENGTH}
     ...    ${SECOND ARMY DISCIPLINE}
-    ...    ${SECOND ARMY ATTR REDUX}
     Add Second Army Leaders
     Click Button    id=involved-armies-add-army-button
 

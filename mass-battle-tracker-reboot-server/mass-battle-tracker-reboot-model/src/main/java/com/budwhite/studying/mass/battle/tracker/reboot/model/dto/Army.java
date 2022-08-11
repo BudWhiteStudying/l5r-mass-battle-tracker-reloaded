@@ -23,7 +23,6 @@ public class Army implements Serializable {
 
     // battle-dependent properties
     private int currentCasualties;
-    private int attritionReduction;
     private int currentPanic;
     private Long battleId;
     @NotNull

@@ -107,7 +107,6 @@ export class InvolvedArmiesComponent implements OnInit {
         this.armyInProgress.mainClan = this.newArmyForm.value.armyClan;
         this.armyInProgress.strength = this.newArmyForm.value.armyStrength;
         this.armyInProgress.discipline = this.newArmyForm.value.armyDiscipline;
-        this.armyInProgress.attritionReduction = this.newArmyForm.value.armyAttritionReduction;
         this.armyInProgress.battleId = this.battle.id;
         this.battle.involvedArmies.push(this.armyInProgress);
         console.debug("New state of battle after onNewArmySubmit: " + JSON.stringify(this.battle,null,4));
@@ -156,8 +155,7 @@ export class InvolvedArmiesComponent implements OnInit {
       armyName: new FormControl('', Validators.required),//[this.battle.name, Validators.required],
       armyClan: new FormControl('', Validators.required),//[this.battle.name, Validators.required],
       armyStrength: new FormControl('', Validators.required),//[this.battle.description, Validators.required],//[this.battle.name, Validators.required],
-      armyDiscipline: new FormControl('', Validators.required),//[this.battle.description, Validators.required],
-      armyAttritionReduction: new FormControl('', Validators.required)//[this.battle.description, Validators.required]
+      armyDiscipline: new FormControl('', Validators.required)//[this.battle.description, Validators.required],
     });
 
     let formInitialValue = this.newArmyForm.value;

@@ -24,7 +24,6 @@ public class ArmyEntity {
     private int strength;
     private int discipline;
     private int currentCasualties;
-    private int attritionReduction;
 
     private int currentPanic;
     private Long battleId;
@@ -38,7 +37,6 @@ public class ArmyEntity {
         this.strength = armyEntity.getStrength();
         this.discipline = armyEntity.getDiscipline();
         this.currentCasualties = armyEntity.getCurrentCasualties();
-        this.attritionReduction = armyEntity.getAttritionReduction();
         this.currentPanic = armyEntity.getCurrentPanic();
         this.battleId = armyEntity.getBattleId();
     }

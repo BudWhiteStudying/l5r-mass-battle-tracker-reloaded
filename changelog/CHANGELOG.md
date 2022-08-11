@@ -2,6 +2,8 @@
 ##  *Next release* 
 
 
+### Changes
+ -  refactor robot tests ([b452b131a24c2fe](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/b452b131a24c2fe))
 
 
 ##  [0.0.1](https:github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/tags/0.0.1) (2022-07-26) 
