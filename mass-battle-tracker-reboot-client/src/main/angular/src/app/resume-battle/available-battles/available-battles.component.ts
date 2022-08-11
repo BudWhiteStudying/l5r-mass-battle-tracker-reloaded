@@ -28,9 +28,42 @@ export class AvailableBattlesComponent implements OnInit {
   }
 
   resumeBattle(battle : Battle) {
-    this.router.navigateByUrl('/play-battle/rounds/objective-selection', {
-      state: {battle: battle}
+    let haveCommandersBeenDefined : boolean = true;
+    let hasInitiativeBeenRolled : boolean = true;
+    let haveCohortsBeenDefined : boolean = true;
+    battle.involvedArmies.forEach(army => {
+      if(!army.commanderId && army.commanderId!==0)
+        haveCommandersBeenDefined = false;
+      else {
+        const commanderInitiative = army.leaders.find(leader => leader.id===army.commanderId).initiative;
+        if(!commanderInitiative && commanderInitiative!==0) {
+          hasInitiativeBeenRolled = false;
+        }
+      }
+      if(!army.cohorts || army.cohorts.length==0) {
+        haveCohortsBeenDefined = false;
+      }
     });
+    if(!haveCommandersBeenDefined) {
+      this.router.navigateByUrl('/play-battle/initiative/commander-selection', {
+        state: {battle: battle}
+      });
+    }
+    else if(!hasInitiativeBeenRolled) {
+      this.router.navigateByUrl('/play-battle/initiative/initiative-recording', {
+        state: {battle: battle}
+      });
+    }
+    else if(!haveCohortsBeenDefined) {
+      this.router.navigateByUrl('/play-battle/initiative/leaders-selection', {
+        state: {battle: battle}
+      });
+    }
+    else {
+      this.router.navigateByUrl('/play-battle/rounds/objective-selection', {
+        state: {battle: battle}
+      });
+    }
   }
 
   ngOnInit(): void {

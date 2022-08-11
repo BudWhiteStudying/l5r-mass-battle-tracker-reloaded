@@ -40,7 +40,6 @@ public class ArmyFactory {
                 .cohorts(cohortRepository.find("armyId", armyEntity.getId()).stream().map(cohortEntity -> cohortFactory.getCohort(cohortEntity)).collect(Collectors.toList()))
                 .leaders(leaderRepository.find("armyId", armyEntity.getId()).stream().map(leaderEntity -> leaderFactory.getLeader(leaderEntity)).collect(Collectors.toList()))
                 .currentCasualties(armyState.getCurrentCasualties())
-                .attritionReduction(armyState.getAttritionReduction())
                 .currentPanic(armyState.getCurrentPanic())
                 .battleId(armyState.getBattleId())
                 .commanderId(armyEntity.getCommanderId())
@@ -57,7 +56,6 @@ public class ArmyFactory {
                 army.getStrength(),
                 army.getDiscipline(),
                 army.getCurrentCasualties(),
-                army.getAttritionReduction(),
                 army.getCurrentPanic(),
                 army.getBattleId()
         );

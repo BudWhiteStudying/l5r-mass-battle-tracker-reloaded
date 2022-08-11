@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Battle, RoundState } from 'src/app/shared/data-model/mass-battle-tracker-reboot-server';
+import { ArmyState } from 'src/app/shared/data-model/army-state';
 
 @Component({
   selector: 'round-summary',
@@ -12,12 +13,18 @@ export class RoundSummaryComponent implements OnInit {
 
   battle : Battle;
   roundState : RoundState;
+  roundTotalsPerArmy : Map<number,ArmyState> = new Map<number,ArmyState>();
 
   constructor(private router:Router,
     private httpClient: HttpClient) {
     if(this.router.getCurrentNavigation().extras.state) {
       this.battle = this.router.getCurrentNavigation().extras.state.battle;
       this.roundState = this.router.getCurrentNavigation().extras.state.roundState;
+      this.battle.involvedArmies.forEach(army => {
+        this.roundTotalsPerArmy[army.id] = {
+          totalCasualtiesSuffered : army.currentCasualties+this.roundState.scorePerArmyId[army.id].totalCasualtiesSuffered,
+          totalPanicSuffered : Math.max(0,army.currentPanic+this.roundState.scorePerArmyId[army.id].totalPanicSuffered-this.roundState.scorePerArmyId[army.id].totalPanicRemoved)
+        }});
     }
   }
 
@@ -62,8 +69,8 @@ export class RoundSummaryComponent implements OnInit {
 
   private recordArmyTotals() : void {
     this.battle.involvedArmies.forEach(army => {
-      army.currentCasualties += this.roundState.scorePerArmyId[army.id].totalCasualtiesSuffered;
-      army.currentPanic += Math.max(0,this.roundState.scorePerArmyId[army.id].totalPanicSuffered-this.roundState.scorePerArmyId[army.id].totalPanicRemoved);
+      army.currentCasualties = this.roundTotalsPerArmy[army.id].totalCasualtiesSuffered;
+      army.currentPanic = this.roundTotalsPerArmy[army.id].totalPanicSuffered;
     });
   }
 }

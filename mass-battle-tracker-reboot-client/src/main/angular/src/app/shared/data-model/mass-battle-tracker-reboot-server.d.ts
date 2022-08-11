@@ -17,7 +17,6 @@ export interface Army extends Serializable {
     strength?: number;
     discipline?: number;
     currentCasualties?: number;
-    attritionReduction?: number;
     currentPanic?: number;
     battleId?: number;
     leaders?: Leader[];

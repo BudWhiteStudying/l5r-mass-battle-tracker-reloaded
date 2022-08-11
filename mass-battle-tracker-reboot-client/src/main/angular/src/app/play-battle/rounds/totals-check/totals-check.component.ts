@@ -106,7 +106,7 @@ export class TotalsCheckComponent implements OnInit {
         this.roundState.scorePerArmyId[army.id].totalAttritionSuffered = this.determineTotalAttritionSuffered(army);
         this.roundState.scorePerArmyId[army.id].totalPanicSuffered = this.determineTotalPanicSuffered(army);
         this.roundState.scorePerArmyId[army.id].totalPanicRemoved = this.determineTotalPanicRemoved(army);
-        this.roundState.scorePerArmyId[army.id].totalCasualtiesSuffered = this.roundState.scorePerArmyId[army.id].totalAttritionSuffered-army.attritionReduction;
+        this.roundState.scorePerArmyId[army.id].totalCasualtiesSuffered = this.roundState.scorePerArmyId[army.id].totalAttritionSuffered;
       });
   }
 }

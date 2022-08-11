@@ -14,10 +14,9 @@ Add Leader
     Click Button    id=involved-armies-add-leader-button
 
 Add Army
-    [Arguments]    ${army name}    ${army clan}    ${army strength}    ${army discipline}    ${army attr redux}
+    [Arguments]    ${army name}    ${army clan}    ${army strength}    ${army discipline}
     Click Button    id=involved-armies-new-army-button
     Input Text    id=involved-armies-army-name-input    ${army name}
     Input Text    id=involved-armies-army-clan-input    ${army clan}
     Input Text    id=involved-armies-army-strength-input    ${army strength}
     Input Text    id=involved-armies-army-discipline-input    ${army discipline}
-    Input Text    id=involved-armies-army-attr-reduction-input    ${army attr redux}

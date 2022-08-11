@@ -35,13 +35,13 @@
                 <br/>
             <mat-form-field class="loosely-spaced">
                 <mat-label>Total casualties suffered</mat-label>
-                <input [(ngModel)]="1*army.currentCasualties+1*roundState.scorePerArmyId[army.id].totalCasualtiesSuffered" matInput name="tot-cas-{{army.name}}" required>
+                <input [(ngModel)]="roundTotalsPerArmy[army.id].totalCasualtiesSuffered" matInput name="tot-cas-{{army.name}}" required>
             </mat-form-field>
             <mat-label class="space-left loosely-spaced" [class.red]="army.currentCasualties+roundState.scorePerArmyId[army.id].totalCasualtiesSuffered>army.strength">against Strength <b>{{army.strength}}</b></mat-label>
             <br/>
             <mat-form-field class="loosely-spaced">
                 <mat-label>Total panic suffered</mat-label>
-                <input [(ngModel)]="1*army.currentPanic+roundState.scorePerArmyId[army.id].totalPanicSuffered-1*roundState.scorePerArmyId[army.id].totalPanicRemoved" matInput name="tot-pan-{{army.name}}" required>
+                <input [(ngModel)]="roundTotalsPerArmy[army.id].totalPanicSuffered" matInput name="tot-pan-{{army.name}}" required>
             </mat-form-field>
             <mat-label class="space-left loosely-spaced" [class.red] = "army.currentPanic+roundState.scorePerArmyId[army.id].totalPanicSuffered-roundState.scorePerArmyId[army.id].totalPanicRemoved>army.discipline">against Discipline <b>{{army.discipline}}</b></mat-label>
             </mat-card>
