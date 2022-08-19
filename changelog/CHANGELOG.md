@@ -1,10 +1,20 @@
 
-##  *Next release* 
+##  [0.0.3](https:github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/tags/0.0.3) (2022-08-19) 
+
+### Features
+ -  implement default browser auto-opening ([ff7ed1fcb7cab69](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/ff7ed1fcb7cab69))
+
+
+
+##  [0.0.2](https:github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/tags/0.0.2) (2022-08-11) 
 
 
 ### Changes
  -  refactor robot tests ([b452b131a24c2fe](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/b452b131a24c2fe))
 
+### Bug Fixes
+ -  restore previous base-href with trailing slash ([a30e513308c8982](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/a30e513308c8982))
+ -  fix negative panic amounts in round summary page ([f9315ba645e819a](https://github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/commit/f9315ba645e819a))
 
 ##  [0.0.1](https:github.com/BudWhiteStudying/l5r-mass-battle-tracker-reloaded/tags/0.0.1) (2022-07-26) 
 
