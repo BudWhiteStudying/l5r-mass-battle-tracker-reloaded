@@ -45,9 +45,12 @@ Running the application
 3. navigate to the location of the `.jar` file
 4. execute the command `java -jar mass-battle-tracker-runnable.jar`
 5. a quick startup operation will be executed, wait 3-5s for the application to start up
-6. through a web browser, navigate the address
-[http://localhost.8080/mass-battle-tracker-reboot/](http://localhost.8080/mass-battle-tracker-reboot/); if you're on
-Windows pay specific attention to the trailing `/` character, since the web page will not load without it
+6. the application will attempt to open the default browser defined by your OS, to the URL
+where the application is locally exposed; if this operation fails (it could, depending on
+your OS), you will have to execute it manually, thus opening a web browser, and navigating
+to the address
+[http://localhost:8080/mass-battle-tracker-reboot/](http://localhost:8080/mass-battle-tracker-reboot/);
+if you're on Windows pay specific attention to the trailing `/` character, since the web page will not load without it
 7. the application is ready to be used, click the `New Battle` button in order to start orchestrating a brand new
 battle, or click the `Resume Battle` button in order to list past, unfinished battles, and eventually resume one
 of those into play again; finally you can click on the `Battle History` button in order to list past, completed battles.
